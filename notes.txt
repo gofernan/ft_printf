@@ -1,0 +1,4 @@
+length modifiers:
+
+hh y h -> h
+The decimal point character is defined in the program's locale (category LC_NUMERIC).
