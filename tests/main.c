@@ -6,7 +6,7 @@
 /*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/22 23:05:46 by gofernan          #+#    #+#             */
-/*   Updated: 2018/03/19 13:07:25 by gofernan         ###   ########.fr       */
+/*   Updated: 2018/03/28 21:04:10 by gofernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <string.h>
 #include <locale.h>
 #include <unistd.h>
+#include "../libft/libft.h"
 #define TESTMACROMOLA "sSpdDioOuUxXcC"
 #define MACROMOLA_L strlen(TESTMACROMOLA)
 
@@ -31,7 +32,13 @@ int main(void)
 	char tosgn = 65;
 	const char *fconv[15];
 	int b;
+	char *strrare;
+	unsigned long rarechar;
 
+	strrare = "米a";
+	rarechar = '米';
+
+	printf("rare char: %zu\n", sizeof(char));
 	printf("El integer b es: %d", b);
 	printf("first of all, TESTMACRO LEN: %lu\n", strlen(TESTMACROMOLA));
 	printf("len TESTMACROMOLA: %lu", MACROMOLA_L);
@@ -62,6 +69,10 @@ int main(void)
 	printf("signed flag: %11$d %1$d %3$d %10$d %9$d %8$d %7$d %6$d %5$d %4$d %2$d %12$d %13$d %14$d %15$d %30$d\n", 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150,
 			10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 151);
 	printf("%hd\n", 1);
+	printf("% #-d%diez\n", 10, 20);
+	printf("strlen strrare: %zu\n", ft_strlen(strrare));
+	printf("size of strrare: %lu\n", sizeof(strrare));
+	ft_putchar(rarechar);
 	//printf("%12-+d", 6999) bad composed
 
 	//printf("%1$s", fconv[0], fconv[1]);

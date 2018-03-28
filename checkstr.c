@@ -6,7 +6,7 @@
 /*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/13 10:01:20 by gofernan          #+#    #+#             */
-/*   Updated: 2018/03/21 17:20:26 by gofernan         ###   ########.fr       */
+/*   Updated: 2018/03/28 21:04:08 by gofernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int		checkstr(const char *str, fstr_t *ptrfstring, va_list ap)
 			go = 1;
 			i++;
 		}
-		if (go == 1)
+		if (go == 1 && str[i] != '\0')
 		{
 			// initialize struct to 0
 			if (checkstr_argorder(&str[i], ptrfstring))

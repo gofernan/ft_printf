@@ -1,36 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checkstr_argorder.c                                :+:      :+:    :+:   */
+/*   ft_strncpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/19 12:10:45 by gofernan          #+#    #+#             */
-/*   Updated: 2018/03/28 21:04:12 by gofernan         ###   ########.fr       */
+/*   Created: 2017/11/16 22:08:33 by gofernan          #+#    #+#             */
+/*   Updated: 2017/11/17 19:31:10 by gofernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/ft_printf.h"
+#include "libft.h"
 
-int			checkstr_argorder(const char *str, fstr_t *ptrfstring)
+char	*ft_strncpy(char *dst, const char *src, size_t len)
 {
 	int i;
+	int a;
 
 	i = 0;
-	printf("Dentro de checkstr_argorder\n");
-	printf("str =%s\n", str);
-	while (str[i] >= 48 && str[i] <= 57)
+	a = len;
+	while ((i < a) && (src[i] != '\0'))
 	{
-		printf("Es un numero\n");
+		dst[i] = src[i];
 		i++;
 	}
-	if (str[i] == '$' && i > 0)
+	while (i < a)
 	{
-		printf("Es un dollar\n");
-		ptrfstring->argordervalue = ft_memalloc(i + 1);
-		ft_strncpy(ptrfstring->argordervalue, str, i);
-		ptrfstring->argorder = 1;
-		return (1);
+		dst[i] = '\0';
+		i++;
 	}
-	return (0);
+	return (dst);
 }

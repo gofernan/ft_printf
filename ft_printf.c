@@ -6,7 +6,7 @@
 /*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/22 22:49:45 by gofernan          #+#    #+#             */
-/*   Updated: 2018/03/21 17:48:31 by gofernan         ###   ########.fr       */
+/*   Updated: 2018/03/28 21:04:05 by gofernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ i = 2;
 	
 }
 */
-int check_conversions(char a)
+/*int check_conversions(char a)
 {
 	char conv[15];
 	int i;
@@ -45,6 +45,7 @@ int check_conversions(char a)
 	}
 	return (-1);
 }
+*/
 void ft_printf(const char *str, ...)
 {
 	va_list ap;
