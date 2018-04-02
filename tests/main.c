@@ -6,7 +6,7 @@
 /*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/22 23:05:46 by gofernan          #+#    #+#             */
-/*   Updated: 2018/03/28 21:04:10 by gofernan         ###   ########.fr       */
+/*   Updated: 2018/04/02 15:00:06 by gofernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 int main(void)
 {
 
-	setlocale(LC_ALL, "en_US.UTF-8");
+	//setlocale(LC_ALL, "en_US.UTF-8");
 
 	char *str = "hello";
 	char *str2 = "hello2";

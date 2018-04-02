@@ -2,3 +2,5 @@ length modifiers:
 
 hh y h -> h
 The decimal point character is defined in the program's locale (category LC_NUMERIC).
+%hC <- Invalid conversion specifier
+Is normal behavior to modify a file and then do a Make and returns nothing to be done? 

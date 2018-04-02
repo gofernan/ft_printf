@@ -6,7 +6,7 @@
 /*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/22 22:49:45 by gofernan          #+#    #+#             */
-/*   Updated: 2018/03/28 21:04:05 by gofernan         ###   ########.fr       */
+/*   Updated: 2018/04/02 20:39:30 by gofernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ i = 2;
 	
 }
 */
-/*int check_conversions(char a)
+int check_conversions(char a)
 {
 	char conv[15];
 	int i;
@@ -45,18 +45,20 @@ i = 2;
 	}
 	return (-1);
 }
-*/
-void ft_printf(const char *str, ...)
+
+int			ft_printf(const char *str, ...)
 {
 	va_list ap;
 	fstr_t fstring;
 	fstr_t *ptrfstring;
 	convstr[0] = sconv;
 	//char	*s;
+	int		counter;
 	int		i;
 	//char	conv[15];
 
 	i = 0;
+	counter = 0;
 	//store_functions;
 	va_start(ap, str);
 	ptrfstring = &fstring;
@@ -74,11 +76,14 @@ void ft_printf(const char *str, ...)
 	i = 0;
 	print_initialize(ptrfstring);
 	if (ptrfstring->argordervalue == NULL)
-		printf("argordervalue is NULL");
+		printf("argordervalue is NULL\n");
 	while (str[i] != '\0')
 	{
 		if (str[i] != '%')
+		{
+			counter += write(1, &str[i], 1);
 			ft_putchar(str[i]);
+		}
 		if (str[i] == '%')
 		{
 				//check_argorder(str[i]);
@@ -95,6 +100,7 @@ void ft_printf(const char *str, ...)
 		i++;
 	}
 	va_end(ap);
+	return (counter);
 }
 
 int main(void)
@@ -106,7 +112,8 @@ int main(void)
 	char *str5 = "bye";
 	char **strings;
 
-	ft_printf("leading string :%#hhh.745s, trailing string% 'sx %1$tzjl Xbla\n", str1, str2, str3, str4, str5);
+	//ft_printf("leading string :%#hhh.745s, trailing string% 'sx %1$tzjl Xbla\n", str1, str2, str3, str4, str5);
+	printf("counter: %d\n", ft_printf("Ѫઆaᴻ"));
 	//setlocale(P_ALL, "en_US.UTF-8");
 	/*pep check
 	int i = printf("\nHola\n%c,pizaww? %C\n", 20, -65);
