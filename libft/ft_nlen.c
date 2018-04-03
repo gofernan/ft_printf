@@ -1,29 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sconv.c                                            :+:      :+:    :+:   */
+/*   ft_nlen.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/27 16:11:15 by gofernan          #+#    #+#             */
-/*   Updated: 2018/04/03 19:13:57 by gofernan         ###   ########.fr       */
+/*   Created: 2018/04/03 19:58:36 by gofernan          #+#    #+#             */
+/*   Updated: 2018/04/03 20:45:28 by gofernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/ft_printf.h"
-//flag # no effect
-//- override 0
-int	sconv(va_list ap, fstr_t *ptrfstring)
+#include "libft.h"
+
+int	ft_nlen(long nb)
 {
-	char *s;
-	char *sconverted;
 	int counter;
 
-	s = va_arg(ap, char *);
-	sconverted = NULL;
-	if (ptrfstring->fwidth)
-	   sconverted = field_width(s, ptrfstring);
-
-	counter = write(1, sconverted, (ft_strlen(sconverted) + 1));
+	counter = 1;
+	if (nb < 0)
+		counter++;
+	if (nb < 0)
+	{
+		while (nb <= -10)
+		{
+			counter++;
+			nb /= 10;
+		}
+	}
+	else
+	{
+		while (nb >= 10)
+		{
+			counter++;
+			nb /= 10;
+		}
+	}
 	return (counter);
 }

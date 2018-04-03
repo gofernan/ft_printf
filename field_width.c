@@ -6,9 +6,11 @@
 /*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/03 12:32:30 by gofernan          #+#    #+#             */
-/*   Updated: 2018/04/03 13:24:22 by gofernan         ###   ########.fr       */
+/*   Updated: 2018/04/03 19:51:53 by gofernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "includes/ft_printf.h"
 
 char			*field_width(char *str, fstr_t *ptrfstring)
 {
@@ -18,7 +20,7 @@ char			*field_width(char *str, fstr_t *ptrfstring)
 	char paddchar;
 
 	len = ft_strlen(str);
-	fwidth = ft_atoi(ptrfstring->fwidthvalue);
+	fwidth = ptrfstring->fwidthvalue;
 	if (fwidth > len)
 	{
 		newstr = ft_strnew(fwidth);

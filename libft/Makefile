@@ -6,7 +6,7 @@
 #    By: gofernan <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/13 19:11:35 by gofernan          #+#    #+#              #
-#    Updated: 2017/12/07 05:42:12 by gofernan         ###   ########.fr        #
+#    Updated: 2018/04/03 20:33:34 by gofernan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,8 +75,9 @@ FILES = ft_bzero.c \
 		ft_itoa.c \
 		ft_atoi.c \
 		ft_lstmap.c \
-		ft_strsplit.c\
-		ft_div_mod.c
+		ft_strsplit.c \
+		ft_div_mod.c \
+		ft_nlen.c
 
 OES = $(FILES:.c=.o)
 

@@ -6,7 +6,7 @@
 #    By: gofernan <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/13 16:45:07 by gofernan          #+#    #+#              #
-#    Updated: 2018/04/02 19:46:08 by gofernan         ###   ########.fr        #
+#    Updated: 2018/04/03 20:47:02 by gofernan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ NAME = miprintf
 FLS = argorder checkstr checkstr_argorder checkstr_flags checkstr_fwidth \
 	  checkstr_precision checkstr_length_hh checkstr_length_h \
 	  checkstr_length_ll checkstr_length_l checkstr_length_j checkstr_length_t \
-	  checkstr_length_z conversion_specifiers sconv ft_printf \
+	  checkstr_length_z conversion_specifiers sconv field_width ft_printf \
 	  initialize_struct print_initialize
 
 FTFLS = ft_bzero ft_memset ft_memmove ft_strlen	ft_strdup ft_putchar ft_strcpy \
@@ -29,7 +29,7 @@ FTFLS = ft_bzero ft_memset ft_memmove ft_strlen	ft_strdup ft_putchar ft_strcpy \
 		ft_strmapi ft_strequ ft_strnequ ft_strsub ft_strjoin ft_strtrim \
 		ft_putendl ft_putnbr ft_putchar_fd ft_putstr_fd ft_putendl_fd \
 		ft_putnbr_fd ft_lstnew ft_lstdelone ft_lstdel ft_lstadd ft_lstiter \
-		ft_itoa ft_atoi ft_lstmap ft_strsplit ft_div_mod
+		ft_itoa ft_atoi ft_lstmap ft_strsplit ft_div_mod ft_nlen
 
 FTDIR = libft/
 HEADER = includes/

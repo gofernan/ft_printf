@@ -6,7 +6,7 @@
 /*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/17 19:31:32 by gofernan          #+#    #+#             */
-/*   Updated: 2017/12/07 04:14:52 by gofernan         ###   ########.fr       */
+/*   Updated: 2018/04/03 20:46:31 by gofernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,4 +90,5 @@ int					ft_iterative_factoial(int b);
 int					*ft_range(int min, int max);
 void				ft_swap(int *a, int *b);
 void				ft_is_negative(int n);
+int					ft_nlen(long nb);
 #endif

@@ -25,5 +25,6 @@ int main(void)
 	printf("%04s\n", "诶");
 	printf("%01s\n", "1");
 	printf("%50dlalala\n");
+	printf("%10h0d\n", 10);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 23:18:51 by gofernan          #+#    #+#             */
-/*   Updated: 2018/03/21 17:28:44 by gofernan         ###   ########.fr       */
+/*   Updated: 2018/04/03 19:54:32 by gofernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,6 @@ void		print_initialize(fstr_t *ptrfstring)
 		printf("lenghtmdf[%d]: %d\n", i, ptrfstring->lengthmdf[i]);
 	printf("convesp: %c\n", ptrfstring->convesp);
 	printf("argordervalue = %s\n", ptrfstring->argordervalue);
-	printf("fwidthvalue = %s\n", ptrfstring->fwidthvalue);
+	printf("fwidthvalue = %d\n", ptrfstring->fwidthvalue);
 	printf("precisionvalue = %s\n", ptrfstring->precisionvalue);
 }

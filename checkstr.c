@@ -6,7 +6,7 @@
 /*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/13 10:01:20 by gofernan          #+#    #+#             */
-/*   Updated: 2018/04/03 11:59:39 by gofernan         ###   ########.fr       */
+/*   Updated: 2018/04/03 20:48:22 by gofernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,50 +17,41 @@ int		checkstr(const char *str, fstr_t *ptrfstring, va_list ap)
 
 	int i;
 	int go;
+	int counter;
 	i = 0;
 	go = 0;
-	//int start;
-	//char *position;
-	//char fields[100];
-
-	//ft_memset(fields, '$', 100);
-
-	/*i = 0;
-	if ((position = ft_strchr(str, '%')))
-	{
-		while (str[i] != *position)
-		{
-			ft_putchar(str[i]);
-			ft_putstr("inside\n");
-			i++;
-		}
-	}
-	*/
-	/*while (str[i] != '%')
-	{
-	i = 0;
-	while (str[i] > 0 && str[i] < 9)
-		i++;
-		*/
+	counter = 0;
+	printf("Before anything: %s\n", str);
 	while (str[i] != '\0')
 	{
-		if (str[i] != '%')
+		if (go == 0)
+		{
+			if (str[i] != '%')
+				counter += write(1, &str[i], 1);
+			if (str[i] == '%')
+				go = 1;
+			i++;
+		}
+		/*
+		if (str[i] != '%' && go == 0)
 		{
 			counter += write(1, &str[i], 1);
+			i++;
 		}
-		else	
+		else if (str[i] == '%' && go == 0)
 		{
 			go = 1;
 			i++;
 		}
-		if (go == 1 && str[i] != '\0')
+		*/
+		if (str[i] != '\0' && go == 1)
 		{
 			// initialize struct to 0
 			if (checkstr_argorder(&str[i], ptrfstring))
 				i += ft_strlen(ptrfstring->argordervalue);
 			else if (checkstr_flags(&str[i], ptrfstring));
 			else if (checkstr_fwidth(&str[i], ptrfstring))
-				i += ft_strlen(ptrfstring->fwidthvalue);
+				i += ft_nlen(ptrfstring->fwidthvalue) - 1;
 			else if (checkstr_precision(&str[i], ptrfstring))
 				i += ft_strlen(ptrfstring->precisionvalue);
 			else if (checkstr_length_hh(&str[i], ptrfstring))
@@ -94,8 +85,11 @@ int		checkstr(const char *str, fstr_t *ptrfstring, va_list ap)
 				printf("HOLA\n");
 				*/
 		}
+		printf("len width value: %d\n", ft_nlen(ptrfstring->fwidthvalue));
 		printf("i en checkstr %d\n", i);
 		i++;
 	}
-	return (0);
+	if (ptrfstring->convesp == 's')
+		counter += sconv(ap, ptrfstring);
+	return (counter);
 }
