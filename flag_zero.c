@@ -1,23 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sconv.c                                            :+:      :+:    :+:   */
+/*   flag_zero.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/27 16:11:15 by gofernan          #+#    #+#             */
-/*   Updated: 2018/04/03 13:21:31 by gofernan         ###   ########.fr       */
+/*   Created: 2018/04/03 12:29:16 by gofernan          #+#    #+#             */
+/*   Updated: 2018/04/03 12:30:40 by gofernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/ft_printf.h"
-//flag # no effect
-//- override 0
-void	sconv(va_list ap)
+void		flag_zero(char *str)
 {
-	char *s;
-
-	s = va_arg(ap, char *);
-
-	write(1, s, (ft_strlen(s) + 1));
 }

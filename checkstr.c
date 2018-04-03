@@ -6,7 +6,7 @@
 /*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/13 10:01:20 by gofernan          #+#    #+#             */
-/*   Updated: 2018/04/02 19:46:46 by gofernan         ###   ########.fr       */
+/*   Updated: 2018/04/03 11:59:39 by gofernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,11 @@ int		checkstr(const char *str, fstr_t *ptrfstring, va_list ap)
 		*/
 	while (str[i] != '\0')
 	{
-		if (str[i] == '%')
+		if (str[i] != '%')
+		{
+			counter += write(1, &str[i], 1);
+		}
+		else	
 		{
 			go = 1;
 			i++;
@@ -62,9 +66,9 @@ int		checkstr(const char *str, fstr_t *ptrfstring, va_list ap)
 			else if (checkstr_length_hh(&str[i], ptrfstring))
 				i++;
 			else if (checkstr_length_h(&str[i], ptrfstring));
+			else if (checkstr_length_l(&str[i], ptrfstring));
 			else if (checkstr_length_ll(&str[i], ptrfstring))
 				i++;
-			else if (checkstr_length_l(&str[i], ptrfstring));
 			else if (checkstr_length_j(&str[i], ptrfstring));
 			else if (checkstr_length_t(&str[i], ptrfstring));
 			else if (checkstr_length_z(&str[i], ptrfstring));

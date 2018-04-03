@@ -1,23 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sconv.c                                            :+:      :+:    :+:   */
+/*   field_width.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/27 16:11:15 by gofernan          #+#    #+#             */
-/*   Updated: 2018/04/03 13:21:31 by gofernan         ###   ########.fr       */
+/*   Created: 2018/04/03 12:32:30 by gofernan          #+#    #+#             */
+/*   Updated: 2018/04/03 13:24:22 by gofernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/ft_printf.h"
-//flag # no effect
-//- override 0
-void	sconv(va_list ap)
+char			*field_width(char *str, fstr_t *ptrfstring)
 {
-	char *s;
+	int len;
+	int fwidth;
+	char *newstr;
+	char paddchar;
 
-	s = va_arg(ap, char *);
-
-	write(1, s, (ft_strlen(s) + 1));
+	len = ft_strlen(str);
+	fwidth = ft_atoi(ptrfstring->fwidthvalue);
+	if (fwidth > len)
+	{
+		newstr = ft_strnew(fwidth);
+		if (ptrfstring->flags[1])
+			paddchar = '0';
+		else
+			paddchar = ' ';
+		ft_memset(newstr, paddchar, fwidth - len);
+		ft_strcat(newstr, str);
+	}
+	return (newstr);
 }

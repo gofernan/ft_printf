@@ -6,7 +6,7 @@
 /*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/22 22:49:45 by gofernan          #+#    #+#             */
-/*   Updated: 2018/04/02 20:39:30 by gofernan         ###   ########.fr       */
+/*   Updated: 2018/04/03 13:33:13 by gofernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,8 @@ int			ft_printf(const char *str, ...)
 		if (str[i] != '%')
 		{
 			counter += write(1, &str[i], 1);
-			ft_putchar(str[i]);
+			printf("counter %d\n", counter);
+			//ft_putchar(str[i]);
 		}
 		if (str[i] == '%')
 		{
@@ -113,7 +114,9 @@ int main(void)
 	char **strings;
 
 	//ft_printf("leading string :%#hhh.745s, trailing string% 'sx %1$tzjl Xbla\n", str1, str2, str3, str4, str5);
-	printf("counter: %d\n", ft_printf("Ѫઆaᴻ"));
+	//printf("counter: %d\n", ft_printf("Ѫઆaᴻ"));
+	//ft_printf("%d", ft_printf("Ѫઆaᴻ"));
+	ft_printf("%010s", "hello how are you?Ѫ");
 	//setlocale(P_ALL, "en_US.UTF-8");
 	/*pep check
 	int i = printf("\nHola\n%c,pizaww? %C\n", 20, -65);
