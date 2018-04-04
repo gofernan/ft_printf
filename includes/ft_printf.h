@@ -6,7 +6,7 @@
 /*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/24 18:09:22 by gofernan          #+#    #+#             */
-/*   Updated: 2018/04/03 19:54:35 by gofernan         ###   ########.fr       */
+/*   Updated: 2018/04/04 20:32:32 by gofernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int checkstr_length_j(const char *str, fstr_t *ptrfstring);
 int checkstr_length_t(const char *str, fstr_t *ptrfstring);
 int checkstr_length_z(const char *str, fstr_t *ptrfstring);
 int conversion_specifiers(const char *str, fstr_t *ptrfstring);
-char *field_width(char *str, fstr_t *ptrfstring);
+char *field_width(char *str, int len, fstr_t *ptrfstring);
 void initialize_struct(fstr_t *ptrfstring);
 void print_initialize(fstr_t *ptrfstring);
 //int main(void);

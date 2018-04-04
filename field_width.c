@@ -6,30 +6,30 @@
 /*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/03 12:32:30 by gofernan          #+#    #+#             */
-/*   Updated: 2018/04/03 19:51:53 by gofernan         ###   ########.fr       */
+/*   Updated: 2018/04/04 10:46:33 by gofernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/ft_printf.h"
 
-char			*field_width(char *str, fstr_t *ptrfstring)
+char			*field_width(char *str, int len, fstr_t *ptrfstring)
 {
-	int len;
-	int fwidth;
 	char *newstr;
 	char paddchar;
-
-	len = ft_strlen(str);
-	fwidth = ptrfstring->fwidthvalue;
-	if (fwidth > len)
+	newstr = ft_strnew(ptrfstring->fwidthvalue);
+	if (ptrfstring->flags[1] && !(ptrfstring->flags[2]))
+		paddchar = '0';
+	else
+		paddchar = ' ';
+	if (!(ptrfstring->flags[2]))
 	{
-		newstr = ft_strnew(fwidth);
-		if (ptrfstring->flags[1])
-			paddchar = '0';
-		else
-			paddchar = ' ';
-		ft_memset(newstr, paddchar, fwidth - len);
+	ft_memset(newstr, paddchar, ptrfstring->fwidthvalue - len);
+	ft_strcat(newstr, str);
+	}
+	else
+	{
 		ft_strcat(newstr, str);
+		ft_memset(ft_strchr(newstr, '\0'), paddchar, ptrfstring->fwidthvalue - len);
 	}
 	return (newstr);
 }

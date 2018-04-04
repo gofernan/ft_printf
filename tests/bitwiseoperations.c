@@ -1,28 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   bitwiseoperations.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/17 20:16:05 by gofernan          #+#    #+#             */
-/*   Updated: 2018/04/04 10:27:31 by gofernan         ###   ########.fr       */
+/*   Created: 2018/04/04 19:26:06 by gofernan          #+#    #+#             */
+/*   Updated: 2018/04/04 20:32:22 by gofernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-char	*ft_strchr(const char *s, int c)
+#include <stdio.h>
+#include <limits.h>
+int main(void)
 {
-	if (s == NULL)
-		return (NULL);
-	while (*s)
-	{
-		if (*s == (char)c)
-			return ((char *)s);
-		s++;
-	}
-	if (((*s) == '\0') && (c == '\0'))
-		return ((char *)s);
-	return (NULL);
+	unsigned int a;
+	int b;
+	int testhex;
+
+	a = 4294967295;
+	a = a << 32;
+	b = 0x80000001;
+	testhex = 0x40000000;
+	//b = b << 1;
+	printf("a:%u\n", a);
+	printf("b:%d\n", b);
+	printf("%lu\n", sizeof(unsigned int));
+	printf("test hex: %d\n", testhex);
+	printf("MAX UNSIGNED INT: %u\n", UINT_MAX);
+	return (0);
 }
