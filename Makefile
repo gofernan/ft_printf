@@ -6,7 +6,7 @@
 #    By: gofernan <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/13 16:45:07 by gofernan          #+#    #+#              #
-#    Updated: 2018/04/04 11:55:34 by gofernan         ###   ########.fr        #
+#    Updated: 2018/04/05 12:30:46 by gofernan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,8 @@ FLS = argorder checkstr checkstr_argorder checkstr_flags checkstr_fwidth \
 	  checkstr_precision checkstr_length_hh checkstr_length_h \
 	  checkstr_length_ll checkstr_length_l checkstr_length_j checkstr_length_t \
 	  checkstr_length_z conversion_specifiers sconv field_width ft_printf \
-	  initialize_struct print_initialize
+	  initialize_struct print_initialize \
+	  main 
 
 FTFLS = ft_bzero ft_memset ft_memmove ft_strlen	ft_strdup ft_putchar ft_strcpy \
 		ft_putstr ft_strncpy ft_strcat ft_strncat ft_strlcat ft_strchr \
