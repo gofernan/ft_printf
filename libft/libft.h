@@ -6,7 +6,7 @@
 /*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/17 19:31:32 by gofernan          #+#    #+#             */
-/*   Updated: 2018/04/04 10:42:32 by gofernan         ###   ########.fr       */
+/*   Updated: 2018/04/06 16:32:34 by gofernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,4 +91,5 @@ int					*ft_range(int min, int max);
 void				ft_swap(int *a, int *b);
 void				ft_is_negative(int n);
 int					ft_nlen(long nb);
+size_t				ft_wcslen(const wchar_t *s);
 #endif

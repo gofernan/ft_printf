@@ -6,7 +6,7 @@
 /*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/04 19:26:06 by gofernan          #+#    #+#             */
-/*   Updated: 2018/04/05 19:45:59 by gofernan         ###   ########.fr       */
+/*   Updated: 2018/04/06 14:22:05 by gofernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,11 @@ int main(void)
 	printf("binnb:%d\n", binnb);
 	printf("forumex: %d\n", forumex);
 	printf("char 𐀀⇵\n");
-	unsigned char e;
-	e = 0xe1;
-	write(1, &e, 1);
-	e = 0x88;
-	write(1, &e, 1);
-	e = 0xb4;
-	write(1, &e, 1);
+	unsigned char e[3];
+	e[0] = 0xe1;
+	e[1] = 0x88;
+	e[2] = 0xb4;
+	write(1, e, 3);
 	unsigned char unicode3bytes;
 	unicode3bytes = 0xec; //1011 1010
 	write(1, &unicode3bytes, 1);
