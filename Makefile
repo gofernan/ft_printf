@@ -6,7 +6,7 @@
 #    By: gofernan <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/13 16:45:07 by gofernan          #+#    #+#              #
-#    Updated: 2018/04/05 12:30:46 by gofernan         ###   ########.fr        #
+#    Updated: 2018/04/23 18:07:22 by gofernan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,7 +53,7 @@ $(NAME): $(OFLS) $(OFTFLS)
 
 $(OFLS): $(CFLS) $(CFTFLS)
 #$(OFLS):
-	gcc -c -I$(HEADER) $(CFLS) $(CFTFLS)
+	gcc -c -g -I$(HEADER) $(CFLS) $(CFTFLS)
 
 clean:
 	/bin/rm -f $(OFLS)

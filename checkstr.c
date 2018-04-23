@@ -6,28 +6,26 @@
 /*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/13 10:01:20 by gofernan          #+#    #+#             */
-/*   Updated: 2018/04/04 20:32:37 by gofernan         ###   ########.fr       */
+/*   Updated: 2018/04/23 17:40:19 by gofernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/ft_printf.h"
 
-int		checkstr(const char *str, fstr_t *ptrfstring, va_list ap)
+void		checkstr(const char *str, fstr_t *ptrfstring, va_list ap)
 {
 
 	int i;
 	int go;
-	int counter;
 	i = 0;
 	go = 0;
-	counter = 0;
 	printf("Before anything: %s\n", str);
 	while (str[i] != '\0')
 	{
 		if (go == 0)
 		{
 			if (str[i] != '%')
-				counter += write(1, &str[i], 1);
+				ptrfstring->counter += write(1, &str[i], 1);
 			if (str[i] == '%')
 				go = 1;
 			i++;
@@ -35,7 +33,7 @@ int		checkstr(const char *str, fstr_t *ptrfstring, va_list ap)
 		/*
 		if (str[i] != '%' && go == 0)
 		{
-			counter += write(1, &str[i], 1);
+			ptrfstring->counter += write(1, &str[i], 1);
 			i++;
 		}
 		else if (str[i] == '%' && go == 0)
@@ -67,6 +65,7 @@ int		checkstr(const char *str, fstr_t *ptrfstring, va_list ap)
 			else
 			{
 				printf("nothing here\n");
+				write(1, &str[i], 1);
 				go = 0;
 			}
 			/*if (str[i + 1] == '#')
@@ -90,6 +89,5 @@ int		checkstr(const char *str, fstr_t *ptrfstring, va_list ap)
 		i++;
 	}
 	if (ptrfstring->convesp == 's')
-		counter += sconv(ap, ptrfstring);
-	return (counter);
+		sconv(ap, ptrfstring);
 }

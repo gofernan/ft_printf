@@ -6,7 +6,7 @@
 /*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/24 18:09:22 by gofernan          #+#    #+#             */
-/*   Updated: 2018/04/05 12:31:47 by gofernan         ###   ########.fr       */
+/*   Updated: 2018/04/23 17:40:00 by gofernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,12 @@ typedef struct fstr_s
 	//int					lm_t;
 	//int					lm_z;
 	char				convesp;
+	int					counter;
 }						fstr_t;
 int ft_printf(const char *str, ...);
-int sconv(va_list ap, fstr_t *ptrfstring);
+void sconv(va_list ap, fstr_t *ptrfstring);
 void argorder(void);
-int	checkstr(const char *str, fstr_t *ptrfstring, va_list ap);
+void checkstr(const char *str, fstr_t *ptrfstring, va_list ap);
 int	checkstr_argorder(const char *str, fstr_t *ptrfstring);
 int	checkstr_flags(const char *str, fstr_t *ptrfstring);
 int checkstr_fwidth(const char *str, fstr_t *ptrfstring);

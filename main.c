@@ -6,7 +6,7 @@
 /*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/05 12:28:51 by gofernan          #+#    #+#             */
-/*   Updated: 2018/04/06 13:50:38 by gofernan         ###   ########.fr       */
+/*   Updated: 2018/04/23 21:11:34 by gofernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@ int main(void)
 	//ft_printf("leading string :%#hhh.745s, trailing string% 'sx %1$tzjl Xbla\n", str1, str2, str3, str4, str5);
 	//printf("counter: %d\n", ft_printf("Ѫઆaᴻ"));
 	//ft_printf("%d", ft_printf("Ѫઆaᴻ"));
-	ft_printf("%0 +19s", "hello how are you?Ѫ");
+	ft_printf("%0 +19s", "hello how are you?Ѫ\n");
 	printf("%0 +19s", "hello how are you?Ѫ");
 	//printf("num char: %d", printf("%s", "Ѫa"));
 	printf("\n");
 	//printf("%030s", "hello how are you?Ѫ");
-	printf("%040s", "      holaholita");
+	printf("%040.12s", "      holaholita");
 	//setlocale(P_ALL, "en_US.UTF-8");
 	/*pep check
 	int i = printf("\nHola\n%c,pizaww? %C\n", 20, -65);

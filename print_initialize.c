@@ -6,7 +6,7 @@
 /*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 23:18:51 by gofernan          #+#    #+#             */
-/*   Updated: 2018/04/03 19:54:32 by gofernan         ###   ########.fr       */
+/*   Updated: 2018/04/23 21:14:04 by gofernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,5 @@ void		print_initialize(fstr_t *ptrfstring)
 	printf("argordervalue = %s\n", ptrfstring->argordervalue);
 	printf("fwidthvalue = %d\n", ptrfstring->fwidthvalue);
 	printf("precisionvalue = %s\n", ptrfstring->precisionvalue);
+	printf("counter = %d", ptrfstring->counter);
 }
