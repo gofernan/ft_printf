@@ -12,7 +12,7 @@
 
 #include "includes/ft_printf.h"
 
-char			*field_width(char *str, int len, fstr_t *ptrfstring)
+char	*field_width(char *str, int *len, fstr_t *ptrfstring)
 {
 	char *newstr;
 	char paddchar;
@@ -23,14 +23,18 @@ char			*field_width(char *str, int len, fstr_t *ptrfstring)
 		paddchar = ' ';
 	if (!(ptrfstring->flags[2]))
 	{
-	ft_memset(newstr, paddchar, ptrfstring->fwidthvalue - len);
+	ft_memset(newstr, paddchar, ptrfstring->fwidthvalue - *len);
 	ft_strcat(newstr, str);
 	}
 	else
 	{
 		ft_strcat(newstr, str);
-		ft_memset(ft_strchr(newstr, '\0'), paddchar, ptrfstring->fwidthvalue - len);
+		ft_memset(ft_strchr(newstr, '\0'), paddchar, ptrfstring->fwidthvalue - *len);
 		//why not (ft_strcat(newstr, str) instead of ft_strchr(newstr, '\0')
 	}
+	if (ptrfstring->converted)
+		ft_strdel(&str);
+	*len = ft_strlen(newstr);
+	//printf("len de s con fieldwidth: %d\n", *len);
 	return (newstr);
 }

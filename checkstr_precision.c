@@ -15,6 +15,7 @@
 int			checkstr_precision(const char *str, fstr_t *ptrfstring)
 {
 	int i;
+	char *tmp;
 
 	i = 0;
 	if (str[i] == '.')
@@ -26,11 +27,14 @@ int			checkstr_precision(const char *str, fstr_t *ptrfstring)
 		i++;
 		while (str[i] >= 48 && str[i] <= 57)
 			i++;
-		ptrfstring->precisionvalue = ft_memalloc(i);
-		strncpy(ptrfstring->precisionvalue, str + 1, i - 1);
+		//ptrfstring->precisionvalue = ft_memalloc(i);
+		tmp = ft_memalloc(i);
+		strncpy(tmp, str + 1, i - 1);
+		ptrfstring->precisionvalue = ft_atoi(tmp);
+		free(tmp);
 		return (1);
 	}
 	else
-		ptrfstring->precisionvalue = NULL;
+		ptrfstring->precisionvalue = 0;
 	return (1);
 }

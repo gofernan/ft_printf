@@ -38,7 +38,7 @@ typedef struct fstr_s
 	int					fwidth;
 	int					fwidthvalue;
 	int					precision;
-	char				*precisionvalue;
+	int					precisionvalue;
 	int					lengthmdf[LENGTHM_N];
 	//int					lm_hh;
 	//int					lm_h;
@@ -49,6 +49,7 @@ typedef struct fstr_s
 	//int					lm_z;
 	char				convesp;
 	int					counter;
+	int					converted;
 }						fstr_t;
 int ft_printf(const char *str, ...);
 void sconv(va_list ap, fstr_t *ptrfstring);
@@ -66,8 +67,10 @@ int checkstr_length_j(const char *str, fstr_t *ptrfstring);
 int checkstr_length_t(const char *str, fstr_t *ptrfstring);
 int checkstr_length_z(const char *str, fstr_t *ptrfstring);
 int conversion_specifiers(const char *str, fstr_t *ptrfstring);
-char *field_width(char *str, int len, fstr_t *ptrfstring);
+char *field_width(char *str, int *len, fstr_t *ptrfstring);
 void initialize_struct(fstr_t *ptrfstring);
-void print_initialize(fstr_t *ptrfstring);
-int main(void);
+//void print_initialize(fstr_t *ptrfstring);
+char *precisionf(char *str, int *len, fstr_t *ptrfstring);
+//void print_initialize(fstr_t *ptrfstring);
+//int main(void);
 #endif

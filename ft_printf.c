@@ -62,6 +62,7 @@ int			ft_printf(const char *str, ...)
 	//store_functions;
 	va_start(ap, str);
 	ptrfstring = &fstring;
+	ptrfstring->counter = 0;
 	initialize_struct(ptrfstring);
 	checkstr(str, ptrfstring, ap);
 	if (ptrfstring->argorder == 1)
@@ -74,7 +75,7 @@ int			ft_printf(const char *str, ...)
 		}
 	}
 	i = 0;
-	print_initialize(ptrfstring);
+	//print_initialize(ptrfstring);
 	/*while (str[i] != '\0')
 	{
 		if (str[i] != '%')
@@ -100,5 +101,5 @@ int			ft_printf(const char *str, ...)
 	}
 	*/
 	va_end(ap);
-	return (counter);
+	return (ptrfstring->counter);
 }

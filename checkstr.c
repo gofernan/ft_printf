@@ -19,7 +19,7 @@ void		checkstr(const char *str, fstr_t *ptrfstring, va_list ap)
 	int go;
 	i = 0;
 	go = 0;
-	printf("Before anything: %s\n", str);
+	//printf("Before anything: %s\n", str);
 	while (str[i] != '\0')
 	{
 		if (go == 0)
@@ -28,7 +28,6 @@ void		checkstr(const char *str, fstr_t *ptrfstring, va_list ap)
 				ptrfstring->counter += write(1, &str[i], 1);
 			if (str[i] == '%')
 				go = 1;
-			i++;
 		}
 		/*
 		if (str[i] != '%' && go == 0)
@@ -42,7 +41,8 @@ void		checkstr(const char *str, fstr_t *ptrfstring, va_list ap)
 			i++;
 		}
 		*/
-		if (str[i] != '\0' && go == 1)
+		//if (str[i] != '\0' && go == 1)
+		else
 		{
 			// initialize struct to 0
 			if (checkstr_argorder(&str[i], ptrfstring))
@@ -51,7 +51,12 @@ void		checkstr(const char *str, fstr_t *ptrfstring, va_list ap)
 			else if (checkstr_fwidth(&str[i], ptrfstring))
 				i += ft_nlen(ptrfstring->fwidthvalue) - 1;
 			else if (checkstr_precision(&str[i], ptrfstring))
-				i += ft_strlen(ptrfstring->precisionvalue);
+			{
+				if (!(ptrfstring->precisionvalue))
+					;
+				else
+					i += ft_nlen(ptrfstring->precisionvalue);
+			}
 			else if (checkstr_length_hh(&str[i], ptrfstring))
 				i++;
 			else if (checkstr_length_h(&str[i], ptrfstring));
@@ -61,10 +66,16 @@ void		checkstr(const char *str, fstr_t *ptrfstring, va_list ap)
 			else if (checkstr_length_j(&str[i], ptrfstring));
 			else if (checkstr_length_t(&str[i], ptrfstring));
 			else if (checkstr_length_z(&str[i], ptrfstring));
-			else if (conversion_specifiers(&str[i], ptrfstring));
+			else if (conversion_specifiers(&str[i], ptrfstring))
+			{
+				if (ptrfstring->convesp == 's')
+				sconv(ap, ptrfstring);
+				initialize_struct(ptrfstring);
+				go = 0;
+			}
 			else
 			{
-				printf("nothing here\n");
+				//printf("nothing here\n");
 				write(1, &str[i], 1);
 				go = 0;
 			}
@@ -84,10 +95,8 @@ void		checkstr(const char *str, fstr_t *ptrfstring, va_list ap)
 				printf("HOLA\n");
 				*/
 		}
-		printf("len width value: %d\n", ft_nlen(ptrfstring->fwidthvalue));
-		printf("i en checkstr %d\n", i);
+		//printf("len width value: %d\n", ft_nlen(ptrfstring->fwidthvalue));
+		//printf("i en checkstr %d\n", i);
 		i++;
 	}
-	if (ptrfstring->convesp == 's')
-		sconv(ap, ptrfstring);
 }

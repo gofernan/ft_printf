@@ -17,16 +17,16 @@ int			checkstr_argorder(const char *str, fstr_t *ptrfstring)
 	int i;
 
 	i = 0;
-	printf("Dentro de checkstr_argorder\n");
-	printf("str =%s\n", str);
+	//printf("Dentro de checkstr_argorder\n");
+	//printf("str =%s\n", str);
 	while (str[i] >= 48 && str[i] <= 57)
 	{
-		printf("Es un numero\n");
+		//printf("Es un numero\n");
 		i++;
 	}
 	if (str[i] == '$' && i > 0)
 	{
-		printf("Es un dollar\n");
+		//printf("Es un dollar\n");
 		ptrfstring->argordervalue = ft_memalloc(i + 1);
 		ft_strncpy(ptrfstring->argordervalue, str, i);
 		ptrfstring->argorder = 1;

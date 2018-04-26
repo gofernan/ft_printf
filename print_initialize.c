@@ -29,6 +29,6 @@ void		print_initialize(fstr_t *ptrfstring)
 	printf("convesp: %c\n", ptrfstring->convesp);
 	printf("argordervalue = %s\n", ptrfstring->argordervalue);
 	printf("fwidthvalue = %d\n", ptrfstring->fwidthvalue);
-	printf("precisionvalue = %s\n", ptrfstring->precisionvalue);
+	printf("precisionvalue = %d\n", ptrfstring->precisionvalue);
 	printf("counter = %d", ptrfstring->counter);
 }

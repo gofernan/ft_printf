@@ -15,6 +15,7 @@
 #include <wchar.h>
 #include <locale.h>
 #include <string.h>
+#include <stdlib.h>
 
 size_t			ft_wcslen(const wchar_t *s);
 int main()
@@ -29,17 +30,28 @@ int main()
 	//wchar_t alphas2[] = { 0xce, 0xb1}
 	int check[3] = {226, 156, 147};
 	wchar_t *strnormal = L"H";
-	wchar_t strnormalhex = 0xC389;
-	wchar_t strnormalb[1];
+	//wchar_t *strnormalhex = 0xC389;
+	wchar_t *strnormalhex;
+	wchar_t strnormalb[2];
 	//wchar_t *happy = L"☺";
 	char *tmp;
 
 	//write(1, &alpha, 4);
+	//
 	
 	write(1, strnormal, 4);
-	write(1, &strnormalhex, 4);
-	//strnormalb[0] = 0b01001000100000001000000010000000;
-	strnormalb[0] = 0b00000010;
+	write(1, "\n", 1);
+	strnormalhex = (wchar_t *)malloc(sizeof(wchar_t) * 2);
+	strnormalhex[0] = 0x4268;
+	strnormalhex[1] = 0;
+	printf("\nComienza printf\n");
+	if (printf("normalhex(printf): %ls\n", strnormalhex) < 0)
+		perror("printf");
+	write(1, strnormalhex, 4);
+	strnormalb[0] = 0b1000010;
+	strnormalb[1] = 0;
+	if (printf("normalb(printf): %ls\n", strnormalb) < 0)
+		perror("printf");
 	write(1, "\n", 1);
 	write(1, strnormalb, 4);
 	//write(1, &strnormal[0], 4);

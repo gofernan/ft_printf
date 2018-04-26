@@ -25,6 +25,7 @@ int checkstr_fwidth(const char *str, fstr_t *ptrfstring)
 		tmp = ft_memalloc(i + 1);
 		ft_strncpy(tmp, str, i);
 		ptrfstring->fwidthvalue = ft_atoi(tmp);
+		free(tmp);
 		ptrfstring->fwidth = 1;
 		return (1);
 	}

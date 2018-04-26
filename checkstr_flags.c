@@ -23,7 +23,7 @@ int			checkstr_flags(const char *str, fstr_t *ptrfstring)
 	{
 		if	(*str == flags[i])
 		{
-			printf("position: %d flag: %c\n", i, flags[i]);
+			//printf("position: %d flag: %c\n", i, flags[i]);
 			ptrfstring->flags[i] = 1;
 			return (1);
 		}

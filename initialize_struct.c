@@ -23,12 +23,13 @@ void		initialize_struct(fstr_t *ptrfstring)
 	ptrfstring->fwidth = 0;
 	ptrfstring->fwidthvalue = 0;
 	ptrfstring->precision = 0;
-	ptrfstring->precisionvalue = NULL;
+	ptrfstring->precisionvalue = 0;
 	while (++i < FLAGS_N)
 		ptrfstring->flags[i] = 0;
 	i = -1;
 	while (++i < LENGTHM_N)
 		ptrfstring->lengthmdf[i] = 0;
 	ptrfstring->convesp = 0;
-	ptrfstring->counter = 0;
+	//ptrfstring->counter = 0;
+	ptrfstring->converted = 0;
 }

@@ -10,16 +10,16 @@
 #                                                                              #
 # **************************************************************************** #
 
-#NAME = libftprintf.a
-NAME = miprintf
+NAME = libftprintf.a
+#NAME = miprintf
 #FLAGS = -Wall -Wextra -Werror
 
 FLS = argorder checkstr checkstr_argorder checkstr_flags checkstr_fwidth \
 	  checkstr_precision checkstr_length_hh checkstr_length_h \
 	  checkstr_length_ll checkstr_length_l checkstr_length_j checkstr_length_t \
 	  checkstr_length_z conversion_specifiers sconv field_width ft_printf \
-	  initialize_struct print_initialize \
-	  main 
+	  initialize_struct precisionf\
+	  #main 
 
 FTFLS = ft_bzero ft_memset ft_memmove ft_strlen	ft_strdup ft_putchar ft_strcpy \
 		ft_putstr ft_strncpy ft_strcat ft_strncat ft_strlcat ft_strchr \
@@ -48,8 +48,8 @@ OFTLSCURRENT = $(patsubst %, %.o, $(FTFLS))
 all: $(NAME)
 
 $(NAME): $(OFLS) $(OFTFLS)
-	#ar rc $(NAME) $(OFLS) $(OFTFLS)
-	gcc $(FLAGS) $(OFTFLS) $(OFLS) -o $(NAME)
+	ar rc $(NAME) $(OFLS) $(OFTFLS)
+	#gcc $(FLAGS) $(OFTFLS) $(OFLS) -o $(NAME)
 
 $(OFLS): $(CFLS) $(CFTFLS)
 #$(OFLS):

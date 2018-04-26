@@ -22,7 +22,7 @@ int main(void)
 	printf("%ls", L"ο Δικαιοπολις εν αγρω εστιν\n");
 	char str[] = "αγρω𐀀";
 	printf("str:%s\n", str);
-	printf("%d %d\n", sizeof(str), strlen(str));
-	printf("size of wchar_t:%d", sizeof(wchar_t));
+	printf("%lu %lu\n", sizeof(str), strlen(str));
+	printf("size of wchar_t:%lu", sizeof(wchar_t));
 	return (0);
 }
