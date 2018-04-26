@@ -14,6 +14,7 @@
 # define FT_PRINTF_H
 # include <stdarg.h>
 # include <fcntl.h>
+# include <wchar.h>
 # include <stdio.h> /* remove when finished */
 # include "../libft/libft.h"
 # define FLAGS "#0- +'"

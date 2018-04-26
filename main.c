@@ -28,8 +28,8 @@ int main(void)
 	//ft_printf("%d", ft_printf("Ѫઆaᴻ"));
 	//printf("counter: %d\n", ft_printf("%-52.2s", "I know what you are doing."));
 	//printf("counter final: %d\n", ptrfstring->counter);
-	printf("counter %d\n", printf("%.2s", NULL));
-	printf("counter %d\n", ft_printf("%.2s", NULL));
+	printf("counter %d\n", printf("%s", "holaquetalǻ"));
+	printf("counter %d\n", ft_printf("%s", "holaquetalǻ"));
 
 	//printf("%0 -21.22s", "hello how are you?Ѫ");
 	//printf("num char: %d", printf("%s", "Ѫa"));
