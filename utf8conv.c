@@ -6,7 +6,7 @@
 /*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/30 15:01:08 by gofernan          #+#    #+#             */
-/*   Updated: 2018/04/30 15:01:16 by gofernan         ###   ########.fr       */
+/*   Updated: 2018/04/30 19:06:39 by gofernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,8 +114,8 @@ unsigned char	*utf8conv(unsigned int *wstr)
 	counter = 0;
 	if ((counter = bytesutf8(wstr)) == -1)
 		return (NULL);
-	if (!counter)
-		return (NULL);
+	//if (!counter)
+	//	return (NULL);
 	//newstr = ft_strnew(bytesutf8(wstr));
 	//printf("counter es %d", counter);
 	newstr = ft_memalloc(bytesutf8(wstr) + 1);

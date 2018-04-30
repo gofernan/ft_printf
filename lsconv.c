@@ -6,7 +6,7 @@
 /*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/30 15:01:26 by gofernan          #+#    #+#             */
-/*   Updated: 2018/04/30 16:35:52 by gofernan         ###   ########.fr       */
+/*   Updated: 2018/04/30 19:20:12 by gofernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	lsconv(va_list ap, fstr_t *ptrfstring)
 		ft_strcpy(strnull, "(null)");
 		ptrfstring->converted = 1;
 	}
+	printf("mb_cur_max: %d\n", __mb_cur_max);
 	if (__mb_cur_max == 4)
 		strconv = utf8conv((unsigned int *)wstr);
 	else
@@ -32,11 +33,9 @@ void	lsconv(va_list ap, fstr_t *ptrfstring)
 	/*if (errno) // delete this delete this delete this
 		write(1, "YES", 3);
 		*/
+	len = ft_strlen((char *)strconv);
 	if (strconv)
-	{
-		len = ft_strlen((char *)strconv);
 		ptrfstring->counter += write(1, strconv, len);
-	}
 	else
-		ptrfstring->counter = -1;
+		ptrfstring->counter = write(1, strconv, len); 
 }

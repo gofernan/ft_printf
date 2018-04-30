@@ -3,14 +3,14 @@
 //unsigned char	*utf8conv(unsigned int *wstr);
 int main(void)
 {
-	//setlocale(LC_ALL, "");
+	setlocale(LC_ALL, "");
 	wchar_t *wstr = L"HolaÈȘǊφϞЖԈ";
 	//wchar_t *wstr2 = L"ЖԈᆋ";
 	//wchar_t *wstr = L"いいえ";
 	wchar_t wstr3[4];
 	int counter1, counter2;
 
-	wstr3[0] = 254;
+	wstr3[0] = '\0';
 	wstr3[1] = 256;
 	wstr3[2] = 'b';
 	wstr3[3] = '\0';
@@ -19,6 +19,8 @@ int main(void)
 	//printf("String es %s\n", utf8conv((unsigned int *)wstr));
 	//printf("String es %ls\n", wstr);
 	printf("printf working...\n");
+	printf("valor write: %d\n", write(1, NULL, 0));
+	printf("valor write EOL: %d\n", write(1, "\0", 0));
 	//printf("mb_cur_max: %d", __mb_cur_max);
 
 	//printf("%-32.44ls\n", wstr);
