@@ -1,30 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnew.c                                        :+:      :+:    :+:   */
+/*   1byteconv.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/23 18:53:15 by gofernan          #+#    #+#             */
-/*   Updated: 2018/04/30 16:15:19 by gofernan         ###   ########.fr       */
+/*   Created: 2018/04/30 15:20:35 by gofernan          #+#    #+#             */
+/*   Updated: 2018/04/30 16:42:19 by gofernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "includes/ft_printf.h"
 
-char	*ft_strnew(size_t size)
+unsigned char *onebyteconv(wchar_t * wstr)
 {
-	size_t	i;
-	char	*str;
+	int i;
+	unsigned char *casted1byte;
+	int counter;
+	int len;
 
-	str = (char *)malloc(sizeof(char) * size + 1);
-	if (str == NULL)
-		return (NULL);
+	len = ft_wcslen(wstr);
+
 	i = 0;
-	while (i <= size)
+
+	casted1byte = ft_memalloc(sizeof(unsigned char) * (len + 1));
+	ft_memset(casted1byte, 0, (sizeof(unsigned char) * (len + 1)));
+	while (wstr[i])
 	{
-		str[i] = '\0';
+		casted1byte[i] = (unsigned char)wstr[i];
 		i++;
 	}
-	return (str);
+	return (casted1byte);
 }

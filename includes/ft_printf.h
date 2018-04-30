@@ -6,7 +6,7 @@
 /*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/24 18:09:22 by gofernan          #+#    #+#             */
-/*   Updated: 2018/04/23 17:40:00 by gofernan         ###   ########.fr       */
+/*   Updated: 2018/04/30 16:24:47 by gofernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # include <stdarg.h>
 # include <fcntl.h>
 # include <wchar.h>
+# include <stdlib.h>
 //# include <locale.h>
 # include <errno.h> /* remove??? */
 # include <stdio.h> /* remove when finished */
@@ -75,6 +76,7 @@ void initialize_struct(fstr_t *ptrfstring);
 char *precisionf(char *str, int *len, fstr_t *ptrfstring);
 void lsconv(va_list ap, fstr_t *ptrfstring);
 unsigned char *utf8conv(unsigned int *wstr);
+unsigned char *onebyteconv(wchar_t * wstr);
 //void print_initialize(fstr_t *ptrfstring);
 //int main(void);
 #endif
