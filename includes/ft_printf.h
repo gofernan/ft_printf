@@ -15,6 +15,8 @@
 # include <stdarg.h>
 # include <fcntl.h>
 # include <wchar.h>
+//# include <locale.h>
+# include <errno.h> /* remove??? */
 # include <stdio.h> /* remove when finished */
 # include "../libft/libft.h"
 # define FLAGS "#0- +'"
@@ -43,8 +45,8 @@ typedef struct fstr_s
 	int					lengthmdf[LENGTHM_N];
 	//int					lm_hh;
 	//int					lm_h;
-	//int					lm_ll;
 	//int					lm_l;
+	//int					lm_ll;
 	//int					lm_j;
 	//int					lm_t;
 	//int					lm_z;
@@ -70,8 +72,9 @@ int checkstr_length_z(const char *str, fstr_t *ptrfstring);
 int conversion_specifiers(const char *str, fstr_t *ptrfstring);
 char *field_width(char *str, int *len, fstr_t *ptrfstring);
 void initialize_struct(fstr_t *ptrfstring);
-//void print_initialize(fstr_t *ptrfstring);
 char *precisionf(char *str, int *len, fstr_t *ptrfstring);
+void lsconv(va_list ap, fstr_t *ptrfstring);
+unsigned char *utf8conv(unsigned int *wstr);
 //void print_initialize(fstr_t *ptrfstring);
 //int main(void);
 #endif

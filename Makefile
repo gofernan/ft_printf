@@ -18,7 +18,7 @@ FLS = argorder checkstr checkstr_argorder checkstr_flags checkstr_fwidth \
 	  checkstr_precision checkstr_length_hh checkstr_length_h \
 	  checkstr_length_ll checkstr_length_l checkstr_length_j checkstr_length_t \
 	  checkstr_length_z conversion_specifiers sconv field_width ft_printf \
-	  initialize_struct precisionf\
+	  initialize_struct precisionf lsconv utf8conv \
 	  #main 
 
 FTFLS = ft_bzero ft_memset ft_memmove ft_strlen	ft_strdup ft_putchar ft_strcpy \

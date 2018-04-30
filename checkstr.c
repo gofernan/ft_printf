@@ -68,10 +68,17 @@ void		checkstr(const char *str, fstr_t *ptrfstring, va_list ap)
 			else if (checkstr_length_z(&str[i], ptrfstring));
 			else if (conversion_specifiers(&str[i], ptrfstring))
 			{
-				if (ptrfstring->convesp == 's')
-				sconv(ap, ptrfstring);
+				if (ptrfstring->convesp == 's' && !(ptrfstring->lengthmdf[2]))
+					sconv(ap, ptrfstring);
+				else if (ptrfstring->convesp == 'S' || ptrfstring->convesp == 's')
+					lsconv(ap, ptrfstring);
+				if (ptrfstring->counter == -1)
+					break;
+				else
+				{
 				initialize_struct(ptrfstring);
 				go = 0;
+				}
 			}
 			else
 			{

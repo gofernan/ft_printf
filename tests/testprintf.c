@@ -10,11 +10,16 @@
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdio.h>
+#include <wchar.h>
+#include <locale.h>
 
 int main(int argc, char **argv)
 {
-	//printf("Hello%2.3how are you", 'A');
-	printf("%d\n", printf("%.4s", "This is a simple string\n"));
-	printf("%d\n", printf("hello how are you?Ѫ\n"));
+	setlocale(LC_ALL, "");
+	wchar_t *wstr = L"ȌHow you going";
+	
+	printf("%.4ls", wstr);
+	//printf("%d\n", printf("%.4s", "This is a simple string\n"));
+	//printf("%d\n", printf("hello how are you?Ѫ\n"));
 	return (0);
 }
