@@ -14,8 +14,9 @@ void	lsconv(va_list ap, fstr_t *ptrfstring)
 		ptrfstring->converted = 1;
 	}
 	strconv = utf8conv((unsigned int *)wstr);
-	if (errno) // delete this delete this delete this
+	/*if (errno) // delete this delete this delete this
 		write(1, "YES", 3);
+		*/
 	if (strconv)
 	{
 		len = ft_strlen((char *)strconv);

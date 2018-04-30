@@ -3,17 +3,17 @@
 //unsigned char	*utf8conv(unsigned int *wstr);
 int main(void)
 {
-	setlocale(LC_ALL, "");
+	//setlocale(LC_ALL, "");
 	wchar_t *wstr = L"HolaÈȘǊφϞЖԈ";
 	//wchar_t *wstr2 = L"ЖԈᆋ";
 	//wchar_t *wstr = L"いいえ";
 	wchar_t wstr3[4];
 	int counter1, counter2;
 
-	wstr3[0] = 0x53;
-	wstr3[1] = 0xd800;
-	wstr3[2] = 0x81000;
-	wstr3[2] = '\0';
+	wstr3[0] = 254;
+	wstr3[1] = 256;
+	wstr3[2] = 'b';
+	wstr3[3] = '\0';
 	char *strtest = "Hello Hello lalala";
 
 	//printf("String es %s\n", utf8conv((unsigned int *)wstr));
@@ -26,12 +26,12 @@ int main(void)
 	
 	/*ft_printf("String s es %s\n", strtest);
 	printf("String s es %s\n", strtest);*/
-	ft_printf("String S es %S\n", wstr);
-	printf("String S es %S\n", wstr);
+	//ft_printf("String S es %S\n", wstr);
+	//printf("String S es %S\n", wstr);
 	//ft_printf("String ls es %ls\n", wstr2);
 	//printf("String ls es %ls\n", wstr2);
-	counter1 = ft_printf("String S fallo es %ls\n", wstr3);
-	counter2 = printf("String S fallo printf es %ls\n", wstr3);
+	counter1 = ft_printf("%S", wstr3);
+	counter2 = printf("%S", wstr3);
 	printf("counter 1:%d, counter 2:%d", counter1, counter2);
 	return (0);
 }
