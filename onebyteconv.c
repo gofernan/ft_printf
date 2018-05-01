@@ -31,7 +31,7 @@ char *onebyteconv(wchar_t * wstr, fstr_t *ptrfstring)
 		}
 	}
 	len = ft_wcslen(wstr);
-	(!(casted1byte = ft_strnew(len)))
+	if (!(casted1byte = ft_strnew(len)))
 		return (NULL);
 	i = -1;
 	while (wstr[++i])

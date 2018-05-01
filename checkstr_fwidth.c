@@ -12,7 +12,7 @@
 
 #include "includes/ft_printf.h"
 
-int checkstr_fwidth(const char *str, fstr_t *ptrfstring)
+int checkstr_fwidth(const char *str, fstr_t *ptrfstring, int *auxshift)
 {
 	int i;
 	char *tmp;
@@ -22,8 +22,9 @@ int checkstr_fwidth(const char *str, fstr_t *ptrfstring)
 		i++;
 	if (str[i] != '$' && i > 0)
 	{
-		tmp = ft_memalloc(i + 1);
+		tmp = ft_strnew(i);
 		ft_strncpy(tmp, str, i);
+		*auxshift = ft_strlen(tmp);
 		ptrfstring->fwidthvalue = ft_atoi(tmp);
 		free(tmp);
 		ptrfstring->fwidth = 1;

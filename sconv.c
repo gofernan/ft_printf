@@ -21,7 +21,7 @@ void	sconv(va_list ap, fstr_t *ptrfstring)
 
 	if (!(s = va_arg(ap, char *)))
 	{
-		s = ft_strnew(7);
+		s = ft_strnew(6);
 		ft_strcpy(s, "(null)");
 		ptrfstring->converted = 1;
 	}

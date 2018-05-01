@@ -12,7 +12,7 @@
 
 #include "includes/ft_printf.h"
 
-int			checkstr_precision(const char *str, fstr_t *ptrfstring)
+int			checkstr_precision(const char *str, fstr_t *ptrfstring, int *auxshift)
 {
 	int i;
 	char *tmp;
@@ -28,8 +28,9 @@ int			checkstr_precision(const char *str, fstr_t *ptrfstring)
 		while (str[i] >= 48 && str[i] <= 57)
 			i++;
 		//ptrfstring->precisionvalue = ft_memalloc(i);
-		tmp = ft_memalloc(i);
-		strncpy(tmp, str + 1, i - 1);
+		tmp = ft_strnew(i);
+		ft_strncpy(tmp, str + 1, i - 1);
+		*auxshift = ft_strlen(tmp);
 		ptrfstring->precisionvalue = ft_atoi(tmp);
 		free(tmp);
 		return (1);

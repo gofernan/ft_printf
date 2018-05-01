@@ -17,8 +17,10 @@ void		checkstr(const char *str, fstr_t *ptrfstring, va_list ap)
 
 	int i;
 	int go;
+	int auxshift;
 	i = 0;
 	go = 0;
+	auxshift = 0;
 	//printf("Before anything: %s\n", str);
 	while (str[i] != '\0')
 	{
@@ -48,15 +50,10 @@ void		checkstr(const char *str, fstr_t *ptrfstring, va_list ap)
 			if (checkstr_argorder(&str[i], ptrfstring))
 				i += ft_strlen(ptrfstring->argordervalue);
 			else if (checkstr_flags(&str[i], ptrfstring));
-			else if (checkstr_fwidth(&str[i], ptrfstring))
-				i += ft_nlen(ptrfstring->fwidthvalue) - 1;
-			else if (checkstr_precision(&str[i], ptrfstring))
-			{
-				if (!(ptrfstring->precisionvalue))
-					;
-				else
-					i += ft_nlen(ptrfstring->precisionvalue);
-			}
+			else if (checkstr_fwidth(&str[i], ptrfstring, &auxshift))
+				i += auxshift - 1;
+			else if (checkstr_precision(&str[i], ptrfstring, &auxshift))
+					i += auxshift;
 			else if (checkstr_length_hh(&str[i], ptrfstring))
 				i++;
 			else if (checkstr_length_h(&str[i], ptrfstring));
@@ -76,8 +73,9 @@ void		checkstr(const char *str, fstr_t *ptrfstring, va_list ap)
 					break;
 				else
 				{
-				initialize_struct(ptrfstring);
-				go = 0;
+					initialize_struct(ptrfstring);
+					auxshift = 0;
+					go = 0;
 				}
 			}
 			else
@@ -104,6 +102,8 @@ void		checkstr(const char *str, fstr_t *ptrfstring, va_list ap)
 		}
 		//printf("len width value: %d\n", ft_nlen(ptrfstring->fwidthvalue));
 		//printf("i en checkstr %d\n", i);
+		if (auxshift)
+			auxshift = 0;
 		i++;
 	}
 }
