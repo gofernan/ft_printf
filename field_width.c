@@ -16,15 +16,16 @@ char	*field_width(char *str, int *len, fstr_t *ptrfstring)
 {
 	char *newstr;
 	char paddchar;
-	newstr = ft_strnew(ptrfstring->fwidthvalue);
+	if (!(newstr = ft_strnew(ptrfstring->fwidthvalue)))
+		return (NULL);
 	if (ptrfstring->flags[1] && !(ptrfstring->flags[2]))
 		paddchar = '0';
 	else
 		paddchar = ' ';
 	if (!(ptrfstring->flags[2]))
 	{
-	ft_memset(newstr, paddchar, ptrfstring->fwidthvalue - *len);
-	ft_strcat(newstr, str);
+		ft_memset(newstr, paddchar, ptrfstring->fwidthvalue - *len);
+		ft_strcat(newstr, str);
 	}
 	else
 	{

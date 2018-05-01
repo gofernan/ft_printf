@@ -32,18 +32,20 @@ void	lsconv(va_list ap, fstr_t *ptrfstring)
 	/*if (errno) // delete this delete this delete this
 		write(1, "YES", 3);
 		*/
-	len = ft_strlen(strconv);
-	if (ptrfstring->precision && len > ptrfstring->precisionvalue)
-	{
-		if (__mb_cur_max == 4)
-			strconv = precisionfw(strconv, &len, ptrfstring);
-		else
-			strconv = precisionf(strconv, &len, ptrfstring);
-	}
-	if (ptrfstring->fwidth && len < ptrfstring->fwidthvalue)
-		strconv = field_width(strconv, &len, ptrfstring);
 	if (strconv)
+	{
+		len = ft_strlen(strconv);
+		if (ptrfstring->precision && len > ptrfstring->precisionvalue)
+		{
+			if (__mb_cur_max == 4)
+				strconv = precisionfw(strconv, &len, ptrfstring);
+			else
+				strconv = precisionf(strconv, &len, ptrfstring);
+		}
+		if (ptrfstring->fwidth && len < ptrfstring->fwidthvalue)
+			strconv = field_width(strconv, &len, ptrfstring);
 		ptrfstring->counter += write(1, strconv, len);
+	}
 	else
 		ptrfstring->counter = -1;
 		//ptrfstring->counter = write(1, strconv, len); 
