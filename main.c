@@ -22,14 +22,18 @@ int main(void)
 	char *str5 = "bye";
 	char **strings;
 	*/
-	//setlocale(P_ALL, "en_US.UTF-8");
+	//setlocale(LC_ALL, "");
 	//ft_printf("leading string :%#hhh.745s, trailing string% 'sx %1$tzjl Xbla\n", str1, str2, str3, str4, str5);
 	//printf("counter: %d\n", ft_printf("Ѫઆaᴻ"));
 	//ft_printf("%d", ft_printf("Ѫઆaᴻ"));
 	//printf("counter: %d\n", ft_printf("%-52.2s", "I know what you are doing."));
 	//printf("counter final: %d\n", ptrfstring->counter);
-	printf("counter %d\n", printf("u%4.2ss %-1.s\n %---5.3s", "coco", NULL, "yooo"));
-	printf("counter %d\n", ft_printf("u%4.2ss %-1.s\n %---5.3s", "coco", NULL, "yooo"));
+	
+	//printf("counter %d\n", printf("!%-2.42ls!", L"┬─┬ ノ( ゜-゜ノ)"));
+	//printf("counter %d\n", ft_printf("!%-2.42ls!", L"┬─┬ ノ( ゜-゜ノ)"));
+	
+	printf("!%39.5ls!", NULL);
+	//ft_printf("!%39.5ls!", NULL);
 
 	//printf("%0 -21.22s", "hello how are you?Ѫ");
 	//printf("num char: %d", printf("%s", "Ѫa"));

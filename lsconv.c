@@ -21,10 +21,12 @@ void	lsconv(va_list ap, fstr_t *ptrfstring)
 
 	if (!(wstr = va_arg(ap, wchar_t *)))
 	{
-		strnull = ft_strnew(7);
-		ft_strcpy(strnull, "(null)");
+		strconv = ft_strnew(7);
+		ft_strcpy(strconv, "(null)");
 		ptrfstring->converted = 1;
 	}
+	else
+	{
 	if (__mb_cur_max == 4)
 		strconv = utf8conv((unsigned int *)wstr);
 	else
@@ -32,6 +34,7 @@ void	lsconv(va_list ap, fstr_t *ptrfstring)
 	/*if (errno) // delete this delete this delete this
 		write(1, "YES", 3);
 		*/
+	}
 	if (strconv)
 	{
 		len = ft_strlen(strconv);
@@ -48,5 +51,7 @@ void	lsconv(va_list ap, fstr_t *ptrfstring)
 	}
 	else
 		ptrfstring->counter = -1;
+	if (ptrfstring->converted)
+		ft_strdel(&strconv);
 		//ptrfstring->counter = write(1, strconv, len); 
 }
