@@ -36,6 +36,7 @@ FLS = argorder \
 	  lsconv \
 	  utf8conv \
 	  onebyteconv \
+	  precisionfw \
 	  #main 
 
 FTFLS = ft_bzero \

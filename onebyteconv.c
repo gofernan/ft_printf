@@ -12,28 +12,28 @@
 
 #include "includes/ft_printf.h"
 
-unsigned char *onebyteconv(wchar_t * wstr)
+char *onebyteconv(wchar_t * wstr, fstr_t *ptrfstring)
 {
 	int i;
-	unsigned char *casted1byte;
+	char *casted1byte;
 	int counter;
 	int len;
 
-	i = 0;
-	while (wstr[i])
+	i = -1;
+	while (wstr[++i])
 	{
 		if (wstr[i] > 0xff)
-			return (NULL);
-		i++;
+		{
+			if (ptrfstring->precision && ptrfstring->precisionvalue <= i )
+				break;
+			else
+				return (NULL);
+		}
 	}
 	len = ft_wcslen(wstr);
-	casted1byte = ft_memalloc(sizeof(unsigned char) * (len + 1));
-	ft_memset(casted1byte, 0, (sizeof(unsigned char) * (len + 1)));
-	i = 0;
-	while (wstr[i])
-	{
-		casted1byte[i] = (unsigned char)wstr[i];
-		i++;
-	}
+	casted1byte = ft_strnew(len);
+	i = -1;
+	while (wstr[++i])
+		casted1byte[i] = (char)wstr[i];
 	return (casted1byte);
 }

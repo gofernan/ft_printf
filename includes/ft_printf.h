@@ -16,7 +16,7 @@
 # include <fcntl.h>
 # include <wchar.h>
 # include <stdlib.h>
-//# include <locale.h>
+//# include <locale.h> // remove???
 # include <errno.h> /* remove??? */
 # include <stdio.h> /* remove when finished */
 # include "../libft/libft.h"
@@ -75,8 +75,9 @@ char *field_width(char *str, int *len, fstr_t *ptrfstring);
 void initialize_struct(fstr_t *ptrfstring);
 char *precisionf(char *str, int *len, fstr_t *ptrfstring);
 void lsconv(va_list ap, fstr_t *ptrfstring);
-unsigned char *utf8conv(unsigned int *wstr);
-unsigned char *onebyteconv(wchar_t * wstr);
+char *utf8conv(unsigned int *wstr);
+char *onebyteconv(wchar_t *wstr, fstr_t *ptrfstring);
+char *precisionfw(char *str, int *len, fstr_t *ptrfstring);
 //void print_initialize(fstr_t *ptrfstring);
 //int main(void);
 #endif

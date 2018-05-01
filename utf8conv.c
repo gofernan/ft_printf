@@ -11,40 +11,37 @@
 /* ************************************************************************** */
 
 #include "includes/ft_printf.h"
-unsigned char *onebyte(unsigned int *wstr)
+char *onebyte(unsigned int *wstr)
 {
-	return ((unsigned char *)wstr);
+	return ((char *)wstr);
 }
 
-unsigned char *twobytes(unsigned int *wstr)
+char *twobytes(unsigned int *wstr)
 {
-	unsigned char *twobytestr;
+	char *twobytestr;
 
 	//printf("join twobytes\n");
-	twobytestr = ft_memalloc(3);
-	ft_memset(twobytestr, 0, 3);
+	twobytestr = ft_strnew(2);
 	twobytestr[0] = ((*wstr << 21) >> 27) | 0xc0;
 	twobytestr[1] = ((*wstr << 26) >> 26) | 0x80;
 	return (twobytestr);
 }
 
-unsigned char *threebytes(unsigned int *wstr)
+char *threebytes(unsigned int *wstr)
 {
-	unsigned char *threebytestr;
+	char *threebytestr;
 
-	threebytestr = ft_memalloc(4);
-	ft_memset(threebytestr, 0, 4);
+	threebytestr = ft_strnew(3);
 	threebytestr[0] = ((*wstr << 16) >> 28) | 0xe0;
 	threebytestr[1] = ((*wstr << 20) >> 26) | 0x80;
 	threebytestr[2] = ((*wstr << 26) >> 26) | 0x80;
 	return (threebytestr);
 }
 
-unsigned char *fourbytes(unsigned int *wstr) {
-	unsigned char *fourbytestr;
+char *fourbytes(unsigned int *wstr) {
+	char *fourbytestr;
 
-	fourbytestr = ft_memalloc(5);
-	ft_memset(fourbytestr, 0, 5);
+	fourbytestr = ft_strnew(4);
 	fourbytestr[0] = ((*wstr << 11) >> 29) | 0xf0;
 	fourbytestr[1] = ((*wstr << 14) >> 26) | 0x80;
 	fourbytestr[2] = ((*wstr << 20) >> 26) | 0x80;
@@ -78,11 +75,11 @@ int		bytesutf8(unsigned int *wstr)
 	return (counter);
 }
 
-void	encodebytes(unsigned int *wstr, unsigned char *newstr)
+void	encodebytes(unsigned int *wstr, char *newstr)
 {
 	int i;
 	int j;
-	unsigned char *retrstr;
+	char *retrstr;
 
 	i = 0;
 	j = 0;
@@ -91,35 +88,33 @@ void	encodebytes(unsigned int *wstr, unsigned char *newstr)
 	{
 		if (wstr[i] < 0x0080)
 			//newstr[j++] = onebyte(&wstr[i++]);
-			ft_strncat((char *)newstr, (char *)(onebyte(&wstr[i++])), 1);
+			ft_strncat(newstr, onebyte(&wstr[i++]), 1);
 		else if (wstr[i] < 0x0800)
 		{
 			//printf("join 2 bytes\n");
-			ft_strncat((char *)newstr, (char *)(retrstr = twobytes(&wstr[i++])), 2);
+			ft_strncat(newstr, retrstr = twobytes(&wstr[i++]), 2);
 		}
 		else if (wstr[i] < 0x10000)
-			ft_strncat((char *)newstr, (char *)(retrstr = threebytes(&wstr[i++])), 3);
+			ft_strncat(newstr, retrstr = threebytes(&wstr[i++]), 3);
 		else
-			ft_strncat((char *)newstr, (char *)(retrstr = fourbytes(&wstr[i++])), 4);
+			ft_strncat(newstr, retrstr = fourbytes(&wstr[i++]), 4);
 		if (retrstr)
-			ft_memdel((void *)&retrstr);
+			ft_strdel(&retrstr);
 	}
 }
 
-unsigned char	*utf8conv(unsigned int *wstr)
+char	*utf8conv(unsigned int *wstr)
 {
 	int counter;
-	unsigned char *newstr;
+	char *newstr;
 
 	counter = 0;
 	if ((counter = bytesutf8(wstr)) == -1)
 		return (NULL);
 	//if (!counter)
 	//	return (NULL);
-	//newstr = ft_strnew(bytesutf8(wstr));
+	newstr = ft_strnew(bytesutf8(wstr));
 	//printf("counter es %d", counter);
-	newstr = ft_memalloc(bytesutf8(wstr) + 1);
-	ft_memset(newstr, 0, bytesutf8(wstr) + 1);
 	encodebytes(wstr, newstr);
 	return (newstr);
 }
