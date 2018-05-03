@@ -69,6 +69,9 @@ void		checkstr(const char *str, fstr_t *ptrfstring, va_list ap)
 					sconv(ap, ptrfstring);
 				else if (ptrfstring->convesp == 'S' || ptrfstring->convesp == 's')
 					lsconv(ap, ptrfstring);
+				else if (ptrfstring->convesp == 'd' || ptrfstring->convesp == 'i' ||
+						ptrfstring->convesp == 'D')
+					diconv(ap, ptrfstring);
 				if (ptrfstring->counter == -1)
 					break;
 				else

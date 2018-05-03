@@ -72,12 +72,17 @@ int checkstr_length_t(const char *str, fstr_t *ptrfstring);
 int checkstr_length_z(const char *str, fstr_t *ptrfstring);
 int conversion_specifiers(const char *str, fstr_t *ptrfstring);
 char *field_width(char *str, int *len, fstr_t *ptrfstring);
+char *field_width_num(char *str, int *len, fstr_t *ptrfstring);
 void initialize_struct(fstr_t *ptrfstring);
 char *precisionf(char *str, int *len, fstr_t *ptrfstring);
 void lsconv(va_list ap, fstr_t *ptrfstring);
 char *utf8conv(unsigned int *wstr);
 char *onebyteconv(wchar_t *wstr, fstr_t *ptrfstring);
 char *precisionfw(char *str, int *len, fstr_t *ptrfstring);
+void diconv(va_list ap, fstr_t *ptrfstring);
+char *precisiondigits(char *str, int *len, int negprecision, fstr_t *ptrfstring);
+char *flag_space(char *str, int *len, fstr_t *ptrfstring);
+char *flag_plus(char *str, int *len, fstr_t *ptrfstring);
 //void print_initialize(fstr_t *ptrfstring);
 //int main(void);
 #endif

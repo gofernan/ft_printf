@@ -31,10 +31,11 @@ char	*field_width(char *str, int *len, fstr_t *ptrfstring)
 	{
 		ft_strcat(newstr, str);
 		ft_memset(ft_strchr(newstr, '\0'), paddchar, ptrfstring->fwidthvalue - *len);
-		//why not (ft_strcat(newstr, str) instead of ft_strchr(newstr, '\0')
 	}
 	if (ptrfstring->converted)
 		ft_strdel(&str);
+	else
+		ptrfstring->converted = 1;
 	*len = ft_strlen(newstr);
 	//printf("len de s con fieldwidth: %d\n", *len);
 	return (newstr);

@@ -36,4 +36,6 @@ void	sconv(va_list ap, fstr_t *ptrfstring)
 	//	ptrfstring->counter += write(1, sconverted, (ft_strlen(sconverted)));
 	//if (ptrfstring->precision)
 	ptrfstring->counter += write(1, s, len);
+	if (ptrfstring->converted)
+		ft_strdel(&s);
 }

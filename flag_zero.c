@@ -10,7 +10,5 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-char			*flag_zero(char *str, fstr_t *ptrfstring)
+char		*flag_zero(char *str, fstr_t *ptrfstring)
 {
-	if (ptrfstring->fwidth && (ft_atoi(ptrfstring->fwidthvalue) > ft_strlen(str)))
-}

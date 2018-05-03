@@ -30,6 +30,7 @@ FLS = argorder \
 	  conversion_specifiers \
 	  sconv \
 	  field_width \
+	  field_width_num \
 	  ft_printf \
 	  initialize_struct \
 	  precisionf \
@@ -37,6 +38,10 @@ FLS = argorder \
 	  utf8conv \
 	  onebyteconv \
 	  precisionfw \
+	  diconv \
+	  precisiondigits \
+	  flag_space \
+	  flag_plus \
 	  #main 
 
 FTFLS = ft_bzero \
@@ -100,6 +105,8 @@ FTFLS = ft_bzero \
 		ft_div_mod \
 		ft_nlen \
 		ft_wcslen \
+		ft_ltoa \
+		ft_lltoa \
 
 FTDIR = libft/
 HEADER = includes/

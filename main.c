@@ -13,8 +13,11 @@
 #include "includes/ft_printf.h"
 #include <stdio.h>
 #include <locale.h>
+#include <stdlib.h>
 int main(void)
 {
+	int a = -71;
+	//unsigned int b = 2147483648;
 	/*char *str1 = "hello";
 	char *str2 = "how";
 	char *str3 = "are";
@@ -32,8 +35,13 @@ int main(void)
 	//printf("counter %d\n", printf("!%-2.42ls!", L"┬─┬ ノ( ゜-゜ノ)"));
 	//printf("counter %d\n", ft_printf("!%-2.42ls!", L"┬─┬ ノ( ゜-゜ノ)"));
 	
-	printf("!%39.5ls!", NULL);
+	//printf("!%39.5ls!", NULL);
 	//ft_printf("!%39.5ls!", NULL);
+	
+	//printf("%ld\n", a);
+	//ft_printf("%ld\n", a);
+	ft_printf("%08d\n", a);
+	printf("%08d\n", a);
 
 	//printf("%0 -21.22s", "hello how are you?Ѫ");
 	//printf("num char: %d", printf("%s", "Ѫa"));
