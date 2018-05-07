@@ -1,21 +1,35 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   flag_sharp.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/05/07 19:31:06 by gofernan          #+#    #+#             */
+/*   Updated: 2018/05/07 19:34:13 by gofernan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "includes/ft_printf.h"
-static char		*flag_sharp_o(char *str, int *len, fstr_t *ptrfstring)
+
+static char			*flag_sharp_o(char *str, int *len, fstr_t *ptrfstring)
 {
 	char *newstr;
 
 	if (!(newstr = ft_strnew(*len + 1)))
-		exit (EXIT_FAILURE);
+		exit(EXIT_FAILURE);
 	*newstr = '0';
 	ft_strcpy(newstr + 1, str);
 	*len += 1;
 	return (newstr);
 }
-static char		*flag_sharp_x(char *str, int *len, fstr_t *ptrfstring)
+
+static char			*flag_sharp_x(char *str, int *len, fstr_t *ptrfstring)
 {
 	char *newstr;
 
 	if (!(newstr = ft_strnew(*len + 2)))
-		exit (EXIT_FAILURE);
+		exit(EXIT_FAILURE);
 	if (ptrfstring->convesp == 'x')
 		ft_strcpy(newstr, "0x");
 	else
@@ -25,10 +39,10 @@ static char		*flag_sharp_x(char *str, int *len, fstr_t *ptrfstring)
 	return (newstr);
 }
 
-char		*flag_sharp(char *str, int *len, fstr_t *ptrfstring)
+char				*flag_sharp(char *str, int *len, fstr_t *ptrfstring)
 {
-	char *newstr;
-	int lenalt;
+	char	*newstr;
+	int		lenalt;
 
 	if (ptrfstring->convesp == 'x' || ptrfstring->convesp == 'X')
 		newstr = flag_sharp_x(str, len, ptrfstring);

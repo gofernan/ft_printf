@@ -1,9 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   diconv.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/05/07 19:19:55 by gofernan          #+#    #+#             */
+/*   Updated: 2018/05/07 19:21:43 by gofernan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "includes/ft_printf.h"
+
 void		diconv(va_list ap, fstr_t *ptrfstring)
 {
-	char *s;
-	int len;
-	int plusp;
+	char	*s;
+	int		len;
+	int		plusp;
 
 	plusp = 0;
 	if (ptrfstring->convesp == 'D')

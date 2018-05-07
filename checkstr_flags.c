@@ -6,7 +6,7 @@
 /*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/20 11:34:07 by gofernan          #+#    #+#             */
-/*   Updated: 2018/03/20 17:24:23 by gofernan         ###   ########.fr       */
+/*   Updated: 2018/05/07 19:14:40 by gofernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int			checkstr_flags(const char *str, fstr_t *ptrfstring)
 {
-	int i;
-	char flags[7];
+	int		i;
+	char	flags[7];
 
 	strcpy(flags, "#0- +'");
 	i = 0;
@@ -23,7 +23,6 @@ int			checkstr_flags(const char *str, fstr_t *ptrfstring)
 	{
 		if	(*str == flags[i])
 		{
-			//printf("position: %d flag: %c\n", i, flags[i]);
 			ptrfstring->flags[i] = 1;
 			return (1);
 		}

@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   flag_space.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/05/07 19:37:46 by gofernan          #+#    #+#             */
+/*   Updated: 2018/05/07 19:37:48 by gofernan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "includes/ft_printf.h"
 
-char *flag_space(char *str, int *len, fstr_t *ptrfstring)
+char		*flag_space(char *str, int *len, fstr_t *ptrfstring)
 {
 	char *newstr;
 

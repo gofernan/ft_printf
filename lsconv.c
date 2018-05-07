@@ -6,7 +6,7 @@
 /*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/30 15:01:26 by gofernan          #+#    #+#             */
-/*   Updated: 2018/04/30 19:20:12 by gofernan         ###   ########.fr       */
+/*   Updated: 2018/05/07 19:53:34 by gofernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 void	lsconv(va_list ap, fstr_t *ptrfstring)
 {
-	wchar_t *wstr;
-	char *strconv;
-	char *strnull;
-	int len;
+	wchar_t		*wstr;
+	char		*strconv;
+	char		*strnull;
+	int			len;
 
 	if (!(wstr = va_arg(ap, wchar_t *)))
 	{
 		if (!(strconv = ft_strnew(7)))
-			exit (EXIT_FAILURE);
+			exit(EXIT_FAILURE);
 		ft_strcpy(strconv, "(null)");
 		ptrfstring->converted = 1;
 	}
@@ -32,9 +32,6 @@ void	lsconv(va_list ap, fstr_t *ptrfstring)
 		strconv = utf8conv((unsigned int *)wstr);
 	else
 		strconv = onebyteconv(wstr, ptrfstring);
-	/*if (errno) // delete this delete this delete this
-		write(1, "YES", 3);
-		*/
 	}
 	if (strconv)
 	{
@@ -54,5 +51,4 @@ void	lsconv(va_list ap, fstr_t *ptrfstring)
 		ptrfstring->counter = -1;
 	if (ptrfstring->converted)
 		ft_strdel(&strconv);
-		//ptrfstring->counter = write(1, strconv, len); 
 }

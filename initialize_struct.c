@@ -6,7 +6,7 @@
 /*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 19:39:31 by gofernan          #+#    #+#             */
-/*   Updated: 2018/04/23 17:41:25 by gofernan         ###   ########.fr       */
+/*   Updated: 2018/05/07 19:41:50 by gofernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,5 @@ void		initialize_struct(fstr_t *ptrfstring)
 	while (++i < LENGTHM_N)
 		ptrfstring->lengthmdf[i] = 0;
 	ptrfstring->convesp = 0;
-	//ptrfstring->counter = 0;
 	ptrfstring->converted = 0;
 }

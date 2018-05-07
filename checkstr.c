@@ -6,7 +6,7 @@
 /*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/13 10:01:20 by gofernan          #+#    #+#             */
-/*   Updated: 2018/04/23 17:40:19 by gofernan         ###   ########.fr       */
+/*   Updated: 2018/05/07 19:04:59 by gofernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,12 @@
 
 void		checkstr(const char *str, fstr_t *ptrfstring, va_list ap)
 {
-
-	int i;
-	int go;
-	int auxshift;
+	int		i;
+	int		go;
+	int		auxshift;
 	i = 0;
 	go = 0;
 	auxshift = 0;
-	//printf("Before anything: %s\n", str);
 	while (str[i] != '\0')
 	{
 		if (go == 0)
@@ -33,7 +31,6 @@ void		checkstr(const char *str, fstr_t *ptrfstring, va_list ap)
 		}
 		else
 		{
-			// initialize struct to 0
 			if (checkstr_argorder(&str[i], ptrfstring))
 				i += ft_strlen(ptrfstring->argordervalue);
 			else if (checkstr_flags(&str[i], ptrfstring));

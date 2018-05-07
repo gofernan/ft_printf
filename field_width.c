@@ -6,7 +6,7 @@
 /*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/03 12:32:30 by gofernan          #+#    #+#             */
-/*   Updated: 2018/04/23 17:10:53 by gofernan         ###   ########.fr       */
+/*   Updated: 2018/05/07 19:19:34 by gofernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,11 @@
 
 char	*field_width(char *str, int *len, fstr_t *ptrfstring)
 {
-	char *newstr;
-	char paddchar;
+	char	*newstr;
+	char	paddchar;
+
 	if (!(newstr = ft_strnew(ptrfstring->fwidthvalue)))
-		exit (EXIT_FAILURE);
+		exit(EXIT_FAILURE);
 	if (ptrfstring->flags[1] && !(ptrfstring->flags[2]))
 		paddchar = '0';
 	else
@@ -29,7 +30,7 @@ char	*field_width(char *str, int *len, fstr_t *ptrfstring)
 	}
 	else
 	{
-		ft_strcpy(newstr, str);// ft_strcpy ???
+		ft_strcpy(newstr, str);
 		ft_memset(newstr + *len, paddchar, ptrfstring->fwidthvalue - *len);
 	}
 	if (ptrfstring->converted)

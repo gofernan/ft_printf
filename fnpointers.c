@@ -6,7 +6,7 @@
 /*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 18:11:16 by gofernan          #+#    #+#             */
-/*   Updated: 2018/03/15 18:32:55 by gofernan         ###   ########.fr       */
+/*   Updated: 2018/05/07 19:38:28 by gofernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void		fnpointers(void)
 	convstr[4] = space;
 	convstr[5] = plus;
 	convstr[6] = apostrophe;
-	convstr[7] = separator; // not used
+	convstr[7] = separator;
 	convstr[8] = fieldwidth;
 	convstr[9] = lenghtmodifier;
 	convstr[10] = conversiontype;

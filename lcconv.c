@@ -1,9 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   lcconv.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/05/07 19:45:51 by gofernan          #+#    #+#             */
+/*   Updated: 2018/05/07 19:52:41 by gofernan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "includes/ft_printf.h"
+
 void		lcconv(va_list ap, fstr_t *ptrfstring)
 {
-	wint_t wc[2];
-	char *strconv;
-	int len;
+	wint_t		wc[2];
+	char		*strconv;
+	int			len;
 
 	wc[0] = (wint_t)va_arg(ap, wint_t);
 	wc[1] = '\0';
