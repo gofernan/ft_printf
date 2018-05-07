@@ -31,19 +31,6 @@ void		checkstr(const char *str, fstr_t *ptrfstring, va_list ap)
 			if (str[i] == '%')
 				go = 1;
 		}
-		/*
-		if (str[i] != '%' && go == 0)
-		{
-			ptrfstring->counter += write(1, &str[i], 1);
-			i++;
-		}
-		else if (str[i] == '%' && go == 0)
-		{
-			go = 1;
-			i++;
-		}
-		*/
-		//if (str[i] != '\0' && go == 1)
 		else
 		{
 			// initialize struct to 0
@@ -94,28 +81,10 @@ void		checkstr(const char *str, fstr_t *ptrfstring, va_list ap)
 			}
 			else
 			{
-				//printf("nothing here\n");
 				write(1, &str[i], 1);
 				go = 0;
 			}
-			/*if (str[i + 1] == '#')
-			{
-				//ptrfstring->flg_sharp = 1;
-				ptrfstring->flags[0] = 1;
-			}
-			else if (str[i + 1] == '0')
-			{
-				//ptrfstring->flg_zero = 1;
-				ptrfstring->flags[1] = 1;
-			}
-			else if (str[i + 1] == 's')
-					ptrfstring->conversortype[0] = 1;
-			else
-				printf("HOLA\n");
-				*/
 		}
-		//printf("len width value: %d\n", ft_nlen(ptrfstring->fwidthvalue));
-		//printf("i en checkstr %d\n", i);
 		if (auxshift)
 			auxshift = 0;
 		i++;
