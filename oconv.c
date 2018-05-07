@@ -1,8 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   oconv.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/05/07 21:39:57 by gofernan          #+#    #+#             */
+/*   Updated: 2018/05/07 21:40:10 by gofernan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "includes/ft_printf.h"
+
 void		oconv(va_list ap, fstr_t *ptrfstring)
 {
-	char *s;
-	int len;
+	char	*s;
+	int		len;
 
 	if (ptrfstring->convesp == 'O')
 		s = ft_uimaxtoa_base(va_arg(ap, unsigned long), 8, 0);

@@ -6,44 +6,45 @@
 /*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/30 15:01:08 by gofernan          #+#    #+#             */
-/*   Updated: 2018/04/30 19:06:39 by gofernan         ###   ########.fr       */
+/*   Updated: 2018/05/07 21:33:32 by gofernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/ft_printf.h"
-char *onebyte(unsigned int *wstr)
+
+char		*onebyte(unsigned int *wstr)
 {
 	return ((char *)wstr);
 }
 
-char *twobytes(unsigned int *wstr)
+char		*twobytes(unsigned int *wstr)
 {
-	char *twobytestr;
+	char	*twobytestr;
 
 	if (!(twobytestr = ft_strnew(2)))
-		exit (EXIT_FAILURE);
+		exit(EXIT_FAILURE);
 	twobytestr[0] = ((*wstr << 21) >> 27) | 0xc0;
 	twobytestr[1] = ((*wstr << 26) >> 26) | 0x80;
 	return (twobytestr);
 }
 
-char *threebytes(unsigned int *wstr)
+char		*threebytes(unsigned int *wstr)
 {
-	char *threebytestr;
+	char	*threebytestr;
 
 	if (!(threebytestr = ft_strnew(3)))
-		exit (EXIT_FAILURE);
+		exit(EXIT_FAILURE);
 	threebytestr[0] = ((*wstr << 16) >> 28) | 0xe0;
 	threebytestr[1] = ((*wstr << 20) >> 26) | 0x80;
 	threebytestr[2] = ((*wstr << 26) >> 26) | 0x80;
 	return (threebytestr);
 }
 
-char *fourbytes(unsigned int *wstr) {
+char		*fourbytes(unsigned int *wstr) {
 	char *fourbytestr;
 
 	if (!(fourbytestr = ft_strnew(4)))
-		exit (EXIT_FAILURE);
+		exit(EXIT_FAILURE);
 	fourbytestr[0] = ((*wstr << 11) >> 29) | 0xf0;
 	fourbytestr[1] = ((*wstr << 14) >> 26) | 0x80;
 	fourbytestr[2] = ((*wstr << 20) >> 26) | 0x80;
@@ -51,10 +52,10 @@ char *fourbytes(unsigned int *wstr) {
 	return (fourbytestr);
 }
 
-int		bytesutf8(unsigned int *wstr)
+int			bytesutf8(unsigned int *wstr)
 {
-	int counter;
-	int i;
+	int		counter;
+	int		i;
 
 	counter = 0;
 	i = 0;
@@ -77,10 +78,10 @@ int		bytesutf8(unsigned int *wstr)
 	return (counter);
 }
 
-void	encodebytes(unsigned int *wstr, char *newstr)
+void		encodebytes(unsigned int *wstr, char *newstr)
 {
-	int i;
-	char *retrstr;
+	int		 i;
+	char	*retrstr;
 
 	i = 0;
 	retrstr = NULL;
@@ -99,16 +100,16 @@ void	encodebytes(unsigned int *wstr, char *newstr)
 	}
 }
 
-char	*utf8conv(unsigned int *wstr)
+char		*utf8conv(unsigned int *wstr)
 {
-	int counter;
-	char *newstr;
+	int		counter;
+	char	*newstr;
 
 	counter = 0;
 	if ((counter = bytesutf8(wstr)) == -1)
 		return (NULL);
 	if (!(newstr = ft_strnew(bytesutf8(wstr))))
-		exit (EXIT_FAILURE);
+		exit(EXIT_FAILURE);
 	encodebytes(wstr, newstr);
 	return (newstr);
 }

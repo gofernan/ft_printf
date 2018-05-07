@@ -1,7 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   xconv.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/05/07 21:33:35 by gofernan          #+#    #+#             */
+/*   Updated: 2018/05/07 21:35:04 by gofernan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "includes/ft_printf.h"
+
 static char		*lengthmdfs(va_list ap, char *s, fstr_t *ptrfstring)
 {
-	int altform;
+	int		altform;
 
 	altform = (ptrfstring->convesp == 'X') ? 1 : 0;
 	if (ptrfstring->lengthmdf[0])
@@ -23,12 +36,12 @@ static char		*lengthmdfs(va_list ap, char *s, fstr_t *ptrfstring)
 	else
 		s = ft_uimaxtoa_base(va_arg(ap, unsigned int), 16, altform);
 	if (!s)
-		exit (EXIT_FAILURE);
+		exit(EXIT_FAILURE);
 	ptrfstring->converted = 1;
 	return (s);
 }
 
-void		xconv(va_list ap, fstr_t *ptrfstring)
+void			xconv(va_list ap, fstr_t *ptrfstring)
 {
 	char *s;
 	int len;

@@ -6,25 +6,25 @@
 /*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/30 15:20:35 by gofernan          #+#    #+#             */
-/*   Updated: 2018/04/30 18:42:05 by gofernan         ###   ########.fr       */
+/*   Updated: 2018/05/07 21:41:15 by gofernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/ft_printf.h"
 
-char *onebyteconv(wchar_t * wstr, fstr_t *ptrfstring)
+char		*onebyteconv(wchar_t * wstr, fstr_t *ptrfstring)
 {
-	int i;
-	char *casted1byte;
-	int counter;
-	int len;
+	int		i;
+	char	*casted1byte;
+	int		counter;
+	int		len;
 
 	i = -1;
 	while (wstr[++i])
 	{
 		if (wstr[i] > 0xff)
 		{
-			if (ptrfstring->precision && ptrfstring->precisionvalue <= i )
+			if (ptrfstring->precision && ptrfstring->precisionvalue <= i)
 				break;
 			else
 				return (NULL);

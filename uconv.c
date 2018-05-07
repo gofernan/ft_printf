@@ -1,8 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   uconv.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/05/07 21:35:16 by gofernan          #+#    #+#             */
+/*   Updated: 2018/05/07 21:36:14 by gofernan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "includes/ft_printf.h"
+
 void		uconv(va_list ap, fstr_t *ptrfstring)
 {
-	char *s;
-	int len;
+	char	*s;
+	int		len;
 
 	if (ptrfstring->convesp == 'U')
 		s = ft_uimaxtoa(va_arg(ap, unsigned long));

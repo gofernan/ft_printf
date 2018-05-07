@@ -1,11 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   precisiondigits.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/05/07 21:39:10 by gofernan          #+#    #+#             */
+/*   Updated: 2018/05/07 21:39:47 by gofernan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "includes/ft_printf.h"
+
 static char		*pluspr(char *str, int *len, int plusp, fstr_t *ptrfstring)
 {
 	char *newstr;
 
 	newstr = NULL;
 	if (!(newstr = ft_strnew(ptrfstring->precisionvalue + plusp)))
-		exit (EXIT_FAILURE);
+		exit(EXIT_FAILURE);
 	if (plusp == 1)
 		ft_memset(newstr, '-', 1);
 	else if (plusp == 2)
@@ -20,7 +33,7 @@ static char		*pluspr(char *str, int *len, int plusp, fstr_t *ptrfstring)
 	return (newstr);
 }
 
-char		*precisiondigits(char *str, int *len, int plusp, fstr_t *ptrfstring)
+char			*precisiondigits(char *str, int *len, int plusp, fstr_t *ptrfstring)
 {
 	char *newstr;
 
@@ -29,7 +42,7 @@ char		*precisiondigits(char *str, int *len, int plusp, fstr_t *ptrfstring)
 	else
 	{
 		if (!(newstr = ft_strnew(ptrfstring->precisionvalue)))
-			exit (EXIT_FAILURE);
+			exit(EXIT_FAILURE);
 		ft_memset(newstr, '0', ptrfstring->precisionvalue - *len);
 		ft_strcat(newstr, str);
 	}
