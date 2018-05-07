@@ -5,7 +5,7 @@ char	*precisionf(char *str, int *len, fstr_t *ptrfstring)
 	char *newstr;
 
 	if (!(newstr = ft_strnew(ptrfstring->precisionvalue)))
-		return (NULL);
+		exit (EXIT_FAILURE);
 	ft_strncpy(newstr, str, ptrfstring->precisionvalue);
 	if (ptrfstring->converted)
 		ft_strdel(&str);

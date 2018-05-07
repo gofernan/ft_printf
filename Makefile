@@ -27,6 +27,7 @@ FLS = argorder \
 	  checkstr_length_j \
 	  checkstr_length_t \
 	  checkstr_length_z \
+	  checkstr_length_q \
 	  conversion_specifiers \
 	  sconv \
 	  field_width \
@@ -42,6 +43,12 @@ FLS = argorder \
 	  precisiondigits \
 	  flag_space \
 	  flag_plus \
+	  flag_sharp \
+	  uconv \
+	  oconv \
+	  xconv \
+	  cconv \
+	  lcconv \
 	  #main 
 
 FTFLS = ft_bzero \
@@ -107,6 +114,10 @@ FTFLS = ft_bzero \
 		ft_wcslen \
 		ft_ltoa \
 		ft_lltoa \
+		ft_imaxtoa \
+		ft_uimaxtoa \
+		ft_imaxtoa_base \
+		ft_uimaxtoa_base \
 
 FTDIR = libft/
 HEADER = includes/

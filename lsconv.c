@@ -21,7 +21,8 @@ void	lsconv(va_list ap, fstr_t *ptrfstring)
 
 	if (!(wstr = va_arg(ap, wchar_t *)))
 	{
-		strconv = ft_strnew(7);
+		if (!(strconv = ft_strnew(7)))
+			exit (EXIT_FAILURE);
 		ft_strcpy(strconv, "(null)");
 		ptrfstring->converted = 1;
 	}

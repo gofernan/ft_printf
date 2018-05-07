@@ -7,7 +7,7 @@ char	*precisionfw(char *str, int *len, fstr_t *ptrfstring)
 	while ((((unsigned char)str[ptrfstring->precisionvalue]) >> 6) == 0x02)
 		ptrfstring->precisionvalue--;
 	if (!(newstr = ft_strnew(ptrfstring->precisionvalue)))
-		return (NULL);
+		exit (EXIT_FAILURE);
 	strncpy(newstr, str, ptrfstring->precisionvalue);
 	if (ptrfstring->converted)
 		ft_strdel(&str);

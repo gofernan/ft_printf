@@ -20,8 +20,8 @@ char *twobytes(unsigned int *wstr)
 {
 	char *twobytestr;
 
-	//printf("join twobytes\n");
-	twobytestr = ft_strnew(2);
+	if (!(twobytestr = ft_strnew(2)))
+		exit (EXIT_FAILURE);
 	twobytestr[0] = ((*wstr << 21) >> 27) | 0xc0;
 	twobytestr[1] = ((*wstr << 26) >> 26) | 0x80;
 	return (twobytestr);
@@ -31,7 +31,8 @@ char *threebytes(unsigned int *wstr)
 {
 	char *threebytestr;
 
-	threebytestr = ft_strnew(3);
+	if (!(threebytestr = ft_strnew(3)))
+		exit (EXIT_FAILURE);
 	threebytestr[0] = ((*wstr << 16) >> 28) | 0xe0;
 	threebytestr[1] = ((*wstr << 20) >> 26) | 0x80;
 	threebytestr[2] = ((*wstr << 26) >> 26) | 0x80;
@@ -41,7 +42,8 @@ char *threebytes(unsigned int *wstr)
 char *fourbytes(unsigned int *wstr) {
 	char *fourbytestr;
 
-	fourbytestr = ft_strnew(4);
+	if (!(fourbytestr = ft_strnew(4)))
+		exit (EXIT_FAILURE);
 	fourbytestr[0] = ((*wstr << 11) >> 29) | 0xf0;
 	fourbytestr[1] = ((*wstr << 14) >> 26) | 0x80;
 	fourbytestr[2] = ((*wstr << 20) >> 26) | 0x80;
@@ -78,22 +80,16 @@ int		bytesutf8(unsigned int *wstr)
 void	encodebytes(unsigned int *wstr, char *newstr)
 {
 	int i;
-	int j;
 	char *retrstr;
 
 	i = 0;
-	j = 0;
 	retrstr = NULL;
 	while (wstr[i])
 	{
 		if (wstr[i] < 0x0080)
-			//newstr[j++] = onebyte(&wstr[i++]);
 			ft_strncat(newstr, onebyte(&wstr[i++]), 1);
 		else if (wstr[i] < 0x0800)
-		{
-			//printf("join 2 bytes\n");
 			ft_strncat(newstr, retrstr = twobytes(&wstr[i++]), 2);
-		}
 		else if (wstr[i] < 0x10000)
 			ft_strncat(newstr, retrstr = threebytes(&wstr[i++]), 3);
 		else
@@ -111,10 +107,8 @@ char	*utf8conv(unsigned int *wstr)
 	counter = 0;
 	if ((counter = bytesutf8(wstr)) == -1)
 		return (NULL);
-	//if (!counter)
-	//	return (NULL);
-	newstr = ft_strnew(bytesutf8(wstr));
-	//printf("counter es %d", counter);
+	if (!(newstr = ft_strnew(bytesutf8(wstr))))
+		exit (EXIT_FAILURE);
 	encodebytes(wstr, newstr);
 	return (newstr);
 }

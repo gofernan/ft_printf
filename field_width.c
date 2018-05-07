@@ -17,7 +17,7 @@ char	*field_width(char *str, int *len, fstr_t *ptrfstring)
 	char *newstr;
 	char paddchar;
 	if (!(newstr = ft_strnew(ptrfstring->fwidthvalue)))
-		return (NULL);
+		exit (EXIT_FAILURE);
 	if (ptrfstring->flags[1] && !(ptrfstring->flags[2]))
 		paddchar = '0';
 	else
@@ -29,14 +29,13 @@ char	*field_width(char *str, int *len, fstr_t *ptrfstring)
 	}
 	else
 	{
-		ft_strcat(newstr, str);
-		ft_memset(ft_strchr(newstr, '\0'), paddchar, ptrfstring->fwidthvalue - *len);
+		ft_strcpy(newstr, str);// ft_strcpy ???
+		ft_memset(newstr + *len, paddchar, ptrfstring->fwidthvalue - *len);
 	}
 	if (ptrfstring->converted)
 		ft_strdel(&str);
 	else
 		ptrfstring->converted = 1;
-	*len = ft_strlen(newstr);
-	//printf("len de s con fieldwidth: %d\n", *len);
+	*len = ptrfstring->fwidthvalue;
 	return (newstr);
 }

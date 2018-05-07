@@ -63,6 +63,7 @@ void		checkstr(const char *str, fstr_t *ptrfstring, va_list ap)
 			else if (checkstr_length_j(&str[i], ptrfstring));
 			else if (checkstr_length_t(&str[i], ptrfstring));
 			else if (checkstr_length_z(&str[i], ptrfstring));
+			else if (checkstr_length_q(&str[i], ptrfstring));
 			else if (conversion_specifiers(&str[i], ptrfstring))
 			{
 				if (ptrfstring->convesp == 's' && !(ptrfstring->lengthmdf[2]))
@@ -72,6 +73,16 @@ void		checkstr(const char *str, fstr_t *ptrfstring, va_list ap)
 				else if (ptrfstring->convesp == 'd' || ptrfstring->convesp == 'i' ||
 						ptrfstring->convesp == 'D')
 					diconv(ap, ptrfstring);
+				else if (ptrfstring->convesp == 'u' || ptrfstring->convesp == 'U')
+					uconv(ap, ptrfstring);
+				else if (ptrfstring->convesp == 'o' || ptrfstring->convesp == 'O')
+					oconv(ap, ptrfstring);
+				else if (ptrfstring->convesp == 'X' || ptrfstring->convesp == 'x')
+					xconv(ap, ptrfstring);
+				else if (ptrfstring->convesp == 'c' && !ptrfstring->lengthmdf[2])
+					cconv(ap, ptrfstring);
+				else if (ptrfstring->convesp == 'C' || ptrfstring->convesp == 'c')
+					lcconv(ap, ptrfstring);
 				if (ptrfstring->counter == -1)
 					break;
 				else
