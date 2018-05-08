@@ -65,6 +65,8 @@ void			xconv(va_list ap, fstr_t *ptrfstring)
 		s = precisiondigits(s, &len, plusprecision, ptrfstring);
 	if (ptrfstring->fwidth && len < ptrfstring->fwidthvalue)
 		s = field_width_num(s, &len, ptrfstring);
+	if (ptrfstring->literal)
+		ptrfstring->counter += write(1, ptrfstring->literalv, ft_strlen(ptrfstring->literalv));
 	ptrfstring->counter += write(1, s, len);
 	if (ptrfstring->converted)
 		ft_strdel(&s);

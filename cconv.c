@@ -26,6 +26,11 @@ void		cconv(va_list ap, fstr_t *ptrfstring)
 	len = 1;
 	if (ptrfstring->fwidth && len < ptrfstring->fwidthvalue)
 		s = field_width(s, &len, ptrfstring);
+	if (ptrfstring->literal)
+	{
+		ptrfstring->counter += write(1, ptrfstring->literalv, ft_strlen(ptrfstring->literalv));
+		ft_strdel(&ptrfstring->literalv);
+	}
 	ptrfstring->counter += write(1, s, len);
 	if (ptrfstring->converted)
 		ft_strdel(&s);

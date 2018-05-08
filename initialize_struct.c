@@ -31,4 +31,6 @@ void		initialize_struct(fstr_t *ptrfstring)
 		ptrfstring->lengthmdf[i] = 0;
 	ptrfstring->convesp = 0;
 	ptrfstring->converted = 0;
+	ptrfstring->literal = 0;
+	ptrfstring->literalv = NULL;
 }

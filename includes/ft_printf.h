@@ -44,6 +44,8 @@ typedef struct fstr_s
 	char	convesp;
 	int		counter;
 	int		converted;
+	int		literal;
+	char	*literalv;
 }			fstr_t;
 int			ft_printf(const char *str, ...);
 void		sconv(va_list ap, fstr_t *ptrfstring);
@@ -80,4 +82,5 @@ void		oconv(va_list ap, fstr_t *ptrfstring);
 void		xconv(va_list ap, fstr_t *ptrfstring);
 void		cconv(va_list ap, fstr_t *ptrfstring);
 void		lcconv(va_list ap, fstr_t *ptrfstring);
+void		percent(char a, fstr_t *ptrfstring);
 #endif

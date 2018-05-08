@@ -17,10 +17,25 @@
 #include <limits.h>
 int main(void)
 {
-	char a = 'a';
+	//wchar_t strw[4];
+	//char a = 'a';
+	//int i;
 
-	printf("res: %d" , ft_printf("%4C", (wchar_t)0));
-	printf("reso: %d", printf("%4C", (wchar_t)0));
-	//int i = printf("\nHola\n%c,pizaww? %C\n", 20, -65);
+	//strw[0] = 0xd800;
+	//strw[1] = L'u';
+	//strw[2] = L'a';
+	//strw[3] = '\0';
+
+	//printf("res: %d" , ft_printf("%4C", (wchar_t)0));
+	//printf("reso: %d", printf("%4C", (wchar_t)0));
+	//i = printf("\nHola\n%c,pizaww?%S\n", 'c', strw);
+	//printf("%yyyyyyyyyyyyyyyyy", 10);
+	//printf("%d", ft_printf("%yyd%C", 10, -60));
+	//printf("%d", printf("%yyd%C", 10, -60));
+	//printf("%d", printf("%#010%"));
+	//ft_printf("%#0-10%");
+	//ft_printf("%ld", LONG_MIN);
+	//ft_printf("%ld", LONG_MIN);
+	ft_printf("%-+-12.7Dt%0 4i %04.2% et %lc titi", 125, 124, 256);
 	return (0);
 }

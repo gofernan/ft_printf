@@ -17,16 +17,31 @@ void		checkstr(const char *str, fstr_t *ptrfstring, va_list ap)
 	int		i;
 	int		go;
 	int		auxshift;
+	int		counter;
+	char	*pos;
 	i = 0;
 	go = 0;
 	auxshift = 0;
+	counter = 0;
+	pos = NULL;
 	while (str[i] != '\0')
 	{
 		if (go == 0)
 		{
 			if (str[i] != '%')
-				ptrfstring->counter += write(1, &str[i], 1);
-			if (str[i] == '%')
+			{
+				if ((pos = ft_strchr(&str[i], '%')))
+				{
+					if (!(ptrfstring->literalv = ft_strnew(pos - &str[i])))
+						exit(EXIT_FAILURE);
+					ptrfstring->literal = 1;
+					ft_strncpy(ptrfstring->literalv, &str[i], pos - &str[i]);
+					i += ((pos - &str[i]) - 1);
+				}
+				else
+					ptrfstring->counter += write(1, &str[i], 1);
+			}
+			else 
 				go = 1;
 		}
 		else
@@ -68,22 +83,39 @@ void		checkstr(const char *str, fstr_t *ptrfstring, va_list ap)
 				else if (ptrfstring->convesp == 'C' || ptrfstring->convesp == 'c')
 					lcconv(ap, ptrfstring);
 				if (ptrfstring->counter == -1)
-					break;
+				{
+				if (ptrfstring->literal)
+					ft_strdel(&ptrfstring->literalv);
+				break;
+				}
 				else
 				{
+					if (ptrfstring->literal)
+						ft_strdel(&ptrfstring->literalv);
 					initialize_struct(ptrfstring);
-					auxshift = 0;
 					go = 0;
 				}
 			}
 			else
 			{
-				write(1, &str[i], 1);
-				go = 0;
+				percent(str[i], ptrfstring);
+				if (ptrfstring->counter == -1)
+				{
+					//if (ptrfstring->literal)
+					//	ft_strdel(&ptrfstring->literalvalue);
+					break;
+				}
+				else
+				{
+					if (ptrfstring->literal)
+						ft_strdel(&ptrfstring->literalv);
+					initialize_struct(ptrfstring);
+					go = 0;
+				}
 			}
+			if (auxshift) //provisional
+				auxshift = 0;
 		}
-		if (auxshift)
-			auxshift = 0;
 		i++;
 	}
 }

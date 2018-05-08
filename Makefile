@@ -49,6 +49,7 @@ FLS = argorder \
 	  xconv \
 	  cconv \
 	  lcconv \
+	  percent \
 	  #main 
 
 FTFLS = ft_bzero \
