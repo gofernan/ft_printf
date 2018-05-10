@@ -19,7 +19,7 @@ int main(void)
 {
 	//wchar_t strw[4];
 	//char a = 'a';
-	//int i;
+	//int test;
 
 	//strw[0] = 0xd800;
 	//strw[1] = L'u';
@@ -36,6 +36,10 @@ int main(void)
 	//ft_printf("%#0-10%");
 	//ft_printf("%ld", LONG_MIN);
 	//ft_printf("%ld", LONG_MIN);
-	ft_printf("%-+-12.7Dt%0 4i %04.2% et %lc titi", 125, 124, 256);
+	//printf("%%   %", "test");
+	ft_printf("hello ca%----4c %1c va %10c%-c ??", '\0', '\n', (char)564, 0);	
+	//ft_printf("%.0p, %.p", 0, 0);
+	//ft_printf("%p", ptrvoid);
+	//printf("%p", ptrvoid);
 	return (0);
 }

@@ -17,7 +17,7 @@ int			checkstr_flags(const char *str, fstr_t *ptrfstring)
 	int		i;
 	char	flags[7];
 
-	strcpy(flags, "#0- +'");
+	ft_strcpy(flags, "#0- +'");
 	i = 0;
 	while (i < 7)
 	{

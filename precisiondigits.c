@@ -23,7 +23,7 @@ static char		*pluspr(char *str, int *len, int plusp, fstr_t *ptrfstring)
 		ft_memset(newstr, '-', 1);
 	else if (plusp == 2)
 	{
-		if (ptrfstring->convesp == 'x')
+		if (ptrfstring->convesp == 'x' || ptrfstring->convesp == 'p')
 			ft_strcpy(newstr, "0x");
 		else
 			ft_strcpy(newstr, "0X");

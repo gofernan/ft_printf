@@ -28,6 +28,7 @@
 # define FLAGS_N 6
 # define LENGTHM_N 8
 # define CONV_N 14
+# define BUFF_SIZE 1000
 
 typedef struct fstr_s
 {
@@ -46,6 +47,9 @@ typedef struct fstr_s
 	int		converted;
 	int		literal;
 	char	*literalv;
+	char	buff[BUFF_SIZE];
+	int		buffi;
+	int		lnchars;
 }			fstr_t;
 int			ft_printf(const char *str, ...);
 void		sconv(va_list ap, fstr_t *ptrfstring);
@@ -83,4 +87,6 @@ void		xconv(va_list ap, fstr_t *ptrfstring);
 void		cconv(va_list ap, fstr_t *ptrfstring);
 void		lcconv(va_list ap, fstr_t *ptrfstring);
 void		percent(char a, fstr_t *ptrfstring);
+void		pconv(va_list ap, fstr_t *ptrfstring);
+void		store_write(fstr_t *ptrfstring, const char *s, int *len);
 #endif

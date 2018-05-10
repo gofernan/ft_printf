@@ -11,9 +11,7 @@ void		percent(char a, fstr_t *ptrfstring)
 	ptrfstring->converted = 1;
 	if (ptrfstring->fwidth && len < ptrfstring->fwidthvalue)
 		s = field_width(s, &len, ptrfstring);
-	if (ptrfstring->literal)
-		ptrfstring->counter += write(1, ptrfstring->literalv, ft_strlen(ptrfstring->literalv));
-	ptrfstring->counter += write(1, s, len);
+	store_write(ptrfstring, s, &len);
 	if (ptrfstring->converted)
 		ft_strdel(&s);
 }

@@ -30,7 +30,7 @@ static char			*flag_sharp_x(char *str, int *len, fstr_t *ptrfstring)
 
 	if (!(newstr = ft_strnew(*len + 2)))
 		exit(EXIT_FAILURE);
-	if (ptrfstring->convesp == 'x')
+	if (ptrfstring->convesp == 'x' || ptrfstring->convesp == 'p')
 		ft_strcpy(newstr, "0x");
 	else
 		ft_strcpy(newstr, "0X");
@@ -44,7 +44,7 @@ char				*flag_sharp(char *str, int *len, fstr_t *ptrfstring)
 	char	*newstr;
 	int		lenalt;
 
-	if (ptrfstring->convesp == 'x' || ptrfstring->convesp == 'X')
+	if (ptrfstring->convesp == 'x' || ptrfstring->convesp == 'X' || ptrfstring->convesp == 'p')
 		newstr = flag_sharp_x(str, len, ptrfstring);
 	else if (ptrfstring->convesp == 'o' || ptrfstring->convesp == 'O')
 		newstr = flag_sharp_o(str, len, ptrfstring);

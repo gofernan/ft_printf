@@ -50,6 +50,8 @@ FLS = argorder \
 	  cconv \
 	  lcconv \
 	  percent \
+	  pconv \
+	  store_write \
 	  #main 
 
 FTFLS = ft_bzero \
@@ -119,6 +121,7 @@ FTFLS = ft_bzero \
 		ft_uimaxtoa \
 		ft_imaxtoa_base \
 		ft_uimaxtoa_base \
+		ft_strncpynp \
 
 FTDIR = libft/
 HEADER = includes/

@@ -20,7 +20,7 @@ char	*precisionfw(char *str, int *len, fstr_t *ptrfstring)
 		ptrfstring->precisionvalue--;
 	if (!(newstr = ft_strnew(ptrfstring->precisionvalue)))
 		exit (EXIT_FAILURE);
-	strncpy(newstr, str, ptrfstring->precisionvalue);
+	ft_strncpy(newstr, str, ptrfstring->precisionvalue);
 	if (ptrfstring->converted)
 		ft_strdel(&str);
 	else

@@ -21,20 +21,22 @@ void		diconv(va_list ap, fstr_t *ptrfstring)
 	plusp = 0;
 	if (ptrfstring->convesp == 'D')
 		s = ft_ltoa(va_arg(ap, long int));
-	else if (ptrfstring->lengthmdf[0])
-		s = ft_itoa((signed char)va_arg(ap, int));
-	else if (ptrfstring->lengthmdf[1])
-		s = ft_itoa((short)va_arg(ap, int));
-	else if (ptrfstring->lengthmdf[2])
-		s = ft_ltoa(va_arg(ap, long));
+	else if (ptrfstring->lengthmdf[7])
+		s = ft_imaxtoa(va_arg(ap, quad_t));
+	else if (ptrfstring->lengthmdf[6])
+		s = ft_imaxtoa(va_arg(ap, size_t));
+	else if (ptrfstring->lengthmdf[5])
+		s = ft_uimaxtoa(va_arg(ap, ptrdiff_t));
+	else if (ptrfstring->lengthmdf[4])
+		s = ft_imaxtoa(va_arg(ap, intmax_t));
 	else if (ptrfstring->lengthmdf[3])
 		s = ft_lltoa(va_arg(ap, long long));
-	else if (ptrfstring->lengthmdf[4])
-		s = ft_imaxtoa(va_arg(ap, size_t));
-	//else if (ptrfstring->lengthmdf[5])
-	//	s = diconvt(ap, ptrfstring);
-	else if (ptrfstring->lengthmdf[6])
-		s = ft_imaxtoa(va_arg(ap, intmax_t));
+	else if (ptrfstring->lengthmdf[2])
+		s = ft_ltoa(va_arg(ap, long));
+	else if (ptrfstring->lengthmdf[1])
+		s = ft_itoa((short)va_arg(ap, int));
+	else if (ptrfstring->lengthmdf[0])
+		s = ft_itoa((signed char)va_arg(ap, int));
 	else
 		s = ft_itoa(va_arg(ap, int));
 	ptrfstring->converted = 1;
@@ -55,9 +57,7 @@ void		diconv(va_list ap, fstr_t *ptrfstring)
 		s = flag_plus(s, &len, ptrfstring);
 	if (ptrfstring->fwidth && len < ptrfstring->fwidthvalue)
 		s = field_width_num(s, &len, ptrfstring);
-	if (ptrfstring->literal)
-		ptrfstring->counter += write(1, ptrfstring->literalv, ft_strlen(ptrfstring->literalv));
-	ptrfstring->counter += write(1, s, len);
+	store_write(ptrfstring, s, &len);
 	if (ptrfstring->converted)
 		ft_strdel(&s);
 }

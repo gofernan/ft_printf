@@ -32,9 +32,7 @@ void		lcconv(va_list ap, fstr_t *ptrfstring)
 			len = ft_strlen(strconv);
 		if (ptrfstring->fwidth && len < ptrfstring->fwidthvalue)
 			strconv = field_width(strconv, &len, ptrfstring);
-		if (ptrfstring->literal)
-			ptrfstring->counter += write(1, ptrfstring->literalv, ft_strlen(ptrfstring->literalv));
-		ptrfstring->counter += write(1, strconv, len);
+		store_write(ptrfstring, strconv, &len);
 	}
 	else
 		ptrfstring->counter = -1;

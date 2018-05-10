@@ -35,7 +35,7 @@ int check_conversions(char a)
 	char conv[15];
 	int i;
 
-	strcpy(conv, CONVERSORS);
+	ft_strcpy(conv, CONVERSORS);
 	i = 0;
 	while (conv[i] != '\0')
 	{
@@ -63,43 +63,23 @@ int			ft_printf(const char *str, ...)
 	va_start(ap, str);
 	ptrfstring = &fstring;
 	ptrfstring->counter = 0;
+	ptrfstring->buffi = 0;
+	ptrfstring->lnchars = 0;
 	initialize_struct(ptrfstring);
 	checkstr(str, ptrfstring, ap);
+	if (ptrfstring->counter != -1)
+		ptrfstring->counter += write(1, ptrfstring->buff, ptrfstring->buffi);
+	else
+		write(1, ptrfstring->buff, ptrfstring->buffi - ptrfstring->lnchars);
 	if (ptrfstring->argorder == 1)
 	{
 		i = ft_atoi(ptrfstring->argordervalue);
-		printf("i despues de atoi %d\n", i);
 		while (--i)
 		{
 			va_arg(ap, char *);
 		}
 	}
 	i = 0;
-	//print_initialize(ptrfstring);
-	/*while (str[i] != '\0')
-	{
-		if (str[i] != '%')
-		{
-			counter += write(1, &str[i], 1);
-			printf("counter %d\n", counter);
-			//ft_putchar(str[i]);
-		}
-		if (str[i] == '%')
-		{
-				//check_argorder(str[i]);
-			if (check_conversions(str[i + 1]) != -1)
-			{
-				//ptrf = &convstr[check_conversions(*str)]; 
-				(*convstr[check_conversions(str[i + 1])])(ap);
-				//s = va_arg(ap, char *);
-				//write(1, s, (ft_strlen(s) + 1));
-			}
-			else
-				ft_putstr("conversor not recognized");
-		}
-		i++;
-	}
-	*/
 	va_end(ap);
 	return (ptrfstring->counter);
 }

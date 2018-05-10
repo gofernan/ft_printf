@@ -19,22 +19,22 @@ void		oconv(va_list ap, fstr_t *ptrfstring)
 
 	if (ptrfstring->convesp == 'O')
 		s = ft_uimaxtoa_base(va_arg(ap, unsigned long), 8, 0);
-	else if (ptrfstring->lengthmdf[0])
-		s = ft_uimaxtoa_base((unsigned char)va_arg(ap, unsigned int), 8, 0);
-	else if (ptrfstring->lengthmdf[1])
-		s = ft_uimaxtoa_base((unsigned short)va_arg(ap, unsigned int), 8, 0);
-	else if (ptrfstring->lengthmdf[2])
-		s = ft_uimaxtoa_base(va_arg(ap, unsigned long), 8, 0);
-	else if (ptrfstring->lengthmdf[3])
-		s = ft_uimaxtoa_base(va_arg(ap, unsigned long long), 8, 0);
-	else if (ptrfstring->lengthmdf[4])
-		s = ft_uimaxtoa_base(va_arg(ap, uintmax_t), 8, 0);
-	else if (ptrfstring->lengthmdf[5])
-		s = ft_uimaxtoa_base(va_arg(ap, ptrdiff_t), 8, 0);
-	else if (ptrfstring->lengthmdf[6])
-		s = ft_uimaxtoa_base(va_arg(ap, size_t), 8, 0);
 	else if (ptrfstring->lengthmdf[7])
 		s = ft_uimaxtoa_base(va_arg(ap, u_quad_t), 8, 0);
+	else if (ptrfstring->lengthmdf[6])
+		s = ft_uimaxtoa_base(va_arg(ap, size_t), 8, 0);
+	else if (ptrfstring->lengthmdf[5])
+		s = ft_uimaxtoa_base(va_arg(ap, ptrdiff_t), 8, 0);
+	else if (ptrfstring->lengthmdf[4])
+		s = ft_uimaxtoa_base(va_arg(ap, uintmax_t), 8, 0);
+	else if (ptrfstring->lengthmdf[3])
+		s = ft_uimaxtoa_base(va_arg(ap, unsigned long long), 8, 0);
+	else if (ptrfstring->lengthmdf[2])
+		s = ft_uimaxtoa_base(va_arg(ap, unsigned long), 8, 0);
+	else if (ptrfstring->lengthmdf[1])
+		s = ft_uimaxtoa_base((unsigned short)va_arg(ap, unsigned int), 8, 0);
+	else if (ptrfstring->lengthmdf[0])
+		s = ft_uimaxtoa_base((unsigned char)va_arg(ap, unsigned int), 8, 0);
 	else
 		s = ft_uimaxtoa_base(va_arg(ap, unsigned int), 8, 0);
 	ptrfstring->converted = 1;
@@ -51,9 +51,7 @@ void		oconv(va_list ap, fstr_t *ptrfstring)
 		s = precisiondigits(s, &len, 0, ptrfstring);
 	if (ptrfstring->fwidth && len < ptrfstring->fwidthvalue)
 		s = field_width_num(s, &len, ptrfstring);
-	if (ptrfstring->literal)
-		ptrfstring->counter += write(1, ptrfstring->literalv, ft_strlen(ptrfstring->literalv));
-	ptrfstring->counter += write(1, s, len);
+	store_write(ptrfstring, s, &len);
 	if (ptrfstring->converted)
 		ft_strdel(&s);
 }
