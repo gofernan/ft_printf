@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   store_write.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/05/14 17:25:51 by gofernan          #+#    #+#             */
+/*   Updated: 2018/05/14 17:26:01 by gofernan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "includes/ft_printf.h"
 
 void		store_write(fstr_t *ptrfstring, const char *s, int *len)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (((ptrfstring->buffi) + *len) < BUFF_SIZE)

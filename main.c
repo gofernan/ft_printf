@@ -6,7 +6,7 @@
 /*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/05 12:28:51 by gofernan          #+#    #+#             */
-/*   Updated: 2018/04/23 21:11:34 by gofernan         ###   ########.fr       */
+/*   Updated: 2018/05/14 19:53:36 by gofernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@
 #include <limits.h>
 int main(void)
 {
-	printf("%2$s%1$s%5$s%3$s%4$s%2$s", "hola", "como", "estas", "tio", "mio");
+//	ft_printf("%2$s%1$s%5$s%3$s%4$s%2$s", "hola", "como", "estas", "tio", "mio");
+	ft_printf("%2$s", "holla");
 	//
 	return (0);
 }

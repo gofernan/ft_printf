@@ -6,7 +6,7 @@
 /*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/30 15:01:26 by gofernan          #+#    #+#             */
-/*   Updated: 2018/05/07 19:53:34 by gofernan         ###   ########.fr       */
+/*   Updated: 2018/05/14 17:18:03 by gofernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ void	lsconv(va_list ap, fstr_t *ptrfstring)
 	}
 	else
 	{
-	if (__mb_cur_max == 4)
-		strconv = utf8conv((unsigned int *)wstr);
-	else
-		strconv = onebyteconv(wstr, ptrfstring);
+		if (__mb_cur_max == 4)
+			strconv = utf8conv((unsigned int *)wstr);
+		else
+			strconv = onebyteconv(wstr, ptrfstring);
 	}
 	if (strconv)
 	{

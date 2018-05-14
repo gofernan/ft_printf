@@ -6,7 +6,7 @@
 /*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/07 19:35:46 by gofernan          #+#    #+#             */
-/*   Updated: 2018/05/07 19:36:20 by gofernan         ###   ########.fr       */
+/*   Updated: 2018/05/14 17:15:32 by gofernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void		fwaux(char *str, char *newstr, int *len, fstr_t *ptrfstring)
 	}
 }
 
-char		*field_width_num(char *str, int *len, fstr_t *ptrfstring)
+char			*field_width_num(char *str, int *len, fstr_t *ptrfstring)
 {
 	char *newstr;
 

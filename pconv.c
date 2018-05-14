@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pconv.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/05/14 17:23:35 by gofernan          #+#    #+#             */
+/*   Updated: 2018/05/14 17:23:59 by gofernan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "includes/ft_printf.h"
 
 void		pconv(va_list ap, fstr_t *ptrfstring)
 {
-	char *s;
-	int len;
+	char	*s;
+	int		len;
 
 	s = ft_uimaxtoa_base((va_arg(ap, uintmax_t)), 16, 0);
 	len = ft_strlen(s);

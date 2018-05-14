@@ -6,7 +6,7 @@
 /*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/07 21:38:43 by gofernan          #+#    #+#             */
-/*   Updated: 2018/05/07 21:38:56 by gofernan         ###   ########.fr       */
+/*   Updated: 2018/05/14 17:25:48 by gofernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 char	*precisionfw(char *str, int *len, fstr_t *ptrfstring)
 {
-	char *newstr;
+	char	*newstr;
 
 	while ((((unsigned char)str[ptrfstring->precisionvalue]) >> 6) == 0x02)
 		ptrfstring->precisionvalue--;
 	if (!(newstr = ft_strnew(ptrfstring->precisionvalue)))
-		exit (EXIT_FAILURE);
+		exit(EXIT_FAILURE);
 	ft_strncpy(newstr, str, ptrfstring->precisionvalue);
 	if (ptrfstring->converted)
 		ft_strdel(&str);

@@ -6,7 +6,7 @@
 /*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/30 15:01:08 by gofernan          #+#    #+#             */
-/*   Updated: 2018/05/07 21:33:32 by gofernan         ###   ########.fr       */
+/*   Updated: 2018/05/14 17:28:02 by gofernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,9 @@ char		*threebytes(unsigned int *wstr)
 	return (threebytestr);
 }
 
-char		*fourbytes(unsigned int *wstr) {
-	char *fourbytestr;
+char		*fourbytes(unsigned int *wstr)
+{
+	char	*fourbytestr;
 
 	if (!(fourbytestr = ft_strnew(4)))
 		exit(EXIT_FAILURE);
@@ -80,7 +81,7 @@ int			bytesutf8(unsigned int *wstr)
 
 void		encodebytes(unsigned int *wstr, char *newstr)
 {
-	int		 i;
+	int		i;
 	char	*retrstr;
 
 	i = 0;

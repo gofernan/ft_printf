@@ -6,7 +6,7 @@
 /*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/07 21:33:35 by gofernan          #+#    #+#             */
-/*   Updated: 2018/05/07 21:35:04 by gofernan         ###   ########.fr       */
+/*   Updated: 2018/05/14 17:26:36 by gofernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ static char		*lengthmdfs(va_list ap, char *s, fstr_t *ptrfstring)
 
 void			xconv(va_list ap, fstr_t *ptrfstring)
 {
-	char *s;
-	int len;
-	int plusprecision;
+	char	*s;
+	int		len;
+	int		plusprecision;
 
 	s = NULL;
 	plusprecision = 0;

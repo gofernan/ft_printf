@@ -6,7 +6,7 @@
 /*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/07 21:39:10 by gofernan          #+#    #+#             */
-/*   Updated: 2018/05/07 21:39:47 by gofernan         ###   ########.fr       */
+/*   Updated: 2018/05/14 17:25:19 by gofernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static char		*pluspr(char *str, int *len, int plusp, fstr_t *ptrfstring)
 {
-	char *newstr;
+	char	*newstr;
 
 	newstr = NULL;
 	if (!(newstr = ft_strnew(ptrfstring->precisionvalue + plusp)))
@@ -28,14 +28,14 @@ static char		*pluspr(char *str, int *len, int plusp, fstr_t *ptrfstring)
 		else
 			ft_strcpy(newstr, "0X");
 	}
-		ft_memset(newstr + plusp, '0', ptrfstring->precisionvalue + plusp - *len);
-		ft_strcat(newstr, str + plusp);
+	ft_memset(newstr + plusp, '0', ptrfstring->precisionvalue + plusp - *len);
+	ft_strcat(newstr, str + plusp);
 	return (newstr);
 }
 
 char			*precisiondigits(char *str, int *len, int plusp, fstr_t *ptrfstring)
 {
-	char *newstr;
+	char	*newstr;
 
 	if (plusp)
 		newstr = pluspr(str, len, plusp, ptrfstring);
@@ -52,4 +52,4 @@ char			*precisiondigits(char *str, int *len, int plusp, fstr_t *ptrfstring)
 		ptrfstring->converted = 1;
 	*len = ft_strlen(newstr);
 	return (newstr);
-}	
+}

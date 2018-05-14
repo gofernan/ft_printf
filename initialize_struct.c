@@ -6,7 +6,7 @@
 /*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 19:39:31 by gofernan          #+#    #+#             */
-/*   Updated: 2018/05/07 19:41:50 by gofernan         ###   ########.fr       */
+/*   Updated: 2018/05/14 19:51:37 by gofernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void		initialize_struct(fstr_t *ptrfstring)
 
 	i = -1;
 	ptrfstring->argorder = 0;
-	ptrfstring->argordervalue = NULL;
+	ptrfstring->argordervalue = 0;
 	ptrfstring->separator = 0;
 	ptrfstring->fwidth = 0;
 	ptrfstring->fwidthvalue = 0;

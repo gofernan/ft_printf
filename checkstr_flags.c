@@ -6,7 +6,7 @@
 /*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/20 11:34:07 by gofernan          #+#    #+#             */
-/*   Updated: 2018/05/07 19:14:40 by gofernan         ###   ########.fr       */
+/*   Updated: 2018/05/14 17:09:41 by gofernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ int			checkstr_flags(const char *str, fstr_t *ptrfstring)
 	i = 0;
 	while (i < 7)
 	{
-		if	(*str == flags[i])
+		if (*str == flags[i])
 		{
 			ptrfstring->flags[i] = 1;
 			return (1);
 		}
 		i++;
 	}
-	return 0;
+	return (0);
 }

@@ -6,13 +6,13 @@
 /*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/30 15:20:35 by gofernan          #+#    #+#             */
-/*   Updated: 2018/05/07 21:41:15 by gofernan         ###   ########.fr       */
+/*   Updated: 2018/05/14 17:21:36 by gofernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/ft_printf.h"
 
-char		*onebyteconv(wchar_t * wstr, fstr_t *ptrfstring)
+char		*onebyteconv(wchar_t *wstr, fstr_t *ptrfstring)
 {
 	int		i;
 	char	*casted1byte;
@@ -25,7 +25,7 @@ char		*onebyteconv(wchar_t * wstr, fstr_t *ptrfstring)
 		if (wstr[i] > 0xff)
 		{
 			if (ptrfstring->precision && ptrfstring->precisionvalue <= i)
-				break;
+				break ;
 			else
 				return (NULL);
 		}

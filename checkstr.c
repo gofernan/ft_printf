@@ -6,7 +6,7 @@
 /*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/13 10:01:20 by gofernan          #+#    #+#             */
-/*   Updated: 2018/05/07 19:04:59 by gofernan         ###   ########.fr       */
+/*   Updated: 2018/05/14 19:53:24 by gofernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void		checkstr(const char *str, fstr_t *ptrfstring, va_list ap)
 	int		auxshift;
 	int		counter;
 	char	*pos;
+
 	i = 0;
 	go = 0;
 	auxshift = 0;
@@ -43,35 +44,43 @@ void		checkstr(const char *str, fstr_t *ptrfstring, va_list ap)
 					i += ft_strlen(&str[i]) - 1;
 				}
 			}
-			else 
+			else
 			{
+				go = 1;
 				/*if (str[i + 1] == '\0' && ptrfstring->lnchars)
 				{
 					ptrfstring->counter += write(1, ptrfstring->literalv, ft_strlen(ptrfstring->literalv));
 				}
-				else*/
-					go = 1;
+				else
+				*/
 			}
 		}
 		else
 		{
-			if (checkstr_argorder(&str[i], ptrfstring))
-				i += ft_strlen(ptrfstring->argordervalue);
-			else if (checkstr_flags(&str[i], ptrfstring));
+			if (checkstr_argorder(&str[i], ptrfstring, &auxshift))
+				i += auxshift - 1;
+			else if (checkstr_flags(&str[i], ptrfstring))
+				;
 			else if (checkstr_fwidth(&str[i], ptrfstring, &auxshift))
 				i += auxshift - 1;
 			else if (checkstr_precision(&str[i], ptrfstring, &auxshift))
-					i += auxshift;
+				i += auxshift;
 			else if (checkstr_length_hh(&str[i], ptrfstring))
 				i++;
-			else if (checkstr_length_h(&str[i], ptrfstring));
-			else if (checkstr_length_l(&str[i], ptrfstring));
+			else if (checkstr_length_h(&str[i], ptrfstring))
+				;
+			else if (checkstr_length_l(&str[i], ptrfstring))
+				;
 			else if (checkstr_length_ll(&str[i], ptrfstring))
 				i++;
-			else if (checkstr_length_j(&str[i], ptrfstring));
-			else if (checkstr_length_t(&str[i], ptrfstring));
-			else if (checkstr_length_z(&str[i], ptrfstring));
-			else if (checkstr_length_q(&str[i], ptrfstring));
+			else if (checkstr_length_j(&str[i], ptrfstring))
+				;
+			else if (checkstr_length_t(&str[i], ptrfstring))
+				;
+			else if (checkstr_length_z(&str[i], ptrfstring))
+				;
+			else if (checkstr_length_q(&str[i], ptrfstring))
+				;
 			else if (conversion_specifiers(&str[i], ptrfstring))
 			{
 				if (ptrfstring->convesp == 's' && !(ptrfstring->lengthmdf[2]))
@@ -94,7 +103,7 @@ void		checkstr(const char *str, fstr_t *ptrfstring, va_list ap)
 				else if (ptrfstring->convesp == 'p')
 					pconv(ap, ptrfstring);
 				if (ptrfstring->counter == -1)
-					break;
+					break ;
 				else
 				{
 					initialize_struct(ptrfstring);
@@ -105,14 +114,14 @@ void		checkstr(const char *str, fstr_t *ptrfstring, va_list ap)
 			{
 				percent(str[i], ptrfstring);
 				if (ptrfstring->counter == -1)
-					break;
+					break ;
 				else
 				{
 					initialize_struct(ptrfstring);
 					go = 0;
 				}
 			}
-			if (auxshift) //provisional
+			if (auxshift)
 				auxshift = 0;
 		}
 		i++;

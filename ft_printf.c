@@ -6,7 +6,7 @@
 /*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/22 22:49:45 by gofernan          #+#    #+#             */
-/*   Updated: 2018/04/05 12:29:35 by gofernan         ###   ########.fr       */
+/*   Updated: 2018/05/14 17:10:51 by gofernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int			ft_printf(const char *str, ...)
 {
-	va_list ap;
-	fstr_t fstring;
-	fstr_t *ptrfstring;
+	va_list		ap;
+	fstr_t		fstring;
+	fstr_t		*ptrfstring;
 
 	va_start(ap, str);
 	ptrfstring = &fstring;
