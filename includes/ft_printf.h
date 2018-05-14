@@ -19,7 +19,6 @@
 # include <stdint.h>
 # include <stddef.h>
 # include <sys/types.h>
-//# include <locale.h> // remove???
 # include <errno.h> /* remove??? */
 # include <stdio.h> /* remove when finished */
 # include "../libft/libft.h"
@@ -45,9 +44,9 @@ typedef struct fstr_s
 	char	convesp;
 	int		counter;
 	int		converted;
-	int		literal;
-	char	*literalv;
 	char	buff[BUFF_SIZE];
+	//char	*buff;
+	//int		buffsize;
 	int		buffi;
 	int		lnchars;
 }			fstr_t;

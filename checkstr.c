@@ -32,13 +32,6 @@ void		checkstr(const char *str, fstr_t *ptrfstring, va_list ap)
 			{
 				if ((pos = ft_strchr(&str[i], '%')))
 				{
-					//if (!(ptrfstring->literalv = ft_strnew(pos - &str[i])))
-					//	exit(EXIT_FAILURE);
-					//ptrfstring->literal = 1;
-					//ft_strncpy(ptrfstring->literalv, &str[i], pos - &str[i]);
-					//i += ((pos - &str[i]) - 1);
-					//
-					ptrfstring->literal = 1;
 					ptrfstring->lnchars = pos - &str[i];
 					store_write(ptrfstring, &str[i], &ptrfstring->lnchars);
 					i += ptrfstring->lnchars - 1;
@@ -47,18 +40,16 @@ void		checkstr(const char *str, fstr_t *ptrfstring, va_list ap)
 				{
 					ptrfstring->lnchars = ft_strlen(&str[i]);
 					store_write(ptrfstring, &str[i], &ptrfstring->lnchars);
-					//ptrfstring->counter += write(1, &str[i], ft_strlen(&str[i]));
 					i += ft_strlen(&str[i]) - 1;
 				}
 			}
 			else 
 			{
-				if (str[i + 1] == '\0' && ptrfstring->literal == 1)
+				/*if (str[i + 1] == '\0' && ptrfstring->lnchars)
 				{
 					ptrfstring->counter += write(1, ptrfstring->literalv, ft_strlen(ptrfstring->literalv));
-					ft_strdel(&ptrfstring->literalv);
 				}
-				else
+				else*/
 					go = 1;
 			}
 		}
@@ -103,15 +94,9 @@ void		checkstr(const char *str, fstr_t *ptrfstring, va_list ap)
 				else if (ptrfstring->convesp == 'p')
 					pconv(ap, ptrfstring);
 				if (ptrfstring->counter == -1)
-				{
-				//if (ptrfstring->literal)
-				//	ft_strdel(&ptrfstring->literalv);
-				break;
-				}
+					break;
 				else
 				{
-				//	if (ptrfstring->literal)
-				//		ft_strdel(&ptrfstring->literalv);
 					initialize_struct(ptrfstring);
 					go = 0;
 				}
@@ -120,15 +105,9 @@ void		checkstr(const char *str, fstr_t *ptrfstring, va_list ap)
 			{
 				percent(str[i], ptrfstring);
 				if (ptrfstring->counter == -1)
-				{
-					//if (ptrfstring->literal)
-					//	ft_strdel(&ptrfstring->literalvalue);
 					break;
-				}
 				else
 				{
-				//	if (ptrfstring->literal)
-				//		ft_strdel(&ptrfstring->literalv);
 					initialize_struct(ptrfstring);
 					go = 0;
 				}

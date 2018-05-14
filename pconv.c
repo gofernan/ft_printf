@@ -12,8 +12,8 @@ void		pconv(va_list ap, fstr_t *ptrfstring)
 		*s = '\0';
 		len = 0;
 	}
+	ptrfstring->converted = 1;
 	s = flag_sharp(s, &len, ptrfstring);
-	//ptrfstring->converted = 1;
 	if (ptrfstring->precision && ptrfstring->precisionvalue > (len - 2))
 		s = precisiondigits(s, &len, 2, ptrfstring);
 	if (ptrfstring->fwidth && len < ptrfstring->fwidthvalue)
