@@ -16,8 +16,8 @@ char		*flag_space(char *str, int *len, fstr_t *ptrfstring)
 {
 	char *newstr;
 
-	if (!(newstr = ft_strnew(*len + 1)))
-		return (NULL);
+	if (!(newstr = (char *)malloc(sizeof(char) * (*len + 2))))
+		exit(EXIT_FAILURE);
 	*newstr = ' ';
 	ft_strcpy(newstr + 1, str);
 	if (ptrfstring->converted)

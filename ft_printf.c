@@ -23,6 +23,8 @@ int			ft_printf(const char *str, ...)
 	ptrfstring->counter = 0;
 	ptrfstring->buffi = 0;
 	ptrfstring->lnchars = 0;
+	//ptrfstring->argorder = 0;
+	//ptrfstring->argordervalue = 0;
 	//ptrfstring->buffsize = 1000;
 	//ptrfstring->buff = (char *)malloc(sizeof(char) * (ptrfstring->buffsize + 1));
 	initialize_struct(ptrfstring);

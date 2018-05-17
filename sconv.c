@@ -17,6 +17,9 @@ void		sconv(va_list ap, fstr_t *ptrfstring)
 	char	*s;
 	int		len;
 
+	//if (ptrfstring->argorder)
+	//	s = argorder(ap, ptrfstring);
+	//	else if ...
 	if (!(s = va_arg(ap, char *)))
 	{
 		s = ft_strnew(6);

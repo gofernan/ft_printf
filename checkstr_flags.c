@@ -14,19 +14,19 @@
 
 int			checkstr_flags(const char *str, fstr_t *ptrfstring)
 {
-	int		i;
-	char	flags[7];
-
-	ft_strcpy(flags, "#0- +'");
-	i = 0;
-	while (i < 7)
-	{
-		if (*str == flags[i])
-		{
-			ptrfstring->flags[i] = 1;
-			return (1);
-		}
-		i++;
-	}
-	return (0);
+	if (*str == '#')
+		ptrfstring->flags[0] = 1;
+	else if (*str == '0')
+		ptrfstring->flags[1] = 1;
+	else if (*str == '-')
+		ptrfstring->flags[2] = 1;
+	else if (*str == ' ')
+		ptrfstring->flags[3] = 1;
+	else if (*str == '+')
+		ptrfstring->flags[4] = 1;
+	else if (*str == '\'')
+		ptrfstring->flags[5] = 1;
+	else
+		return (0);
+	return (1);
 }

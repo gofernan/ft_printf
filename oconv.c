@@ -12,11 +12,8 @@
 
 #include "includes/ft_printf.h"
 
-void		oconv(va_list ap, fstr_t *ptrfstring)
+char		*omdfs(va_list ap, fstr_t *ptrfstring, char *s)
 {
-	char	*s;
-	int		len;
-
 	if (ptrfstring->convesp == 'O')
 		s = ft_uimaxtoa_base(va_arg(ap, unsigned long), 8, 0);
 	else if (ptrfstring->lengthmdf[7])
@@ -37,7 +34,19 @@ void		oconv(va_list ap, fstr_t *ptrfstring)
 		s = ft_uimaxtoa_base((unsigned char)va_arg(ap, unsigned int), 8, 0);
 	else
 		s = ft_uimaxtoa_base(va_arg(ap, unsigned int), 8, 0);
+	if (!s)
+		exit(EXIT_FAILURE);
 	ptrfstring->converted = 1;
+	return (s);
+}
+
+void		oconv(va_list ap, fstr_t *ptrfstring)
+{
+	char	*s;
+	int		len;
+
+	s = NULL;
+	s = omdfs(ap, ptrfstring, s);
 	len = ft_strlen(s);
 	if ((ptrfstring->precision && ptrfstring->precisionvalue == 0 && !ft_strcmp(s, "0"))
 		|| (!ft_strcmp(s, "0") && ptrfstring->flags[0]))

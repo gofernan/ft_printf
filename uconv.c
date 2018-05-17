@@ -12,11 +12,8 @@
 
 #include "includes/ft_printf.h"
 
-void		uconv(va_list ap, fstr_t *ptrfstring)
+char		*umdfs(va_list ap, fstr_t *ptrfstring, char *s)
 {
-	char	*s;
-	int		len;
-
 	if (ptrfstring->convesp == 'U')
 		s = ft_uimaxtoa(va_arg(ap, unsigned long));
 	else if (ptrfstring->lengthmdf[7])
@@ -37,7 +34,18 @@ void		uconv(va_list ap, fstr_t *ptrfstring)
 		s = ft_uimaxtoa((unsigned char)va_arg(ap, unsigned int));
 	else
 		s = ft_uimaxtoa(va_arg(ap, unsigned int));
+	if (!s)
+		exit(EXIT_FAILURE);
 	ptrfstring->converted = 1;
+	return (s);
+}
+
+void		uconv(va_list ap, fstr_t *ptrfstring)
+{
+	char	*s;
+	int		len;
+
+	s = umdfs(ap, ptrfstring, s);
 	if (ptrfstring->precision && ptrfstring->precisionvalue == 0 && !ft_strcmp(s, "0"))
 	{
 		ft_strdel(&s);

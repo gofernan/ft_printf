@@ -31,10 +31,11 @@ char		*onebyteconv(wchar_t *wstr, fstr_t *ptrfstring)
 		}
 	}
 	len = ft_wcslen(wstr);
-	if (!(casted1byte = ft_strnew(len)))
-		return (NULL);
+	if (!(casted1byte = (char *)malloc(sizeof(char) * (len + 1))))
+		exit(EXIT_FAILURE);
 	i = -1;
 	while (wstr[++i])
 		casted1byte[i] = (char)wstr[i];
+	casted1byte[i] = '\0';
 	return (casted1byte);
 }

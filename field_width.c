@@ -17,7 +17,7 @@ char	*field_width(char *str, int *len, fstr_t *ptrfstring)
 	char	*newstr;
 	char	paddchar;
 
-	if (!(newstr = ft_strnew(ptrfstring->fwidthvalue)))
+	if (!(newstr = (char *)malloc(sizeof(char) * (ptrfstring->fwidthvalue + 1))))
 		exit(EXIT_FAILURE);
 	if (ptrfstring->flags[1] && !(ptrfstring->flags[2]))
 		paddchar = '0';
@@ -26,7 +26,7 @@ char	*field_width(char *str, int *len, fstr_t *ptrfstring)
 	if (!(ptrfstring->flags[2]))
 	{
 		ft_memset(newstr, paddchar, ptrfstring->fwidthvalue - *len);
-		ft_strcat(newstr, str);
+		ft_strcpy(&newstr[ptrfstring->fwidthvalue - *len], str);
 	}
 	else
 	{

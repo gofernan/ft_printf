@@ -17,8 +17,10 @@
 #include <limits.h>
 int main(void)
 {
-//	ft_printf("%2$s%1$s%5$s%3$s%4$s%2$s", "hola", "como", "estas", "tio", "mio");
-	ft_printf("%2$s", "holla");
+	//ft_printf("yo%2C%-12lc et %C titi %C tyty", 'u', 254, 256, 'a');
+	//ft_printf("%2$s", "holla");
 	//
+	//ft_printf("1234");
+	ft_printf("%d", 42);
 	return (0);
 }

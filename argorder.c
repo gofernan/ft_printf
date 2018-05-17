@@ -10,8 +10,18 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "includes/ft_printf.h"
 
-void	argorder(void)
+//void		check_list(
+
+char		*argorder(va_list ap, fstr_t *ptrfstring)
 {
+	char		*s;
+	t_args		largs;
+	t_args		*ptrlargs;
+
+	ptrlargs = &largs;
+
+	if (ptrfstring->convesp == 's' && !(ptrfstring->lengthmdf[2]))
+		check_list(ap, ptrfstring);
 }

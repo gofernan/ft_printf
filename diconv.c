@@ -12,13 +12,8 @@
 
 #include "includes/ft_printf.h"
 
-void		diconv(va_list ap, fstr_t *ptrfstring)
+char		*dimdfs(va_list ap, fstr_t *ptrfstring, char *s)
 {
-	char	*s;
-	int		len;
-	int		plusp;
-
-	plusp = 0;
 	if (ptrfstring->convesp == 'D')
 		s = ft_ltoa(va_arg(ap, long int));
 	else if (ptrfstring->lengthmdf[7])
@@ -39,7 +34,20 @@ void		diconv(va_list ap, fstr_t *ptrfstring)
 		s = ft_itoa((signed char)va_arg(ap, int));
 	else
 		s = ft_itoa(va_arg(ap, int));
+	if (!s)
+		exit(EXIT_FAILURE);
 	ptrfstring->converted = 1;
+	return (s);
+}
+
+void		diconv(va_list ap, fstr_t *ptrfstring)
+{
+	char	*s;
+	int		len;
+	int		plusp;
+
+	plusp = 0;
+	s = dimdfs(ap, ptrfstring, s);
 	if (ptrfstring->precision && ptrfstring->precisionvalue == 0 && !ft_strcmp(s, "0"))
 	{
 		ft_strdel(&s);

@@ -22,7 +22,6 @@
 # include <errno.h>// remove???
 # include <stdio.h>// remove when finished
 # include "../libft/libft.h"
-# define FLAGS "#0- +'"
 # define CONVERSORS "sSpdDioOuUxXcC"
 # define FLAGS_N 6
 # define LENGTHM_N 8
@@ -50,9 +49,17 @@ typedef struct	fstr_s
 	int		buffi;
 	int		lnchars;
 }				fstr_t;
+
+typedef struct		s_args
+{
+	int				value;
+	char			convesp;
+	char			*mdf;
+	struct s_args	*next;
+}					t_args;
 int			ft_printf(const char *str, ...);
 void		sconv(va_list ap, fstr_t *ptrfstring);
-void		argorder(void);
+//void		argorder(void);
 void		checkstr(const char *str, fstr_t *ptrfstring, va_list ap);
 int			checkstr_argorder(const char *str, fstr_t *ptrfstring, int *auxshift);
 int			checkstr_flags(const char *str, fstr_t *ptrfstring);

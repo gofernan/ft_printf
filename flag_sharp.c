@@ -16,7 +16,7 @@ static char			*flag_sharp_o(char *str, int *len, fstr_t *ptrfstring)
 {
 	char *newstr;
 
-	if (!(newstr = ft_strnew(*len + 1)))
+	if (!(newstr = (char *)malloc(sizeof(char) * (*len + 2))))
 		exit(EXIT_FAILURE);
 	*newstr = '0';
 	ft_strcpy(newstr + 1, str);
@@ -28,7 +28,7 @@ static char			*flag_sharp_x(char *str, int *len, fstr_t *ptrfstring)
 {
 	char *newstr;
 
-	if (!(newstr = ft_strnew(*len + 2)))
+	if (!(newstr = (char *)malloc(sizeof(char) * (*len + 3))))
 		exit(EXIT_FAILURE);
 	if (ptrfstring->convesp == 'x' || ptrfstring->convesp == 'p')
 		ft_strcpy(newstr, "0x");
@@ -42,7 +42,6 @@ static char			*flag_sharp_x(char *str, int *len, fstr_t *ptrfstring)
 char				*flag_sharp(char *str, int *len, fstr_t *ptrfstring)
 {
 	char	*newstr;
-	int		lenalt;
 
 	if (ptrfstring->convesp == 'x' || ptrfstring->convesp == 'X' || ptrfstring->convesp == 'p')
 		newstr = flag_sharp_x(str, len, ptrfstring);

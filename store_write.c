@@ -27,7 +27,6 @@ void		store_write(fstr_t *ptrfstring, const char *s, int *len)
 		ptrfstring->counter += write(1, ptrfstring->buff, ptrfstring->buffi);
 		//while (i < ptrfstring->buffi)
 		//	ptrfstring->buff[i++] = '\0';
-		ptrfstring->buffi = 0;
 		ft_strncpynp(ptrfstring->buff, s, *len);
 		ptrfstring->buffi = *len;
 	}

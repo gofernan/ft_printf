@@ -27,9 +27,11 @@ int		checkstr_precision(const char *str, fstr_t *ptrfstring, int *auxshift)
 		i++;
 		while (str[i] >= 48 && str[i] <= 57)
 			i++;
-		tmp = ft_strnew(i);
+		if (!(tmp = (char *)malloc(sizeof(char) * i)))
+			exit(EXIT_FAILURE);
 		ft_strncpy(tmp, str + 1, i - 1);
-		*auxshift = ft_strlen(tmp);
+		tmp[i - 1] = '\0';
+		*auxshift = i - 1;
 		ptrfstring->precisionvalue = ft_atoi(tmp);
 		free(tmp);
 		return (1);

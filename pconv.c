@@ -16,7 +16,9 @@ void		pconv(va_list ap, fstr_t *ptrfstring)
 {
 	char	*s;
 	int		len;
+	int		plusp;
 
+	plusp = 2;
 	s = ft_uimaxtoa_base((va_arg(ap, uintmax_t)), 16, 0);
 	len = ft_strlen(s);
 	if (ptrfstring->precision && ptrfstring->precisionvalue == 0 && !ft_strcmp(s, "0"))
@@ -26,8 +28,8 @@ void		pconv(va_list ap, fstr_t *ptrfstring)
 	}
 	ptrfstring->converted = 1;
 	s = flag_sharp(s, &len, ptrfstring);
-	if (ptrfstring->precision && ptrfstring->precisionvalue > (len - 2))
-		s = precisiondigits(s, &len, 2, ptrfstring);
+	if (ptrfstring->precision && ptrfstring->precisionvalue > (len - plusp))
+		s = precisiondigits(s, &len, plusp, ptrfstring);
 	if (ptrfstring->fwidth && len < ptrfstring->fwidthvalue)
 		s = field_width_num(s, &len, ptrfstring);
 	store_write(ptrfstring, s, &len);

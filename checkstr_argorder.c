@@ -22,10 +22,11 @@ int			checkstr_argorder(const char *str, fstr_t *ptrfstring, int *auxshift)
 		i++;
 	if (str[i] == '$' && i > 0)
 	{
-		if (!(tmp = ft_strnew(i)))
+		if (!(tmp = malloc(sizeof(char) * (i + 1))))
 			exit(EXIT_FAILURE);
 		ft_strncpy(tmp, str, i);
-		*auxshift = ft_strlen(tmp);
+		tmp[i] = '\0';
+		*auxshift = i;
 		ptrfstring->argordervalue = ft_atoi(tmp);
 		free(tmp);
 		ptrfstring->argorder = 1;

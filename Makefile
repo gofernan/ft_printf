@@ -14,8 +14,8 @@ NAME = libftprintf.a
 #NAME = miprintf
 #FLAGS = -Wall -Wextra -Werror
 
-FLS = argorder \
-	  checkstr \
+#argorder
+FLS = checkstr \
 	  checkstr_argorder \
 	  checkstr_flags \
 	  checkstr_fwidth \

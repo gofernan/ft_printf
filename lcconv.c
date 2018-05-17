@@ -20,7 +20,7 @@ void		lcconv(va_list ap, fstr_t *ptrfstring)
 
 	wc[0] = (wint_t)va_arg(ap, wint_t);
 	wc[1] = '\0';
-	if (__mb_cur_max == 4)
+	if (MB_CUR_MAX == 4)
 		strconv = utf8conv((unsigned int *)&wc);
 	else
 		strconv = onebyteconv(wc, ptrfstring);

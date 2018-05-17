@@ -12,7 +12,7 @@
 
 #include "includes/ft_printf.h"
 
-static char		*lengthmdfs(va_list ap, char *s, fstr_t *ptrfstring)
+char		*xmdfs(va_list ap, fstr_t *ptrfstring, char *s)
 {
 	int		altform;
 
@@ -45,11 +45,11 @@ void			xconv(va_list ap, fstr_t *ptrfstring)
 {
 	char	*s;
 	int		len;
-	int		plusprecision;
+	int		plusp;
 
+	plusp = 0;
 	s = NULL;
-	plusprecision = 0;
-	s = lengthmdfs(ap, s, ptrfstring);
+	s = xmdfs(ap, ptrfstring, s);
 	len = ft_strlen(s);
 	if (ptrfstring->precision && ptrfstring->precisionvalue == 0 && !ft_strcmp(s, "0"))
 	{
@@ -59,10 +59,10 @@ void			xconv(va_list ap, fstr_t *ptrfstring)
 	if (ptrfstring->flags[0] && ft_strcmp(s, "0") && len > 0)
 	{
 		s = flag_sharp(s, &len, ptrfstring);
-		plusprecision = 2;
+		plusp = 2;
 	}
-	if (ptrfstring->precision && ptrfstring->precisionvalue > (len - plusprecision))
-		s = precisiondigits(s, &len, plusprecision, ptrfstring);
+	if (ptrfstring->precision && ptrfstring->precisionvalue > (len - plusp))
+		s = precisiondigits(s, &len, plusp, ptrfstring);
 	if (ptrfstring->fwidth && len < ptrfstring->fwidthvalue)
 		s = field_width_num(s, &len, ptrfstring);
 	store_write(ptrfstring, s, &len);
