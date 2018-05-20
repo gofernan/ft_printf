@@ -23,40 +23,45 @@
 # include <stdio.h>// remove when finished
 # include "../libft/libft.h"
 # define CONVERSORS "sSpdDioOuUxXcC"
+# define FLAGS "#0- +\'"
 # define FLAGS_N 6
 # define LENGTHM_N 8
 # define CONV_N 14
 # define BUFF_SIZE 1000
 
-typedef struct	fstr_s
-{
-	int		argorder;
-	int		argordervalue;
-	char	*argordermixed;
-	int		flags[FLAGS_N];
-	int		separator; /* only 4 testing purposes */
-	int		fwidth;
-	int		fwidthvalue;
-	int		precision;
-	int		precisionvalue;
-	int		lengthmdf[LENGTHM_N];
-	char	convesp;
-	int		counter;
-	int		converted;
-	char	buff[BUFF_SIZE];
-	//char	*buff;
-	//int	buffsize;
-	int		buffi;
-	int		lnchars;
-}				fstr_t;
-
 typedef struct		s_args
 {
 	int				value;
 	char			convesp;
-	char			*mdf;
+	int				mdf;
 	struct s_args	*next;
 }					t_args;
+
+typedef struct		fstr_s
+{
+	int				argorderstr;
+	int				argorder;
+	int				argordervalue;
+	char			*argordermixed;
+	int				flags[FLAGS_N];
+	int				separator; /* only 4 testing purposes */
+	int				fwidth;
+	int				fwidthvalue;
+	int				precision;
+	int				precisionvalue;
+	int				lengthmdf[LENGTHM_N];
+	char			convesp;
+	int				counter;
+	int				converted;
+	char			buff[BUFF_SIZE];
+	//char			*buff;
+	//int			buffsize;
+	int				buffi;
+	int				lnchars;
+	t_args			*ptrlargs;
+	int				precheck;
+}					fstr_t;
+
 int			ft_printf(const char *str, ...);
 void		sconv(va_list ap, fstr_t *ptrfstring);
 //void		argorder(void);
@@ -95,4 +100,7 @@ void		lcconv(va_list ap, fstr_t *ptrfstring);
 void		percent(char a, fstr_t *ptrfstring);
 void		pconv(va_list ap, fstr_t *ptrfstring);
 void		store_write(fstr_t *ptrfstring, const char *s, int *len);
+void        checkstr_allargs(const char *str, fstr_t *ptrfstring, va_list ap);
+void        store_arglist(fstr_t *ptrfstring);
+int         checkstr_inside(const char *str, fstr_t *ptrfstring, va_list ap, int *i);
 #endif

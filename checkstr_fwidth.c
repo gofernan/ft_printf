@@ -22,11 +22,13 @@ int		checkstr_fwidth(const char *str, fstr_t *ptrfstring, int *auxshift)
 		i++;
 	if (str[i] != '$' && i > 0)
 	{
+		*auxshift = i;
+		if (ptrfstring->precheck)
+			return (1);
 		if (!(tmp = (char *)malloc(sizeof(char) * (i + 1))))
 			exit(EXIT_FAILURE);
 		ft_strncpy(tmp, str, i);
 		tmp[i] = '\0';
-		*auxshift = i;
 		ptrfstring->fwidthvalue = ft_atoi(tmp);
 		free(tmp);
 		ptrfstring->fwidth = 1;

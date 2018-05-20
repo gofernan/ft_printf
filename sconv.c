@@ -17,21 +17,30 @@ void		sconv(va_list ap, fstr_t *ptrfstring)
 	char	*s;
 	int		len;
 
-	//if (ptrfstring->argorder)
-	//	s = argorder(ap, ptrfstring);
-	//	else if ...
-	if (!(s = va_arg(ap, char *)))
+	if (ptrfstring->precheck)
 	{
-		s = ft_strnew(6);
-		ft_strcpy(s, "(null)");
-		ptrfstring->converted = 1;
+		//if (ptrfstring->argorder)
+			store_arglist(ptrfstring);
 	}
-	len = ft_strlen(s);
-	if (ptrfstring->precision && len > ptrfstring->precisionvalue)
-		s = precisionf(s, &len, ptrfstring);
-	if (ptrfstring->fwidth && len < ptrfstring->fwidthvalue)
-		s = field_width(s, &len, ptrfstring);
-	store_write(ptrfstring, s, &len);
-	if (ptrfstring->converted)
-		ft_strdel(&s);
+	else
+	{
+		//if (ptrfstring->argorder && ptrfstring->argordervalue)
+		//	s = fetch_arglist(ptrfstring);
+		//else
+			s = va_arg(ap, char *);
+		if (!s)
+		{
+			s = ft_strnew(6);
+			ft_strcpy(s, "(null)");
+			ptrfstring->converted = 1;
+		}
+		len = ft_strlen(s);
+		if (ptrfstring->precision && len > ptrfstring->precisionvalue)
+			s = precisionf(s, &len, ptrfstring);
+		if (ptrfstring->fwidth && len < ptrfstring->fwidthvalue)
+			s = field_width(s, &len, ptrfstring);
+		store_write(ptrfstring, s, &len);
+		if (ptrfstring->converted)
+			ft_strdel(&s);
+	}
 }

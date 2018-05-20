@@ -21,6 +21,10 @@ int main(void)
 	//ft_printf("%2$s", "holla");
 	//
 	//ft_printf("1234");
-	ft_printf("%d", 42);
+	//printf("%-2$#d%+d% 03$d%4$d%2$d%d", 42, 10, 20, 30, 40);
+	//ft_printf("%s", "hola");
+	ft_printf("%1$s%2$s%s", "hola", "que tal", "estas");
+	//printf("%1$s%4$s%3$s%s", "hola", "que", "tal", "estas");
+	//printf("%200$s%s%1$s%6$s", "hola", "amigo", "mio", "como", "estas", "hoy");
 	return (0);
 }

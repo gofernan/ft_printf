@@ -26,7 +26,7 @@ int			checkstr_argorder(const char *str, fstr_t *ptrfstring, int *auxshift)
 			exit(EXIT_FAILURE);
 		ft_strncpy(tmp, str, i);
 		tmp[i] = '\0';
-		*auxshift = i;
+		*auxshift = i + 1;
 		ptrfstring->argordervalue = ft_atoi(tmp);
 		free(tmp);
 		ptrfstring->argorder = 1;

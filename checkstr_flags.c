@@ -12,8 +12,23 @@
 
 #include "includes/ft_printf.h"
 
+int			checkstr_flags_pc(const char *str)
+{
+	int i;
+
+	i = 0;
+	while (i < FLAGS_N)
+	{
+		if (*str == FLAGS[i])
+			return (1);
+		i++;
+	}
+	return (0);
+}
 int			checkstr_flags(const char *str, fstr_t *ptrfstring)
 {
+	if (ptrfstring->precheck)
+		return (checkstr_flags_pc(str));
 	if (*str == '#')
 		ptrfstring->flags[0] = 1;
 	else if (*str == '0')

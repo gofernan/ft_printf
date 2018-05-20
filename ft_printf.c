@@ -17,17 +17,32 @@ int			ft_printf(const char *str, ...)
 	va_list		ap;
 	fstr_t		fstring;
 	fstr_t		*ptrfstring;
+	int			i;
+	//t_args		largs;
+	//t_args		*ptrlargs;
 
+	i = -1;
 	va_start(ap, str);
 	ptrfstring = &fstring;
+	ptrfstring->ptrlargs = NULL;
 	ptrfstring->counter = 0;
 	ptrfstring->buffi = 0;
 	ptrfstring->lnchars = 0;
+	ptrfstring->precheck = 0;
+	ptrfstring->argorderstr = 0;
 	//ptrfstring->argorder = 0;
 	//ptrfstring->argordervalue = 0;
 	//ptrfstring->buffsize = 1000;
 	//ptrfstring->buff = (char *)malloc(sizeof(char) * (ptrfstring->buffsize + 1));
 	initialize_struct(ptrfstring);
+	checkstr_allargs(str, ptrfstring, ap);
+	//retr_arglist(ap, ptrfstring);
+	ptrfstring->precheck = 0;
+	ptrfstring->argordervalue = 0;
+	ptrfstring->argorder = 0;
+	ptrfstring->convesp = 0;
+	while (++i < LENGTHM_N)
+		ptrfstring->lengthmdf[i] = 0;
 	checkstr(str, ptrfstring, ap);
 	if (ptrfstring->counter != -1)
 		ptrfstring->counter += write(1, ptrfstring->buff, ptrfstring->buffi);

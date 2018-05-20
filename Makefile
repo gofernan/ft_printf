@@ -52,6 +52,8 @@ FLS = checkstr \
 	  percent \
 	  pconv \
 	  store_write \
+	  checkstr_allargs \
+	  store_arglist \
 	  #main 
 
 FTFLS = ft_bzero \

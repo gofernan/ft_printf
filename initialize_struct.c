@@ -18,7 +18,6 @@ void		initialize_struct(fstr_t *ptrfstring)
 
 	i = -1;
 	ptrfstring->argorder = 0;
-	ptrfstring->argordervalue = 0;
 	ptrfstring->separator = 0;
 	ptrfstring->fwidth = 0;
 	ptrfstring->fwidthvalue = 0;

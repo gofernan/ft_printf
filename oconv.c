@@ -46,6 +46,13 @@ void		oconv(va_list ap, fstr_t *ptrfstring)
 	int		len;
 
 	s = NULL;
+	/*if (ptrfstring->precheck)
+	{
+		if (ptrfstring->argorder)
+			store_arglist(ap, ptrfstring);
+	}
+	else
+	*/
 	s = omdfs(ap, ptrfstring, s);
 	len = ft_strlen(s);
 	if ((ptrfstring->precision && ptrfstring->precisionvalue == 0 && !ft_strcmp(s, "0"))
