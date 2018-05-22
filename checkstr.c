@@ -101,9 +101,10 @@ int			checkstr_inside(const char *str, fstr_t *ptrfstring, va_list ap, int *i)
 		;	
 	else 
 	{
-		if (!ptrfstring->argorder)
-			(ptrfstring->argordervalue)++; 
-		conversion_specifiers(&str[*i], ptrfstring);
+		//if (!ptrfstring->argorder)
+		//	(ptrfstring->argordervalue)++; 
+		if (conversion_specifiers(&str[*i], ptrfstring) && !ptrfstring->argorder)
+			(ptrfstring->argordervalue)++;
 		conversors(str, ptrfstring, ap, i);
 		if (ptrfstring->counter != -1)
 		{

@@ -17,6 +17,8 @@
 #include <limits.h>
 int main(void)
 {
+	int		ret;
+
 	//ft_printf("yo%2C%-12lc et %C titi %C tyty", 'u', 254, 256, 'a');
 	//ft_printf("%2$s", "holla");
 	//
@@ -28,7 +30,8 @@ int main(void)
 	//ft_printf("%1$ls", L"hola");
 	//ft_printf("%lX", 0xff11ff11ff1);
 	//printf("%7$d%1$d%2$%yyyy%d", 1, 2, 3, 4, 5, 6, 7);
-	ft_printf("%%");
+	ft_printf("%-+-12.7Dt%0 4i %04.2% et %lc titi", 125, 124, 256);
+	//printf("%lc", 256);
 	//printf("%.1ls", s);
 	//printf("%S", s);
 	//printf("%1$s%4$s%s", "hola", "que tal", "estas", "tio", "si");
