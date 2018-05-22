@@ -12,21 +12,35 @@
 
 #include "includes/ft_printf.h"
 
+char		*cconva(va_list ap, fstr_t *ptrfstring)
+{
+	char	a;
+	char	*s;
+
+	a = (char)va_arg(ap, int);
+	if (!(s = ft_strnew(1)))
+		exit(EXIT_FAILURE);
+	ft_strncpy(s, &a, 1);
+	return (s);
+}
+
 void		cconv(va_list ap, fstr_t *ptrfstring)
 {
 	char	a;
 	char	*s;
 	int		len;
 
-	a = (char)va_arg(ap, int);
-	if (!(s = ft_strnew(1)))
-		exit(EXIT_FAILURE);
-	ft_strncpy(s, &a, 1);
-	ptrfstring->converted = 1;
-	len = 1;
-	if (ptrfstring->fwidth && len < ptrfstring->fwidthvalue)
-		s = field_width(s, &len, ptrfstring);
-	store_write(ptrfstring, s, &len);
-	if (ptrfstring->converted)
-		ft_strdel(&s);
+	if (ptrfstring->precheck)
+		store_arglist(ptrfstring);
+	else
+	{
+		s = sel_arglist(ptrfstring);
+		ptrfstring->converted = 1;
+		len = 1;
+		if (ptrfstring->fwidth && len < ptrfstring->fwidthvalue)
+			s = field_width(s, &len, ptrfstring);
+		store_write(ptrfstring, s, &len);
+		if (ptrfstring->converted)
+			ft_strdel(&s);
+	}
 }

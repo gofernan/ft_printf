@@ -54,6 +54,8 @@ FLS = checkstr \
 	  store_write \
 	  checkstr_allargs \
 	  store_arglist \
+	  retr_arglist \
+	  sel_arglist \
 	  #main 
 
 FTFLS = ft_bzero \

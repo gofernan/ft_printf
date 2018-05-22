@@ -27,7 +27,8 @@ void		sconv(va_list ap, fstr_t *ptrfstring)
 		//if (ptrfstring->argorder && ptrfstring->argordervalue)
 		//	s = fetch_arglist(ptrfstring);
 		//else
-			s = va_arg(ap, char *);
+		//	s = va_arg(ap, char *);
+		s = sel_arglist(ptrfstring);
 		if (!s)
 		{
 			s = ft_strnew(6);

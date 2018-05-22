@@ -12,7 +12,7 @@
 
 #include "includes/ft_printf.h"
 
-char		*onebyteconv(wchar_t *wstr, fstr_t *ptrfstring)
+char		*onebyteconv(wchar_t *wstr, t_args *tmpargsl)
 {
 	int		i;
 	char	*casted1byte;
@@ -24,7 +24,7 @@ char		*onebyteconv(wchar_t *wstr, fstr_t *ptrfstring)
 	{
 		if (wstr[i] > 0xff)
 		{
-			if (ptrfstring->precision && ptrfstring->precisionvalue <= i)
+			if (tmpargsl->precision && tmpargsl->precisionvalue <= i)
 				break ;
 			else
 				return (NULL);

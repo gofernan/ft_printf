@@ -12,43 +12,57 @@
 
 #include "includes/ft_printf.h"
 
-void	lsconv(va_list ap, fstr_t *ptrfstring)
+char	*check_locale_lsconv(va_list ap, t_args *tmpargsl)
 {
 	wchar_t		*wstr;
 	char		*strconv;
-	char		*strnull;
-	int			len;
 
 	if (!(wstr = va_arg(ap, wchar_t *)))
 	{
 		if (!(strconv = (char *)malloc(sizeof(char) * 8)))
 			exit(EXIT_FAILURE);
 		ft_strcpy(strconv, "(null)");
-		ptrfstring->converted = 1;
+		//ptrfstring->converted = 1;
 	}
 	else
 	{
 		if (__mb_cur_max == 4)
 			strconv = utf8conv((unsigned int *)wstr);
 		else
-			strconv = onebyteconv(wstr, ptrfstring);
+			strconv = onebyteconv(wstr, tmpargsl);
 	}
-	if (strconv)
-	{
-		len = ft_strlen(strconv);
-		if (ptrfstring->precision && len > ptrfstring->precisionvalue)
-		{
-			if (__mb_cur_max == 4)
-				strconv = precisionfw(strconv, &len, ptrfstring);
-			else
-				strconv = precisionf(strconv, &len, ptrfstring);
-		}
-		if (ptrfstring->fwidth && len < ptrfstring->fwidthvalue)
-			strconv = field_width(strconv, &len, ptrfstring);
-		store_write(ptrfstring, strconv, &len);
-	}
+	return (strconv);
+}
+
+void	lsconv(va_list ap, fstr_t *ptrfstring)
+{
+	char		*strconv;
+	char		*strnull;
+	int			len;
+
+	if (ptrfstring->precheck)
+		store_arglist(ptrfstring);
 	else
-		ptrfstring->counter = -1;
-	if (ptrfstring->converted)
-		ft_strdel(&strconv);
+	{
+		strconv = sel_arglist(ptrfstring);
+		ptrfstring->converted = 1;
+		if (strconv)
+		{
+			len = ft_strlen(strconv);
+			if (ptrfstring->precision && len > ptrfstring->precisionvalue)
+			{
+				if (__mb_cur_max == 4)
+					strconv = precisionfw(strconv, &len, ptrfstring);
+				else
+					strconv = precisionf(strconv, &len, ptrfstring);
+			}
+			if (ptrfstring->fwidth && len < ptrfstring->fwidthvalue)
+				strconv = field_width(strconv, &len, ptrfstring);
+			store_write(ptrfstring, strconv, &len);
+		}
+		else
+			ptrfstring->counter = -1;
+		if (ptrfstring->converted)
+			ft_strdel(&strconv);
+	}
 }

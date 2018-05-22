@@ -22,14 +22,25 @@ void		fill_list(t_args *tmpargsl, fstr_t *ptrfstring)
 	//else
 	tmpargsl->value = ptrfstring->argordervalue;
 	tmpargsl->convesp = ptrfstring->convesp;
+	if ((ptrfstring->convesp == 's' && ptrfstring->lengthmdf[2]) || ptrfstring->convesp == 'S'
+			|| ptrfstring->convesp == 'C')
+	{
+		tmpargsl->precision = ptrfstring->precision;
+		tmpargsl->precisionvalue = ptrfstring->precisionvalue;
+		if (ptrfstring->convesp == 's' && ptrfstring->lengthmdf[2])
+			tmpargsl->mdf = 2;
+	}
 	/*only implemented to s conversor*/
 	/*take care because other length modifiers may be introduced */
-	while (--i >= 0)
+	else
 	{
-		if (ptrfstring->lengthmdf[i])
+		while (--i >= 0)
 		{
-			tmpargsl->mdf = i;
-			break ;
+			if (ptrfstring->lengthmdf[i])
+			{
+				tmpargsl->mdf = i;
+				break ;
+			}
 		}
 	}
 	if (i == -1)
@@ -42,7 +53,10 @@ void		init_listarg(t_args *tmpargsl)
 	tmpargsl->value = 0;
 	tmpargsl->convesp = '\0';
 	tmpargsl->mdf = 0;
+	tmpargsl->str = NULL;
 	tmpargsl->next = NULL;
+	tmpargsl->precision = 0;
+	tmpargsl->precisionvalue = 0;
 }
 void		check_list(fstr_t *ptrfstring)
 {
@@ -87,6 +101,6 @@ void		check_list(fstr_t *ptrfstring)
 void		store_arglist(fstr_t *ptrfstring)
 {
 
-	if (ptrfstring->convesp == 's' && !(ptrfstring->lengthmdf[2]))
+	//if (ptrfstring->convesp == 's' && !(ptrfstring->lengthmdf[2]))
 		check_list(ptrfstring);
 }

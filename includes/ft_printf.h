@@ -34,6 +34,9 @@ typedef struct		s_args
 	int				value;
 	char			convesp;
 	int				mdf;
+	int				precision;
+	int				precisionvalue;
+	char			*str;
 	struct s_args	*next;
 }					t_args;
 
@@ -85,7 +88,7 @@ void		initialize_struct(fstr_t *ptrfstring);
 char		*precisionf(char *str, int *len, fstr_t *ptrfstring);
 void		lsconv(va_list ap, fstr_t *ptrfstring);
 char		*utf8conv(unsigned int *wstr);
-char		*onebyteconv(wchar_t *wstr, fstr_t *ptrfstring);
+char		*onebyteconv(wchar_t *wstr, t_args *tmpargsl);
 char		*precisionfw(char *str, int *len, fstr_t *ptrfstring);
 void		diconv(va_list ap, fstr_t *ptrfstring);
 char		*precisiondigits(char *str, int *len, int plusp, fstr_t *ptrfstring);
@@ -103,4 +106,13 @@ void		store_write(fstr_t *ptrfstring, const char *s, int *len);
 void        checkstr_allargs(const char *str, fstr_t *ptrfstring, va_list ap);
 void        store_arglist(fstr_t *ptrfstring);
 int         checkstr_inside(const char *str, fstr_t *ptrfstring, va_list ap, int *i);
+void        retr_arglist(va_list ap, fstr_t *ptrfstring);
+char        *sel_arglist(fstr_t *ptrfstring);
+char		*check_locale_lsconv(va_list ap, t_args *tmpargsl);
+char		*check_locale_lcconv(va_list ap, t_args *tmpargsl);
+char		*cconva(va_list ap, fstr_t *ptrfstring);
+char		*xmdfs(va_list ap, t_args *tmpargsl);
+char		*omdfs(va_list ap, t_args *tmpargsl);
+char		*umdfs(va_list ap, t_args *tmpargsl);
+char		*dimdfs(va_list ap, t_args *tmpargsl);
 #endif

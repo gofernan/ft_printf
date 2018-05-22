@@ -23,8 +23,17 @@ int main(void)
 	//ft_printf("1234");
 	//printf("%-2$#d%+d% 03$d%4$d%2$d%d", 42, 10, 20, 30, 40);
 	//ft_printf("%s", "hola");
-	ft_printf("%1$s%2$s%s", "hola", "que tal", "estas");
-	//printf("%1$s%4$s%3$s%s", "hola", "que", "tal", "estas");
+	//ft_printf("%1$s%7$s%s", "hola", "que tal", "estas", "tio");
+	//ft_printf("%2$s%7$s%s", "hola", "que tal", "estas", "tio", "si", "no", "puede", "tal vez");
+	//ft_printf("%1$ls", L"hola");
+	//ft_printf("%lX", 0xff11ff11ff1);
+	//printf("%7$d%1$d%2$%yyyy%d", 1, 2, 3, 4, 5, 6, 7);
+	ft_printf("%%");
+	//printf("%.1ls", s);
+	//printf("%S", s);
+	//printf("%1$s%4$s%s", "hola", "que tal", "estas", "tio", "si");
+	//printf("%2$s%1$s%s", "hola", "que tal", "estas");
+	//printf("%1$s%7$d%3$s%4$s", "hola", "que", "tal", "estas", NULL, L"prueba", 18);
 	//printf("%200$s%s%1$s%6$s", "hola", "amigo", "mio", "como", "estas", "hoy");
 	return (0);
 }

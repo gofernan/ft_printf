@@ -21,8 +21,8 @@ int		checkstr_precision_aff(const char *str, fstr_t *ptrfstring, int *auxshift)
 	while (str[i] >= 48 && str[i] <= 57)
 		i++;
 	*auxshift = i - 1;
-	if (ptrfstring->precheck)
-		return (1);
+	//if (ptrfstring->precheck)
+	//	return (1);
 	if (!(tmp = (char *)malloc(sizeof(char) * i)))
 		exit(EXIT_FAILURE);
 	ft_strncpy(tmp, str + 1, i - 1);
@@ -36,7 +36,7 @@ int		checkstr_precision(const char *str, fstr_t *ptrfstring, int *auxshift)
 {
 	if (*str == '.')
 	{
-		if (!ptrfstring->precheck)
+		//if (!ptrfstring->precheck)
 			ptrfstring->precision = 1;
 	}
 	else
@@ -45,7 +45,7 @@ int		checkstr_precision(const char *str, fstr_t *ptrfstring, int *auxshift)
 		return (checkstr_precision_aff(str, ptrfstring, auxshift));
 	else
 	{
-		if (!ptrfstring->precheck)
+		//if (!ptrfstring->precheck)
 			ptrfstring->precisionvalue = 0;
 	}
 	return (1);
