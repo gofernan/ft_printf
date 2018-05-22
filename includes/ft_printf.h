@@ -49,8 +49,10 @@ typedef struct		fstr_s
 	int				flags[FLAGS_N];
 	int				separator; /* only 4 testing purposes */
 	int				fwidth;
+	int				fwidth_as;
 	int				fwidthvalue;
 	int				precision;
+	int				precision_as;
 	int				precisionvalue;
 	int				lengthmdf[LENGTHM_N];
 	char			convesp;

@@ -37,7 +37,18 @@ int		checkstr_precision(const char *str, fstr_t *ptrfstring, int *auxshift)
 	if (*str == '.')
 	{
 		//if (!ptrfstring->precheck)
-			ptrfstring->precision = 1;
+		ptrfstring->precision = 1;
+		if (*(str + 1) == '*')
+		{
+			ptrfstring->precision_as = 1;
+			*auxshift = 1;
+			if (ptrfstring->precheck)
+			{
+				(ptrfstring->argordervalue)++;
+				store_arglist(ptrfstring);
+			}
+			return (1);
+		}
 	}
 	else
 		return (0);

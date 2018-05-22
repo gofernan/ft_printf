@@ -101,10 +101,31 @@ int			checkstr_inside(const char *str, fstr_t *ptrfstring, va_list ap, int *i)
 		;	
 	else 
 	{
-		//if (!ptrfstring->argorder)
-		//	(ptrfstring->argordervalue)++; 
 		if (conversion_specifiers(&str[*i], ptrfstring) && !ptrfstring->argorder)
 			(ptrfstring->argordervalue)++;
+		if (!ptrfstring->precheck)
+		{
+			if (ptrfstring->fwidth_as)
+			{
+				ptrfstring->fwidthvalue = ft_atoi(sel_arglist(ptrfstring));
+				if (ptrfstring->fwidthvalue < 0)
+				{
+					ptrfstring->flags[2] = 1;
+					ptrfstring->fwidthvalue = -ptrfstring->fwidthvalue;
+				}
+				(ptrfstring->argordervalue)++;
+			}
+			if (ptrfstring->precision_as)
+			{
+				ptrfstring->precisionvalue = ft_atoi(sel_arglist(ptrfstring));
+				if (ptrfstring->precisionvalue < 0)
+				{
+					ptrfstring->precision = 0;
+					ptrfstring->precisionvalue = 0; // for security reasons
+				}
+				(ptrfstring->argordervalue)++;
+			}
+		}
 		conversors(str, ptrfstring, ap, i);
 		if (ptrfstring->counter != -1)
 		{

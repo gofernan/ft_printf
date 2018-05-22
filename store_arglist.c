@@ -17,34 +17,37 @@ void		fill_list(t_args *tmpargsl, fstr_t *ptrfstring)
 	int i;
 
 	i = LENGTHM_N;
-	//if (!ptrfstring->argorder)
-	//	tmpargsl->value = (ptrfstring->argordervalue)++;
-	//else
 	tmpargsl->value = ptrfstring->argordervalue;
-	tmpargsl->convesp = ptrfstring->convesp;
-	if ((ptrfstring->convesp == 's' && ptrfstring->lengthmdf[2]) || ptrfstring->convesp == 'S'
-			|| ptrfstring->convesp == 'C')
+	if (ptrfstring->convesp)
 	{
-		tmpargsl->precision = ptrfstring->precision;
-		tmpargsl->precisionvalue = ptrfstring->precisionvalue;
-		if (ptrfstring->convesp == 's' && ptrfstring->lengthmdf[2])
-			tmpargsl->mdf = 2;
-	}
-	/*only implemented to s conversor*/
-	/*take care because other length modifiers may be introduced */
-	else
-	{
-		while (--i >= 0)
+		tmpargsl->convesp = ptrfstring->convesp;
+		if ((ptrfstring->convesp == 's' && ptrfstring->lengthmdf[2]) || ptrfstring->convesp == 'S'
+				|| ptrfstring->convesp == 'C')
 		{
-			if (ptrfstring->lengthmdf[i])
+			tmpargsl->precision = ptrfstring->precision;
+			tmpargsl->precisionvalue = ptrfstring->precisionvalue;
+			if (ptrfstring->convesp == 's' && ptrfstring->lengthmdf[2])
+				tmpargsl->mdf = 2;
+		}
+		/*only implemented to s conversor*/
+		/*take care because other length modifiers may be introduced */
+		else
+		{
+			while (--i >= 0)
 			{
-				tmpargsl->mdf = i;
-				break ;
+				if (ptrfstring->lengthmdf[i])
+				{
+					tmpargsl->mdf = i;
+					break ;
+				}
 			}
+		if (i == -1)
+			tmpargsl->mdf = -1;
+
 		}
 	}
-	if (i == -1)
-		tmpargsl->mdf = -1;
+	else
+		tmpargsl->convesp = 'd';
 	tmpargsl->next = NULL;
 }
 
@@ -52,7 +55,7 @@ void		init_listarg(t_args *tmpargsl)
 {
 	tmpargsl->value = 0;
 	tmpargsl->convesp = '\0';
-	tmpargsl->mdf = 0;
+	tmpargsl->mdf = -1; //mdf = -1????
 	tmpargsl->str = NULL;
 	tmpargsl->next = NULL;
 	tmpargsl->precision = 0;
@@ -84,6 +87,7 @@ void		check_list(fstr_t *ptrfstring)
 			{
 				if (!(tmpargsl->next = (t_args *)malloc(sizeof(t_args))))
 					exit(EXIT_FAILURE);
+				init_listarg(tmpargsl->next);
 				fill_list(tmpargsl->next, ptrfstring);
 			}
 			tmpargsl = tmpargsl->next;
