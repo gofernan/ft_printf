@@ -24,6 +24,8 @@ int main(void)
 	//ft_printf("%*.*10s", 40, 2, "hola");
 	//printf("%*.*10s", 40, 2, "hola");
 	//ft_printf("{%05.*d}", -15, 42);
+	//printf("%e", 0.0);
+	printf("%.15f", 9.1234567890123456);
 	
 
 	return (0);

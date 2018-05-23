@@ -26,7 +26,7 @@ char	*check_locale_lsconv(va_list ap, t_args *tmpargsl)
 	}
 	else
 	{
-		if (__mb_cur_max == 4)
+		if (MB_CUR_MAX == 4)
 			strconv = utf8conv((unsigned int *)wstr);
 		else
 			strconv = onebyteconv(wstr, tmpargsl);
@@ -51,7 +51,7 @@ void	lsconv(va_list ap, fstr_t *ptrfstring)
 			len = ft_strlen(strconv);
 			if (ptrfstring->precision && len > ptrfstring->precisionvalue)
 			{
-				if (__mb_cur_max == 4)
+				if (MB_CUR_MAX == 4)
 					strconv = precisionfw(strconv, &len, ptrfstring);
 				else
 					strconv = precisionf(strconv, &len, ptrfstring);
