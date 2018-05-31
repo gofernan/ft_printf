@@ -46,25 +46,19 @@ void		uconv(va_list ap, fstr_t *ptrfstring)
 	char	*s;
 	int		len;
 
-	if (ptrfstring->precheck)
-		store_arglist(ptrfstring);
-	else
+	s = sel_arglist(ptrfstring)->str;
+	if (ptrfstring->precision && ptrfstring->precisionvalue == 0 && !ft_strcmp(s, "0"))
 	{
-		//s = umdfs(ap, ptrfstring, s);
-		s = sel_arglist(ptrfstring);
-		if (ptrfstring->precision && ptrfstring->precisionvalue == 0 && !ft_strcmp(s, "0"))
-		{
-			ft_strdel(&s);
-			s = ft_strnew(0);
-			ptrfstring->converted = 1;
-		}
-		len = ft_strlen(s);
-		if (ptrfstring->precision && ptrfstring->precisionvalue > len)
-			s = precisiondigits(s, &len, 0, ptrfstring);
-		if (ptrfstring->fwidth && len < ptrfstring->fwidthvalue)
-			s = field_width_num(s, &len, ptrfstring);
-		store_write(ptrfstring, s, &len);
-		if (ptrfstring->converted)
-			ft_strdel(&s);
+		ft_strdel(&s);
+		s = ft_strnew(0);
+		ptrfstring->converted = 1;
 	}
+	len = ft_strlen(s);
+	if (ptrfstring->precision && ptrfstring->precisionvalue > len)
+		s = precisiondigits(s, &len, 0, ptrfstring);
+	if (ptrfstring->fwidth && len < ptrfstring->fwidthvalue)
+		s = field_width_num(s, &len, ptrfstring);
+	store_write(ptrfstring, s, &len);
+	if (ptrfstring->converted)
+		ft_strdel(&s);
 }

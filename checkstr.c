@@ -33,6 +33,10 @@ int		conversors(const char *str, fstr_t *ptrfstring, va_list ap, int *i)
 		lcconv(ap, ptrfstring);
 	else if (ptrfstring->convesp == 'p')
 		pconv(ap, ptrfstring);
+	else if	(ptrfstring->convesp == 'f' || ptrfstring->convesp == 'F')
+		fconv(ap, ptrfstring);
+	else if	(ptrfstring->convesp == 'b')
+		bconv(ap, ptrfstring);
 	else
 		percent(str[*i], ptrfstring);
 	return (0);
@@ -94,39 +98,19 @@ int			checkstr_inside(const char *str, fstr_t *ptrfstring, va_list ap, int *i)
 	else if (checkstr_flags(&str[*i], ptrfstring))
 		;
 	else if (checkstr_fwidth(&str[*i], ptrfstring, &auxshift))
-		*i += auxshift - 1;
+		*i += auxshift;
 	else if (checkstr_precision(&str[*i], ptrfstring, &auxshift))
 		*i += auxshift;
 	else if (checkmdfs(str, ptrfstring, i))
 		;	
 	else 
 	{
-		if (conversion_specifiers(&str[*i], ptrfstring) && !ptrfstring->argorder)
+		if (conversion_specifiers(&str[*i], ptrfstring) && !ptrfstring->argorder && !ptrfstring->fwidth_as && !ptrfstring->precision_as)
 			(ptrfstring->argordervalue)++;
-		if (!ptrfstring->precheck)
-		{
-			if (ptrfstring->fwidth_as)
-			{
-				ptrfstring->fwidthvalue = ft_atoi(sel_arglist(ptrfstring));
-				if (ptrfstring->fwidthvalue < 0)
-				{
-					ptrfstring->flags[2] = 1;
-					ptrfstring->fwidthvalue = -ptrfstring->fwidthvalue;
-				}
-				(ptrfstring->argordervalue)++;
-			}
-			if (ptrfstring->precision_as)
-			{
-				ptrfstring->precisionvalue = ft_atoi(sel_arglist(ptrfstring));
-				if (ptrfstring->precisionvalue < 0)
-				{
-					ptrfstring->precision = 0;
-					ptrfstring->precisionvalue = 0; // for security reasons
-				}
-				(ptrfstring->argordervalue)++;
-			}
-		}
-		conversors(str, ptrfstring, ap, i);
+		if (ptrfstring->precheck)
+			store_arglist(ptrfstring);
+		else
+			conversors(str, ptrfstring, ap, i);
 		if (ptrfstring->counter != -1)
 		{
 			initialize_struct(ptrfstring);

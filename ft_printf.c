@@ -18,8 +18,6 @@ int			ft_printf(const char *str, ...)
 	fstr_t		fstring;
 	fstr_t		*ptrfstring;
 	int			i;
-	//t_args		largs;
-	//t_args		*ptrlargs;
 
 	i = -1;
 	va_start(ap, str);
@@ -30,7 +28,6 @@ int			ft_printf(const char *str, ...)
 	ptrfstring->buffi = 0;
 	ptrfstring->lnchars = 0;
 	ptrfstring->precheck = 0;
-	ptrfstring->argorderstr = 0;
 	//ptrfstring->argorder = 0;
 	//ptrfstring->buffsize = 1000;
 	//ptrfstring->buff = (char *)malloc(sizeof(char) * (ptrfstring->buffsize + 1));

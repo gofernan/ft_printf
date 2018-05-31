@@ -83,8 +83,10 @@ void		retr_arglist(va_list ap, fstr_t *ptrfstring)
 		tmpargsl->str = check_locale_lcconv(ap2, tmpargsl);
 	else if (tmpargsl->convesp == 'p')
 		tmpargsl->str = ft_uimaxtoa_base((va_arg(ap2, uintmax_t)), 16, 0);
-	//else
-	//	percent(str[*i], ptrfstring);
+	else if (tmpargsl->convesp == 'f' || tmpargsl->convesp == 'F')
+		tmpargsl->str = ft_ftoa(ap2);
+	else if (tmpargsl->convesp == 'b')
+		tmpargsl->str = ft_binary((va_arg(ap2, intmax_t)));
 	tmpargsl = ptrfstring->ptrlargs;
 	i++;
 	}

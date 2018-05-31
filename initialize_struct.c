@@ -21,9 +21,13 @@ void		initialize_struct(fstr_t *ptrfstring)
 	ptrfstring->separator = 0;
 	ptrfstring->fwidth = 0;
 	ptrfstring->fwidth_as = 0;
+	ptrfstring->fwidth_asarg = 0;
+	ptrfstring->fwidth_asargv = 0;
 	ptrfstring->fwidthvalue = 0;
 	ptrfstring->precision = 0;
 	ptrfstring->precision_as = 0;
+	ptrfstring->precision_asarg = 0;
+	ptrfstring->precision_asargv = 0;
 	ptrfstring->precisionvalue = 0;
 	while (++i < FLAGS_N)
 		ptrfstring->flags[i] = 0;

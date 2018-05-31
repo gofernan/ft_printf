@@ -47,32 +47,26 @@ void		diconv(va_list ap, fstr_t *ptrfstring)
 	int		len;
 	int		plusp;
 
-	if (ptrfstring->precheck)
-		store_arglist(ptrfstring);
-	else
+	plusp = 0;
+	s = sel_arglist(ptrfstring)->str;
+	if (ptrfstring->precision && ptrfstring->precisionvalue == 0 && !ft_strcmp(s, "0"))
 	{
-		plusp = 0;
-		//s = dimdfs(ap, ptrfstring, s);
-		s = sel_arglist(ptrfstring);
-		if (ptrfstring->precision && ptrfstring->precisionvalue == 0 && !ft_strcmp(s, "0"))
-		{
-			ft_strdel(&s);
-			s = ft_strnew(0);
-			ptrfstring->converted = 1;
-		}
-		len = ft_strlen(s);
-		if (*s == '-')
-			plusp = 1;
-		if (ptrfstring->precision && ptrfstring->precisionvalue > (len - plusp))
-			s = precisiondigits(s, &len, plusp, ptrfstring);
-		if (ptrfstring->flags[3] && !ptrfstring->flags[4] && !plusp)
-			s = flag_space(s, &len, ptrfstring);
-		if (ptrfstring->flags[4] && !plusp)
-			s = flag_plus(s, &len, ptrfstring);
-		if (ptrfstring->fwidth && len < ptrfstring->fwidthvalue)
-			s = field_width_num(s, &len, ptrfstring);
-		store_write(ptrfstring, s, &len);
-		if (ptrfstring->converted)
-			ft_strdel(&s);
+		ft_strdel(&s);
+		s = ft_strnew(0);
+		ptrfstring->converted = 1;
 	}
+	len = ft_strlen(s);
+	if (*s == '-')
+		plusp = 1;
+	if (ptrfstring->precision && ptrfstring->precisionvalue > (len - plusp))
+		s = precisiondigits(s, &len, plusp, ptrfstring);
+	if (ptrfstring->flags[3] && !ptrfstring->flags[4] && !plusp)
+		s = flag_space(s, &len, ptrfstring);
+	if (ptrfstring->flags[4] && !plusp)
+		s = flag_plus(s, &len, ptrfstring);
+	if (ptrfstring->fwidth && len < ptrfstring->fwidthvalue)
+		s = field_width_num(s, &len, ptrfstring);
+	store_write(ptrfstring, s, &len);
+	if (ptrfstring->converted)
+		ft_strdel(&s);
 }

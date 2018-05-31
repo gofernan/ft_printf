@@ -30,17 +30,11 @@ void		cconv(va_list ap, fstr_t *ptrfstring)
 	char	*s;
 	int		len;
 
-	if (ptrfstring->precheck)
-		store_arglist(ptrfstring);
-	else
-	{
-		s = sel_arglist(ptrfstring);
-		ptrfstring->converted = 1;
-		len = 1;
-		if (ptrfstring->fwidth && len < ptrfstring->fwidthvalue)
-			s = field_width(s, &len, ptrfstring);
-		store_write(ptrfstring, s, &len);
-		if (ptrfstring->converted)
-			ft_strdel(&s);
-	}
+	s = sel_arglist(ptrfstring)->str;
+	len = 1;
+	if (ptrfstring->fwidth && len < ptrfstring->fwidthvalue)
+		s = field_width(s, &len, ptrfstring);
+	store_write(ptrfstring, s, &len);
+	if (ptrfstring->converted)
+		ft_strdel(&s);
 }

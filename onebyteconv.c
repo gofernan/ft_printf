@@ -20,7 +20,7 @@ char		*onebyteconv(wchar_t *wstr, t_args *tmpargsl)
 	int		len;
 
 	i = -1;
-	while (wstr[++i])
+	/*while (wstr[++i])
 	{
 		if (wstr[i] > 0xff)
 		{
@@ -28,6 +28,14 @@ char		*onebyteconv(wchar_t *wstr, t_args *tmpargsl)
 				break ;
 			else
 				return (NULL);
+		}
+	}*/
+	while (wstr[++i])
+	{
+		if (wstr[i] > 0xff)
+		{
+			tmpargsl->validlen = i + 1;
+			break;
 		}
 	}
 	len = ft_wcslen(wstr);

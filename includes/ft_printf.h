@@ -22,11 +22,11 @@
 # include <errno.h>// remove???
 # include <stdio.h>// remove when finished
 # include "../libft/libft.h"
-# define CONVERSORS "sSpdDioOuUxXcC"
+# define CONVERSORS "sSpdDioOuUxXcCfFb"
 # define FLAGS "#0- +\'"
 # define FLAGS_N 6
 # define LENGTHM_N 8
-# define CONV_N 14
+# define CONV_N 17
 # define BUFF_SIZE 1000
 
 typedef struct		s_args
@@ -34,15 +34,14 @@ typedef struct		s_args
 	int				value;
 	char			convesp;
 	int				mdf;
-	int				precision;
-	int				precisionvalue;
+	int				validlen;
 	char			*str;
 	struct s_args	*next;
 }					t_args;
 
 typedef struct		fstr_s
 {
-	int				argorderstr;
+	//int				argorderstr;
 	int				argorder;
 	int				argordervalue;
 	char			*argordermixed;
@@ -50,9 +49,13 @@ typedef struct		fstr_s
 	int				separator; /* only 4 testing purposes */
 	int				fwidth;
 	int				fwidth_as;
+	int				fwidth_asarg;
+	int				fwidth_asargv;
 	int				fwidthvalue;
 	int				precision;
 	int				precision_as;
+	int				precision_asarg;
+	int				precision_asargv;
 	int				precisionvalue;
 	int				lengthmdf[LENGTHM_N];
 	char			convesp;
@@ -104,12 +107,14 @@ void		cconv(va_list ap, fstr_t *ptrfstring);
 void		lcconv(va_list ap, fstr_t *ptrfstring);
 void		percent(char a, fstr_t *ptrfstring);
 void		pconv(va_list ap, fstr_t *ptrfstring);
+void		fconv(va_list ap, fstr_t *ptrfstring);
+void		bconv(va_list ap, fstr_t *ptrfstring);
 void		store_write(fstr_t *ptrfstring, const char *s, int *len);
 void        checkstr_allargs(const char *str, fstr_t *ptrfstring, va_list ap);
 void        store_arglist(fstr_t *ptrfstring);
 int         checkstr_inside(const char *str, fstr_t *ptrfstring, va_list ap, int *i);
 void        retr_arglist(va_list ap, fstr_t *ptrfstring);
-char        *sel_arglist(fstr_t *ptrfstring);
+t_args		*sel_arglist(fstr_t *ptrfstring);
 char		*check_locale_lsconv(va_list ap, t_args *tmpargsl);
 char		*check_locale_lcconv(va_list ap, t_args *tmpargsl);
 char		*cconva(va_list ap, fstr_t *ptrfstring);
@@ -117,4 +122,5 @@ char		*xmdfs(va_list ap, t_args *tmpargsl);
 char		*omdfs(va_list ap, t_args *tmpargsl);
 char		*umdfs(va_list ap, t_args *tmpargsl);
 char		*dimdfs(va_list ap, t_args *tmpargsl);
+char		*ft_ftoa(va_list ap);
 #endif

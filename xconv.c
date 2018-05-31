@@ -47,32 +47,24 @@ void			xconv(va_list ap, fstr_t *ptrfstring)
 	int		len;
 	int		plusp;
 
-	if (ptrfstring->precheck)
-		store_arglist(ptrfstring);
-	else
+	plusp = 0;
+	s = sel_arglist(ptrfstring)->str;
+	len = ft_strlen(s);
+	if (ptrfstring->precision && ptrfstring->precisionvalue == 0 && !ft_strcmp(s, "0"))
 	{
-		plusp = 0;
-		s = NULL;
-		//s = xmdfs(ap, ptrfstring, s);
-		s = sel_arglist(ptrfstring);
-		ptrfstring->converted = 1;// makes sense????
-		len = ft_strlen(s);
-		if (ptrfstring->precision && ptrfstring->precisionvalue == 0 && !ft_strcmp(s, "0"))
-		{
-			*s = '\0';
-			len = 0;
-		}
-		if (ptrfstring->flags[0] && ft_strcmp(s, "0") && len > 0)
-		{
-			s = flag_sharp(s, &len, ptrfstring);
-			plusp = 2;
-		}
-		if (ptrfstring->precision && ptrfstring->precisionvalue > (len - plusp))
-			s = precisiondigits(s, &len, plusp, ptrfstring);
-		if (ptrfstring->fwidth && len < ptrfstring->fwidthvalue)
-			s = field_width_num(s, &len, ptrfstring);
-		store_write(ptrfstring, s, &len);
-		if (ptrfstring->converted)
-			ft_strdel(&s);
+		*s = '\0';
+		len = 0;
 	}
+	if (ptrfstring->flags[0] && ft_strcmp(s, "0") && len > 0)
+	{
+		s = flag_sharp(s, &len, ptrfstring);
+		plusp = 2;
+	}
+	if (ptrfstring->precision && ptrfstring->precisionvalue > (len - plusp))
+		s = precisiondigits(s, &len, plusp, ptrfstring);
+	if (ptrfstring->fwidth && len < ptrfstring->fwidthvalue)
+		s = field_width_num(s, &len, ptrfstring);
+	store_write(ptrfstring, s, &len);
+	if (ptrfstring->converted)
+		ft_strdel(&s);
 }

@@ -15,12 +15,13 @@
 int			conversion_specifiers(const char *str, fstr_t *ptrfstring)
 {
 	int		i;
-	char	conversors[15];
+	char	conversors[CONV_N + 1];
 
-	ft_strcpy(conversors, "sSpdDioOuUxXcC");
-	conversors[14] = '\0';
+	//ft_strcpy(conversors, "sSpdDioOuUxXcCfF");
+	ft_strcpy(conversors, CONVERSORS);
+	conversors[CONV_N] = '\0';
 	i = 0;
-	while (i < 14)
+	while (i < CONV_N)
 	{
 		if (*str == conversors[i])
 		{

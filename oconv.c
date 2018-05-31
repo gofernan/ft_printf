@@ -46,36 +46,21 @@ void		oconv(va_list ap, fstr_t *ptrfstring)
 	char	*s;
 	int		len;
 
-	s = NULL;
-	/*if (ptrfstring->precheck)
+	s = sel_arglist(ptrfstring)->str;
+	len = ft_strlen(s);
+	if ((ptrfstring->precision && ptrfstring->precisionvalue == 0 && !ft_strcmp(s, "0"))
+		|| (!ft_strcmp(s, "0") && ptrfstring->flags[0]))
 	{
-		if (ptrfstring->argorder)
-			store_arglist(ap, ptrfstring);
+		*s = '\0';
+		len = 0;
 	}
-	else
-	*/
-	if (ptrfstring->precheck)
-		store_arglist(ptrfstring);
-	else
-	{
-		//s = omdfs(ap, ptrfstring, s);
-		s = sel_arglist(ptrfstring);
-		ptrfstring->converted = 1; // needed???
-		len = ft_strlen(s);
-		if ((ptrfstring->precision && ptrfstring->precisionvalue == 0 && !ft_strcmp(s, "0"))
-			|| (!ft_strcmp(s, "0") && ptrfstring->flags[0]))
-		{
-			*s = '\0';
-			len = 0;
-		}
-		if (ptrfstring->flags[0])
-			s = flag_sharp(s, &len, ptrfstring);
-		if (ptrfstring->precision && ptrfstring->precisionvalue > len)
-			s = precisiondigits(s, &len, 0, ptrfstring);
-		if (ptrfstring->fwidth && len < ptrfstring->fwidthvalue)
-			s = field_width_num(s, &len, ptrfstring);
-		store_write(ptrfstring, s, &len);
-		if (ptrfstring->converted)
-			ft_strdel(&s);
-	}
+	if (ptrfstring->flags[0])
+		s = flag_sharp(s, &len, ptrfstring);
+	if (ptrfstring->precision && ptrfstring->precisionvalue > len)
+		s = precisiondigits(s, &len, 0, ptrfstring);
+	if (ptrfstring->fwidth && len < ptrfstring->fwidthvalue)
+		s = field_width_num(s, &len, ptrfstring);
+	store_write(ptrfstring, s, &len);
+	if (ptrfstring->converted)
+		ft_strdel(&s);
 }

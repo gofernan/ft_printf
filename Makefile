@@ -51,11 +51,14 @@ FLS = checkstr \
 	  lcconv \
 	  percent \
 	  pconv \
+	  fconv \
+	  bconv \
 	  store_write \
 	  checkstr_allargs \
 	  store_arglist \
 	  retr_arglist \
 	  sel_arglist \
+	  ft_ftoa \
 	  #main 
 
 FTFLS = ft_bzero \
@@ -126,6 +129,7 @@ FTFLS = ft_bzero \
 		ft_imaxtoa_base \
 		ft_uimaxtoa_base \
 		ft_strncpynp \
+		ft_binary \
 
 FTDIR = libft/
 HEADER = includes/
