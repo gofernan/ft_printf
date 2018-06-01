@@ -59,6 +59,7 @@ FLS = checkstr \
 	  retr_arglist \
 	  sel_arglist \
 	  ft_ftoa \
+	  free_struct \
 	  #main 
 
 FTFLS = ft_bzero \

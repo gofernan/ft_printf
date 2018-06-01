@@ -15,16 +15,23 @@
 void		sconv(va_list ap, fstr_t *ptrfstring)
 {
 	char	*s;
+	char	*sptr;
 	int		len;
 
-	s = sel_arglist(ptrfstring)->str;
-	if (!s)
+	sptr = sel_arglist(ptrfstring)->str;
+	if (!sptr)
 	{
 		s = ft_strnew(6);
 		ft_strcpy(s, "(null)");
-		ptrfstring->converted = 1;
+		len = 6;
 	}
-	len = ft_strlen(s);
+	else
+	{
+		len = ft_strlen(sptr);
+		s = malloc(sizeof(char) * (len + 1));
+		ft_strcpy(s, sptr);
+	}
+	ptrfstring->converted = 1;
 	if (ptrfstring->precision && len > ptrfstring->precisionvalue)
 		s = precisionf(s, &len, ptrfstring);
 	if (ptrfstring->fwidth && len < ptrfstring->fwidthvalue)

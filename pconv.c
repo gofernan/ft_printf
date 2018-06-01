@@ -15,16 +15,23 @@
 void		pconv(va_list ap, fstr_t *ptrfstring)
 {
 	char	*s;
+	char	*sptr;
 	int		len;
 	int		plusp;
 
 	plusp = 2;
-	s = sel_arglist(ptrfstring)->str;
-	len = ft_strlen(s);
-	if (ptrfstring->precision && ptrfstring->precisionvalue == 0 && !ft_strcmp(s, "0"))
+	sptr = sel_arglist(ptrfstring)->str;
+	if (ptrfstring->precision && ptrfstring->precisionvalue == 0 && !ft_strcmp(sptr, "0"))
 	{
-		*s = '\0';
+		//*s = '\0';
+		s = ft_strnew(0);
 		len = 0;
+	}
+	else
+	{
+		len = ft_strlen(sptr);
+		s = malloc(sizeof(char) * (len + 1));
+		ft_strcpy(s, sptr);
 	}
 	ptrfstring->converted = 1;
 	s = flag_sharp(s, &len, ptrfstring);

@@ -25,15 +25,18 @@ int		checkstr_precision_asarg(const char *str, fstr_t *ptrfstring, int *auxshift
 	if (str[i] == '$')
 	{
 		*auxshift = i;
-		//if (ptrfstring->precheck)
-		//	return (1);
-		ptrfstring->precision_asarg = 1;
 		if (!(tmp = malloc(sizeof(char) * (i - 1))))
 			exit(EXIT_FAILURE);
 		ft_strncpy(tmp, str + 2, i - 2);
 		tmp[i - 2] = '\0';
 		ptrfstring->precision_asargv = ft_atoi(tmp);
 		free(tmp);
+		// fix 0 //
+		if (!ptrfstring->precision_asargv)
+		{
+			ptrfstring->precision = 0;
+			return (-1);
+		}
 		tmpargorder = ptrfstring->argordervalue;
 		ptrfstring->argordervalue = ptrfstring->precision_asargv;
 		if (ptrfstring->precheck)
@@ -47,6 +50,7 @@ int		checkstr_precision_asarg(const char *str, fstr_t *ptrfstring, int *auxshift
 				ptrfstring->precisionvalue = 0;
 			}
 		}
+		ptrfstring->precision_asarg = 1;
 		ptrfstring->argordervalue = tmpargorder;
 		return (1);
 	}
@@ -77,8 +81,7 @@ int		checkstr_precision(const char *str, fstr_t *ptrfstring, int *auxshift)
 {
 	if (*str == '.')
 	{
-		//if (!ptrfstring->precheck)
-			ptrfstring->precision = 1;
+		ptrfstring->precision = 1;
 		if (*(str + 1) == '*')
 		{
 			if (*(str + 2) >= 48 && *(str + 2) <= 57)

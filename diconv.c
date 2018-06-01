@@ -44,18 +44,25 @@ char		*dimdfs(va_list ap, t_args *tmpargsl)
 void		diconv(va_list ap, fstr_t *ptrfstring)
 {
 	char	*s;
+	char	*sptr;
 	int		len;
 	int		plusp;
 
 	plusp = 0;
-	s = sel_arglist(ptrfstring)->str;
-	if (ptrfstring->precision && ptrfstring->precisionvalue == 0 && !ft_strcmp(s, "0"))
+	sptr = sel_arglist(ptrfstring)->str;
+	if (ptrfstring->precision && ptrfstring->precisionvalue == 0 && !ft_strcmp(sptr, "0"))
 	{
-		ft_strdel(&s);
+		//ft_strdel(&s);
 		s = ft_strnew(0);
-		ptrfstring->converted = 1;
+		len = 0;
 	}
-	len = ft_strlen(s);
+	else
+	{
+		len = ft_strlen(sptr);
+		s = malloc(sizeof(char) * (len + 1));
+		ft_strcpy(s, sptr);
+	}
+	ptrfstring->converted = 1;
 	if (*s == '-')
 		plusp = 1;
 	if (ptrfstring->precision && ptrfstring->precisionvalue > (len - plusp))

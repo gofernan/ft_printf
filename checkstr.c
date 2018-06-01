@@ -94,7 +94,15 @@ int			checkstr_inside(const char *str, fstr_t *ptrfstring, va_list ap, int *i)
 
 	auxshift = 0;
 	if (checkstr_argorder(&str[*i], ptrfstring, &auxshift))
+	{
+		if (!ptrfstring->argordervalue)
+		{
+			*i += auxshift - 2;
+			initialize_struct(ptrfstring);
+			return (0);
+		}
 		*i += auxshift - 1;
+	}
 	else if (checkstr_flags(&str[*i], ptrfstring))
 		;
 	else if (checkstr_fwidth(&str[*i], ptrfstring, &auxshift))

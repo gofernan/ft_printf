@@ -23,13 +23,18 @@ static int		checkstr_fwidth_asarg(const char *str, fstr_t *ptrfstring, int *auxs
 	if (str[*i] == '$')
 	{
 		*auxshift = *i;
-		ptrfstring->fwidth_asarg = 1;
 		if (!(tmp = malloc(sizeof(char) * (*i))))
 			exit(EXIT_FAILURE);
 		ft_strncpy(tmp, str + 1, *i - 1);
 		tmp[*i - 1] = '\0';
 		ptrfstring->fwidth_asargv = ft_atoi(tmp);
 		free(tmp);
+		// fix 0//
+		if (!ptrfstring->fwidth_asargv)
+		{
+			ptrfstring->fwidth = 0;
+			return (-1);
+		}
 		tmpargorder = ptrfstring->argordervalue;
 		ptrfstring->argordervalue = ptrfstring->fwidth_asargv;
 		if (ptrfstring->precheck)
@@ -43,6 +48,7 @@ static int		checkstr_fwidth_asarg(const char *str, fstr_t *ptrfstring, int *auxs
 				ptrfstring->fwidthvalue = -ptrfstring->fwidthvalue;
 			}
 		}
+		ptrfstring->fwidth_asarg = 1;
 		ptrfstring->argordervalue = tmpargorder;
 		return (1);
 	}

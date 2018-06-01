@@ -15,56 +15,70 @@
 char	*check_locale_lsconv(va_list ap, t_args *tmpargsl)
 {
 	wchar_t		*wstr;
-	char		*strconv;
+	char		*s;
 
 	if (!(wstr = va_arg(ap, wchar_t *)))
 	{
-		if (!(strconv = (char *)malloc(sizeof(char) * 8)))
+		if (!(s = (char *)malloc(sizeof(char) * 8)))
 			exit(EXIT_FAILURE);
-		ft_strcpy(strconv, "(null)");
+		ft_strcpy(s, "(null)");
 		//ptrfstring->converted = 1;
 	}
 	else
 	{
 		if (MB_CUR_MAX == 4)
-			strconv = utf8conv((unsigned int *)wstr);
+			s = utf8conv((unsigned int *)wstr);
 		else
-			strconv = onebyteconv(wstr, tmpargsl);
+			s = onebyteconv(wstr, tmpargsl);
 	}
-	return (strconv);
+	return (s);
 }
 
 void	lsconv(va_list ap, fstr_t *ptrfstring)
 {
-	char		*strconv;
+	char		*s;
+	char		*sptr;
 	int			len;
 	int			validlen;
 
-	strconv = sel_arglist(ptrfstring)->str;
+	if ((sptr = sel_arglist(ptrfstring)->str))
+	{
+		len = ft_strlen(sptr);
+		s = malloc(sizeof(char) * (len + 1));
+		ft_strcpy(s, sptr);
+		ptrfstring->converted = 1;
+	}
+	else
+		s = sptr;
 	if (MB_CUR_MAX != 4)
 	{
 		if ((validlen = sel_arglist(ptrfstring)->validlen))
+		{
 			if ((ptrfstring->precision && ptrfstring->precisionvalue >= validlen) || !ptrfstring->precision)
-				strconv = NULL;
+			{
+				if (ptrfstring->converted)
+				{
+					ft_strdel(&s);
+					ptrfstring->converted = 0;
+				}
+			}
+		}
 	}
-	//strconv = (sel_arglist(ptrfstring))->str;
-	ptrfstring->converted = 1; // necesario?
-	if (strconv)
+	if (s)
 	{
-		len = ft_strlen(strconv);
 		if (ptrfstring->precision && len > ptrfstring->precisionvalue)
 		{
 			if (MB_CUR_MAX == 4)
-				strconv = precisionfw(strconv, &len, ptrfstring);
+				s = precisionfw(s, &len, ptrfstring);
 			else
-				strconv = precisionf(strconv, &len, ptrfstring);
+				s = precisionf(s, &len, ptrfstring);
 		}
 		if (ptrfstring->fwidth && len < ptrfstring->fwidthvalue)
-			strconv = field_width(strconv, &len, ptrfstring);
-		store_write(ptrfstring, strconv, &len);
+			s = field_width(s, &len, ptrfstring);
+		store_write(ptrfstring, s, &len);
 	}
 	else
 		ptrfstring->counter = -1;
 	if (ptrfstring->converted)
-		ft_strdel(&strconv);
+		ft_strdel(&s);
 }

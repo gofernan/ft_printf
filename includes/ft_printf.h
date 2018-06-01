@@ -28,6 +28,7 @@
 # define LENGTHM_N 8
 # define CONV_N 17
 # define BUFF_SIZE 1000
+# define RED "\x1b[31m"
 
 typedef struct		s_args
 {
@@ -123,4 +124,5 @@ char		*omdfs(va_list ap, t_args *tmpargsl);
 char		*umdfs(va_list ap, t_args *tmpargsl);
 char		*dimdfs(va_list ap, t_args *tmpargsl);
 char		*ft_ftoa(va_list ap);
+void		free_struct(fstr_t *ptrfstring);
 #endif

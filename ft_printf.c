@@ -49,5 +49,6 @@ int			ft_printf(const char *str, ...)
 	else
 		write(1, ptrfstring->buff, ptrfstring->buffi - ptrfstring->lnchars);
 	va_end(ap);
+	free_struct(ptrfstring);
 	return (ptrfstring->counter);
 }

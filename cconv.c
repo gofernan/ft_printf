@@ -28,10 +28,14 @@ void		cconv(va_list ap, fstr_t *ptrfstring)
 {
 	char	a;
 	char	*s;
+	char	*sptr;
 	int		len;
 
-	s = sel_arglist(ptrfstring)->str;
+	sptr = sel_arglist(ptrfstring)->str;
 	len = 1;
+	s = malloc(sizeof(char) * (len + 1));
+	ft_strcpy(s, sptr);
+	ptrfstring->converted = 1;
 	if (ptrfstring->fwidth && len < ptrfstring->fwidthvalue)
 		s = field_width(s, &len, ptrfstring);
 	store_write(ptrfstring, s, &len);

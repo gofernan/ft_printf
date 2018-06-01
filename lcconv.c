@@ -15,43 +15,60 @@
 char		*check_locale_lcconv(va_list ap, t_args *tmpargsl)
 {
 	wint_t		wc[2];
-	char		*strconv;
+	char		*s;
 
 	wc[0] = (wint_t)va_arg(ap, wint_t);
 	wc[1] = '\0';
 	if (MB_CUR_MAX == 4)
-		strconv = utf8conv((unsigned int *)&wc);
+		s = utf8conv((unsigned int *)&wc);
 	else
-		strconv = onebyteconv(wc, tmpargsl);
-	return (strconv);
+		s = onebyteconv(wc, tmpargsl);
+	return (s);
 }
 
 void		lcconv(va_list ap, fstr_t *ptrfstring)
 {
 	int			len;
 	int			validlen;
-	char		*strconv;
+	char		*s;
+	char		*sptr;
 
-	strconv = sel_arglist(ptrfstring)->str;
+	if ((sptr = sel_arglist(ptrfstring)->str))
+	{
+		len = ft_strlen(sptr);
+		s = malloc(sizeof(char) * (len + 1));
+		ft_strcpy(s, sptr);
+		ptrfstring->converted = 1;
+	}
+	else
+		s = sptr;
 	if (MB_CUR_MAX != 4)
 	{
 		if ((validlen = sel_arglist(ptrfstring)->validlen))
+		{
 			if ((ptrfstring->precision && ptrfstring->precisionvalue >= validlen) || !ptrfstring->precision)
-				strconv = NULL;
+			{
+				if (ptrfstring->converted)
+				{
+					ft_strdel(&s);
+					ptrfstring->converted = 0;
+				}
+			}
+		}
 	}
-	if (strconv)
+	if (s)
 	{
 		//if (!*wc)
-		if (!*strconv) // not clear
+		if (!*s) // not clear
 			len = 1;
-		else
-			len = ft_strlen(strconv);
+		//else
+		//	len = ft_strlen(s);
 		if (ptrfstring->fwidth && len < ptrfstring->fwidthvalue)
-			strconv = field_width(strconv, &len, ptrfstring);
-		store_write(ptrfstring, strconv, &len);
+			s = field_width(s, &len, ptrfstring);
+		store_write(ptrfstring, s, &len);
 	}
 	else
 		ptrfstring->counter = -1;
 	if (ptrfstring->converted)
-		ft_strdel(&strconv);
+		ft_strdel(&s);
 }
