@@ -6,7 +6,7 @@
 /*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/07 21:39:57 by gofernan          #+#    #+#             */
-/*   Updated: 2018/05/07 21:40:10 by gofernan         ###   ########.fr       */
+/*   Updated: 2018/06/02 17:52:39 by gofernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,25 +17,25 @@ char		*omdfs(va_list ap, t_args *tmpargsl)
 	char *s;
 
 	if (tmpargsl->conv == 'O')
-		s = ft_uimaxtoa_base(va_arg(ap, unsigned long), 8, 0);
+		s = ft_uitoab(va_arg(ap, unsigned long), 8, 0);
 	else if (tmpargsl->mdf == 7)
-		s = ft_uimaxtoa_base(va_arg(ap, u_quad_t), 8, 0);
+		s = ft_uitoab(va_arg(ap, u_quad_t), 8, 0);
 	else if (tmpargsl->mdf == 6)
-		s = ft_uimaxtoa_base(va_arg(ap, size_t), 8, 0);
+		s = ft_uitoab(va_arg(ap, size_t), 8, 0);
 	else if (tmpargsl->mdf == 5)
-		s = ft_uimaxtoa_base(va_arg(ap, ptrdiff_t), 8, 0);
+		s = ft_uitoab(va_arg(ap, ptrdiff_t), 8, 0);
 	else if (tmpargsl->mdf == 4)
-		s = ft_uimaxtoa_base(va_arg(ap, uintmax_t), 8, 0);
+		s = ft_uitoab(va_arg(ap, uintmax_t), 8, 0);
 	else if (tmpargsl->mdf == 3)
-		s = ft_uimaxtoa_base(va_arg(ap, unsigned long long), 8, 0);
+		s = ft_uitoab(va_arg(ap, unsigned long long), 8, 0);
 	else if (tmpargsl->mdf == 2)
-		s = ft_uimaxtoa_base(va_arg(ap, unsigned long), 8, 0);
+		s = ft_uitoab(va_arg(ap, unsigned long), 8, 0);
 	else if (tmpargsl->mdf == 1)
-		s = ft_uimaxtoa_base((unsigned short)va_arg(ap, unsigned int), 8, 0);
+		s = ft_uitoab((unsigned short)va_arg(ap, unsigned int), 8, 0);
 	else if (tmpargsl->mdf == 0)
-		s = ft_uimaxtoa_base((unsigned char)va_arg(ap, unsigned int), 8, 0);
+		s = ft_uitoab((unsigned char)va_arg(ap, unsigned int), 8, 0);
 	else
-		s = ft_uimaxtoa_base(va_arg(ap, unsigned int), 8, 0);
+		s = ft_uitoab(va_arg(ap, unsigned int), 8, 0);
 	if (!s)
 		exit(EXIT_FAILURE);
 	return (s);
@@ -48,11 +48,9 @@ void		oconv(va_list ap, t_fstr *pfs)
 	int		len;
 
 	sptr = sel_arglist(pfs)->str;
-	//len = ft_strlen(s);
 	if ((pfs->prec && pfs->precvalue == 0 && !ft_strcmp(sptr, "0"))
 		|| (!ft_strcmp(sptr, "0") && pfs->flags[0]))
 	{
-		//*s = '\0';
 		s = ft_strnew(0);
 		len = 0;
 	}

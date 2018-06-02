@@ -6,7 +6,7 @@
 /*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/24 18:09:22 by gofernan          #+#    #+#             */
-/*   Updated: 2018/05/14 19:53:02 by gofernan         ###   ########.fr       */
+/*   Updated: 2018/06/02 18:06:17 by gofernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@
 # include <errno.h>// remove???
 # include <stdio.h>// remove when finished
 # include "../libft/libft.h"
-# define CONVERSORS "sSpdDioOuUxXcCfFb"
+# define CONVERSORS "sSpdDioOuUxXcCb"
 # define FLAGS "#0- +\'"
 # define FLAGS_N 6
 # define LENGTHM_N 8
-# define CONV_N 17
+# define CONV_N 15
 # define BUFF_SIZE 1000
 
 typedef struct		s_args
@@ -41,7 +41,6 @@ typedef struct		s_args
 
 typedef struct		s_fstr
 {
-	//int				argorderstr;
 	int				argo;
 	int				argov;
 	int				flags[FLAGS_N];
@@ -70,7 +69,6 @@ typedef struct		s_fstr
 
 int			ft_printf(const char *str, ...);
 void		sconv(va_list ap, t_fstr *pfs);
-//void		argo(void);
 void		checkstr(const char *str, t_fstr *pfs, va_list ap);
 int			checkstr_argorder(const char *str, t_fstr *pfs, int *auxshift);
 int			checkstr_flags(const char *str, t_fstr *pfs);

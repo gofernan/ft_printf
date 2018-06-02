@@ -19,13 +19,13 @@ char		*dimdfs(va_list ap, t_args *tmpargsl)
 	if (tmpargsl->conv == 'D')
 		s = ft_ltoa(va_arg(ap, long int));
 	else if (tmpargsl->mdf == 7)
-		s = ft_imaxtoa(va_arg(ap, quad_t));
+		s = ft_itoa(va_arg(ap, quad_t));
 	else if (tmpargsl->mdf == 6)
-		s = ft_imaxtoa(va_arg(ap, size_t));
+		s = ft_itoa(va_arg(ap, size_t));
 	else if (tmpargsl->mdf == 5)
-		s = ft_uimaxtoa(va_arg(ap, ptrdiff_t));
+		s = ft_uitoa(va_arg(ap, ptrdiff_t));
 	else if (tmpargsl->mdf == 4)
-		s = ft_imaxtoa(va_arg(ap, intmax_t));
+		s = ft_itoa(va_arg(ap, intmax_t));
 	else if (tmpargsl->mdf == 3)
 		s = ft_lltoa(va_arg(ap, long long));
 	else if (tmpargsl->mdf == 2)

@@ -6,7 +6,7 @@
 /*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/13 10:01:20 by gofernan          #+#    #+#             */
-/*   Updated: 2018/05/14 19:53:24 by gofernan         ###   ########.fr       */
+/*   Updated: 2018/06/02 18:05:47 by gofernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,6 @@ int		conversors(const char *str, t_fstr *pfs, va_list ap, int *i)
 		lcconv(ap, pfs);
 	else if (pfs->conv == 'p')
 		pconv(ap, pfs);
-	else if	(pfs->conv == 'f' || pfs->conv == 'F')
-		fconv(ap, pfs);
 	else if	(pfs->conv == 'b')
 		bconv(ap, pfs);
 	else
@@ -72,9 +70,9 @@ int			checkstr_outside(const char *str, t_fstr *pfs, va_list ap, int *i)
 
 	if (str[*i] != '%')
 	{
-		if (str[*i] == '{')
-			checkstr_colors(str, pfs, *i);
-		/*if ((pos = ft_strchr(&str[*i], '%')))
+		//if (str[*i] == '{')
+		//	checkstr_colors(str, pfs, *i);
+		if ((pos = ft_strchr(&str[*i], '%')))
 		{
 			pfs->lnchars = pos - &str[*i];
 			store_write(pfs, &str[*i], &pfs->lnchars);
@@ -85,7 +83,7 @@ int			checkstr_outside(const char *str, t_fstr *pfs, va_list ap, int *i)
 			pfs->lnchars = ft_strlen(&str[*i]);
 			store_write(pfs, &str[*i], &pfs->lnchars);
 			*i += ft_strlen(&str[*i]) - 1;
-		}*/
+		}
 	}
 	else
 		return (1);

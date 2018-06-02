@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   retr_arglist.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/06/02 17:51:21 by gofernan          #+#    #+#             */
+/*   Updated: 2018/06/02 18:15:20 by gofernan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "includes/ft_printf.h"
 
 void		fill_defaultv(t_args *tmpargsl, int *i)
@@ -82,9 +94,7 @@ void		retr_arglist(va_list ap, t_fstr *pfs)
 	else if (tmpargsl->conv == 'C' || tmpargsl->conv == 'c')
 		tmpargsl->str = check_locale_lcconv(ap2, tmpargsl);
 	else if (tmpargsl->conv == 'p')
-		tmpargsl->str = ft_uimaxtoa_base((va_arg(ap2, uintmax_t)), 16, 0);
-	else if (tmpargsl->conv == 'f' || tmpargsl->conv == 'F')
-		tmpargsl->str = ft_ftoa(ap2);
+		tmpargsl->str = ft_uitoab((va_arg(ap2, uintmax_t)), 16, 0);
 	else if (tmpargsl->conv == 'b')
 		tmpargsl->str = ft_binary((va_arg(ap2, intmax_t)));
 	tmpargsl = pfs->ptrlargs;

@@ -6,7 +6,7 @@
 #    By: gofernan <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/13 16:45:07 by gofernan          #+#    #+#              #
-#    Updated: 2018/04/30 16:44:41 by gofernan         ###   ########.fr        #
+#    Updated: 2018/06/02 18:54:06 by gofernan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,14 +51,12 @@ FLS = checkstr \
 	  lcconv \
 	  percent \
 	  pconv \
-	  fconv \
 	  bconv \
 	  store_write \
 	  checkstr_allargs \
 	  store_arglist \
 	  retr_arglist \
 	  sel_arglist \
-	  ft_ftoa \
 	  free_struct \
 	  #main 
 
@@ -125,10 +123,8 @@ FTFLS = ft_bzero \
 		ft_wcslen \
 		ft_ltoa \
 		ft_lltoa \
-		ft_imaxtoa \
-		ft_uimaxtoa \
-		ft_imaxtoa_base \
-		ft_uimaxtoa_base \
+		ft_uitoa \
+		ft_uitoab \
 		ft_strncpynp \
 		ft_binary \
 

@@ -19,23 +19,23 @@ char		*xmdfs(va_list ap, t_args *tmpargsl)
 
 	altform = (tmpargsl->conv == 'X') ? 1 : 0;
 	if (tmpargsl->mdf == 7)
-		s = ft_uimaxtoa_base(va_arg(ap, u_quad_t), 16, altform);
+		s = ft_uitoab(va_arg(ap, u_quad_t), 16, altform);
 	else if (tmpargsl->mdf == 6)
-		s = ft_uimaxtoa_base(va_arg(ap, size_t), 16, altform);
+		s = ft_uitoab(va_arg(ap, size_t), 16, altform);
 	else if (tmpargsl->mdf == 5)
-		s = ft_uimaxtoa_base(va_arg(ap, ptrdiff_t), 16, altform);
+		s = ft_uitoab(va_arg(ap, ptrdiff_t), 16, altform);
 	else if (tmpargsl->mdf == 4)
-		s = ft_uimaxtoa_base(va_arg(ap, uintmax_t), 16, altform);
+		s = ft_uitoab(va_arg(ap, uintmax_t), 16, altform);
 	else if (tmpargsl->mdf == 3)
-		s = ft_uimaxtoa_base(va_arg(ap, unsigned long long), 16, altform);
+		s = ft_uitoab(va_arg(ap, unsigned long long), 16, altform);
 	else if (tmpargsl->mdf == 2)
-		s = ft_uimaxtoa_base(va_arg(ap, unsigned long), 16, altform);
+		s = ft_uitoab(va_arg(ap, unsigned long), 16, altform);
 	else if (tmpargsl->mdf == 1)
-		s = ft_uimaxtoa_base((unsigned short)va_arg(ap, unsigned int), 16, altform);
+		s = ft_uitoab((unsigned short)va_arg(ap, unsigned int), 16, altform);
 	else if (tmpargsl->mdf == 0)
-		s = ft_uimaxtoa_base((unsigned char)va_arg(ap, unsigned int), 16, altform);
+		s = ft_uitoab((unsigned char)va_arg(ap, unsigned int), 16, altform);
 	else
-		s = ft_uimaxtoa_base(va_arg(ap, unsigned int), 16, altform);
+		s = ft_uitoab(va_arg(ap, unsigned int), 16, altform);
 	if (!s)
 		exit(EXIT_FAILURE);
 	return (s);
