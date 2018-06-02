@@ -6,7 +6,7 @@
 /*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/21 16:41:53 by gofernan          #+#    #+#             */
-/*   Updated: 2018/05/07 19:16:49 by gofernan         ###   ########.fr       */
+/*   Updated: 2018/06/02 22:18:32 by gofernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int			convsp(const char *str, t_fstr *pfs)
 	int		i;
 	char	conversors[CONV_N + 1];
 
-	//ft_strcpy(conversors, "sSpdDioOuUxXcCfF");
 	ft_strcpy(conversors, CONVERSORS);
 	conversors[CONV_N] = '\0';
 	i = 0;

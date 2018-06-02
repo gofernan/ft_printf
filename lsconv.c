@@ -6,7 +6,7 @@
 /*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/30 15:01:26 by gofernan          #+#    #+#             */
-/*   Updated: 2018/05/14 17:18:03 by gofernan         ###   ########.fr       */
+/*   Updated: 2018/06/02 21:52:40 by gofernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ char	*check_locale_lsconv(va_list ap, t_args *tmpargsl)
 		if (!(s = (char *)malloc(sizeof(char) * 8)))
 			exit(EXIT_FAILURE);
 		ft_strcpy(s, "(null)");
-		//pfs->converted = 1;
 	}
 	else
 	{

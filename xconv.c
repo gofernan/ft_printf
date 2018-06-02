@@ -6,13 +6,13 @@
 /*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/07 21:33:35 by gofernan          #+#    #+#             */
-/*   Updated: 2018/05/14 17:26:36 by gofernan         ###   ########.fr       */
+/*   Updated: 2018/06/02 22:06:01 by gofernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/ft_printf.h"
 
-char		*xmdfs(va_list ap, t_args *tmpargsl)
+char			*xmdfs(va_list ap, t_args *tmpargsl)
 {
 	int		altform;
 	char	*s;
@@ -52,7 +52,6 @@ void			xconv(va_list ap, t_fstr *pfs)
 	sptr = sel_arglist(pfs)->str;
 	if (pfs->prec && pfs->precvalue == 0 && !ft_strcmp(sptr, "0"))
 	{
-		//*s = '\0';
 		s = ft_strnew(0);
 		len = 0;
 	}

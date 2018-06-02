@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   argo.c                                         :+:      :+:    :+:   */
+/*   store_arglist.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/13 10:00:38 by gofernan          #+#    #+#             */
-/*   Updated: 2018/03/15 16:35:52 by gofernan         ###   ########.fr       */
+/*   Created: 2018/06/02 21:51:20 by gofernan          #+#    #+#             */
+/*   Updated: 2018/06/02 22:07:41 by gofernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void		init_listarg(t_args *tmpargsl)
 	tmpargsl->next = NULL;
 	tmpargsl->validlen = 0;
 }
+
 void		store_arglist(t_fstr *pfs)
 {
 	t_args *tmpargsl;
@@ -78,11 +79,4 @@ void		store_arglist(t_fstr *pfs)
 			tmpargsl = tmpargsl->next;
 		}
 	}
-	/*}
-	if (!tmpargsl)
-	{
-		if (!(tmpargsl = (t_args *)malloc(sizeof(t_args))))
-			exit(EXIT_FAILURE);
-		fill_list(tmpargsl, pfs);
-	}*/
 }

@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   checkstr_allargs.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/06/02 22:02:03 by gofernan          #+#    #+#             */
+/*   Updated: 2018/06/02 22:02:40 by gofernan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "includes/ft_printf.h"
 
 void		checkstr_allargs(const char *str, t_fstr *pfs, va_list ap)
 {
-	int i;
-	int go;
-	va_list ap2;
+	int		i;
+	int		go;
+	va_list	ap2;
 
 	i = 0;
 	go = 0;

@@ -6,7 +6,7 @@
 /*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/14 17:23:35 by gofernan          #+#    #+#             */
-/*   Updated: 2018/05/14 17:23:59 by gofernan         ###   ########.fr       */
+/*   Updated: 2018/06/02 21:47:53 by gofernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void		pconv(va_list ap, t_fstr *pfs)
 	sptr = sel_arglist(pfs)->str;
 	if (pfs->prec && pfs->precvalue == 0 && !ft_strcmp(sptr, "0"))
 	{
-		//*s = '\0';
 		s = ft_strnew(0);
 		len = 0;
 	}

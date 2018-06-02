@@ -6,7 +6,7 @@
 /*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/20 19:32:28 by gofernan          #+#    #+#             */
-/*   Updated: 2018/05/07 19:17:58 by gofernan         ###   ########.fr       */
+/*   Updated: 2018/06/02 22:15:38 by gofernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ int		checkstr_prec_asarg(const char *str, t_fstr *pfs, int *auxshift)
 	int		i;
 
 	i = 2;
-
 	while (str[i] >= 48 && str[i] <= 57)
 		i++;
 	if (str[i] == '$')
@@ -31,7 +30,6 @@ int		checkstr_prec_asarg(const char *str, t_fstr *pfs, int *auxshift)
 		tmp[i - 2] = '\0';
 		pfs->prec_asargv = ft_atoi(tmp);
 		free(tmp);
-		// fix 0 //
 		if (!pfs->prec_asargv)
 		{
 			pfs->prec = 0;
@@ -59,8 +57,8 @@ int		checkstr_prec_asarg(const char *str, t_fstr *pfs, int *auxshift)
 
 int		checkstr_prec_aff(const char *str, t_fstr *pfs, int *auxshift)
 {
-	char *tmp;
-	int i;
+	char	*tmp;
+	int		i;
 
 	i = 1;
 	while (str[i] >= 48 && str[i] <= 57)

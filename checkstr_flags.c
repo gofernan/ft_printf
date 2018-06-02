@@ -6,7 +6,7 @@
 /*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/20 11:34:07 by gofernan          #+#    #+#             */
-/*   Updated: 2018/05/14 17:09:41 by gofernan         ###   ########.fr       */
+/*   Updated: 2018/06/02 22:20:43 by gofernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int			checkstr_flags_pc(const char *str)
 	}
 	return (0);
 }
+
 int			checkstr_flags(const char *str, t_fstr *pfs)
 {
 	if (pfs->precheck)
@@ -39,8 +40,6 @@ int			checkstr_flags(const char *str, t_fstr *pfs)
 		pfs->flags[3] = 1;
 	else if (*str == '+')
 		pfs->flags[4] = 1;
-	else if (*str == '\'')
-		pfs->flags[5] = 1;
 	else
 		return (0);
 	return (1);

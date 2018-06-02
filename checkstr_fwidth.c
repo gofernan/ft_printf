@@ -6,7 +6,7 @@
 /*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/20 17:39:27 by gofernan          #+#    #+#             */
-/*   Updated: 2018/05/07 18:56:12 by gofernan         ###   ########.fr       */
+/*   Updated: 2018/06/02 22:19:45 by gofernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ static int		checkstr_fwidth_asarg(const char *str, t_fstr *pfs, int *auxshift, i
 		tmp[*i - 1] = '\0';
 		pfs->fwidth_asargv = ft_atoi(tmp);
 		free(tmp);
-		// fix 0//
 		if (!pfs->fwidth_asargv)
 		{
 			pfs->fwidth = 0;
@@ -87,7 +86,7 @@ static int		checkstr_fwidth_as(const char *str, t_fstr *pfs, int *auxshift, int 
 	return (0);
 }
 
-int		checkstr_fwidth(const char *str, t_fstr *pfs, int *auxshift)
+int				checkstr_fwidth(const char *str, t_fstr *pfs, int *auxshift)
 {
 	int		i;
 	char	*tmp;

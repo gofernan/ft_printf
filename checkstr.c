@@ -6,13 +6,13 @@
 /*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/13 10:01:20 by gofernan          #+#    #+#             */
-/*   Updated: 2018/06/02 18:05:47 by gofernan         ###   ########.fr       */
+/*   Updated: 2018/06/02 22:30:59 by gofernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/ft_printf.h"
 
-int		conversors(const char *str, t_fstr *pfs, va_list ap, int *i)
+int			conversors(const char *str, t_fstr *pfs, va_list ap, int *i)
 {
 	if (pfs->conv == 's' && !(pfs->lengthmdf[2]))
 		sconv(ap, pfs);
@@ -33,14 +33,14 @@ int		conversors(const char *str, t_fstr *pfs, va_list ap, int *i)
 		lcconv(ap, pfs);
 	else if (pfs->conv == 'p')
 		pconv(ap, pfs);
-	else if	(pfs->conv == 'b')
+	else if (pfs->conv == 'b')
 		bconv(ap, pfs);
 	else
 		percent(str[*i], pfs);
 	return (0);
 }
 
-int		checkmdfs(const char *str, t_fstr *pfs, int *i)
+int			checkmdfs(const char *str, t_fstr *pfs, int *i)
 {
 	if (checkstr_length_hh(&str[*i], pfs))
 		(*i)++;
@@ -112,8 +112,8 @@ int			checkstr_inside(const char *str, t_fstr *pfs, va_list ap, int *i)
 	else if (checkstr_prec(&str[*i], pfs, &auxshift))
 		*i += auxshift;
 	else if (checkmdfs(str, pfs, i))
-		;	
-	else 
+		;
+	else
 	{
 		if (convsp(&str[*i], pfs) && !pfs->argo && !pfs->fwidth_as && !pfs->prec_as)
 			(pfs->argov)++;
@@ -142,7 +142,7 @@ void		checkstr(const char *str, t_fstr *pfs, va_list ap)
 		if (go == 0)
 			go = checkstr_outside(str, pfs, ap, &i);
 		else
-			go = checkstr_inside(str, pfs, ap , &i);
+			go = checkstr_inside(str, pfs, ap, &i);
 		i++;
 	}
 }

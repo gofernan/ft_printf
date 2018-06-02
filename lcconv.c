@@ -6,7 +6,7 @@
 /*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/07 19:45:51 by gofernan          #+#    #+#             */
-/*   Updated: 2018/05/07 19:52:41 by gofernan         ###   ########.fr       */
+/*   Updated: 2018/06/02 22:29:36 by gofernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,8 @@ void		lcconv(va_list ap, t_fstr *pfs)
 	}
 	if (s)
 	{
-		//if (!*wc)
-		if (!*s) // not clear
+		if (!*s)
 			len = 1;
-		//else
-		//	len = ft_strlen(s);
 		if (pfs->fwidth && len < pfs->fwidthvalue)
 			s = field_width(s, &len, pfs);
 		store_write(pfs, s, &len);

@@ -6,7 +6,7 @@
 /*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/30 15:20:35 by gofernan          #+#    #+#             */
-/*   Updated: 2018/05/14 17:21:36 by gofernan         ###   ########.fr       */
+/*   Updated: 2018/06/02 22:09:02 by gofernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,22 +20,12 @@ char		*onebyteconv(wchar_t *wstr, t_args *tmpargsl)
 	int		len;
 
 	i = -1;
-	/*while (wstr[++i])
-	{
-		if (wstr[i] > 0xff)
-		{
-			if (tmpargsl->prec && tmpargsl->precvalue <= i)
-				break ;
-			else
-				return (NULL);
-		}
-	}*/
 	while (wstr[++i])
 	{
 		if (wstr[i] > 0xff)
 		{
 			tmpargsl->validlen = i + 1;
-			break;
+			break ;
 		}
 	}
 	len = ft_wcslen(wstr);
