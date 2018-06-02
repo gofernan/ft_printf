@@ -16,7 +16,7 @@ char		*umdfs(va_list ap, t_args *tmpargsl)
 {
 	char *s;
 
-	if (tmpargsl->convesp == 'U')
+	if (tmpargsl->conv == 'U')
 		s = ft_uimaxtoa(va_arg(ap, unsigned long));
 	else if (tmpargsl->mdf == 7)
 		s = ft_uimaxtoa(va_arg(ap, u_quad_t));
@@ -41,14 +41,14 @@ char		*umdfs(va_list ap, t_args *tmpargsl)
 	return (s);
 }
 
-void		uconv(va_list ap, fstr_t *ptrfstring)
+void		uconv(va_list ap, t_fstr *pfs)
 {
 	char	*s;
 	char	*sptr;
 	int		len;
 
-	sptr = sel_arglist(ptrfstring)->str;
-	if (ptrfstring->precision && ptrfstring->precisionvalue == 0 && !ft_strcmp(sptr, "0"))
+	sptr = sel_arglist(pfs)->str;
+	if (pfs->prec && pfs->precvalue == 0 && !ft_strcmp(sptr, "0"))
 	{
 		//ft_strdel(&s);
 		s = ft_strnew(0);
@@ -60,12 +60,12 @@ void		uconv(va_list ap, fstr_t *ptrfstring)
 		s = malloc(sizeof(char) * (len + 1));
 		ft_strcpy(s, sptr);
 	}
-	ptrfstring->converted = 1;
-	if (ptrfstring->precision && ptrfstring->precisionvalue > len)
-		s = precisiondigits(s, &len, 0, ptrfstring);
-	if (ptrfstring->fwidth && len < ptrfstring->fwidthvalue)
-		s = field_width_num(s, &len, ptrfstring);
-	store_write(ptrfstring, s, &len);
-	if (ptrfstring->converted)
+	pfs->converted = 1;
+	if (pfs->prec && pfs->precvalue > len)
+		s = precdigits(s, &len, 0, pfs);
+	if (pfs->fwidth && len < pfs->fwidthvalue)
+		s = field_width_num(s, &len, pfs);
+	store_write(pfs, s, &len);
+	if (pfs->converted)
 		ft_strdel(&s);
 }

@@ -12,31 +12,30 @@
 
 #include "includes/ft_printf.h"
 
-void		initialize_struct(fstr_t *ptrfstring)
+void		initialize_struct(t_fstr *pfs)
 {
 	int i;
 
 	i = -1;
-	ptrfstring->argorder = 0;
-	ptrfstring->separator = 0;
-	ptrfstring->fwidth = 0;
-	ptrfstring->fwidth_as = 0;
-	ptrfstring->fwidth_asarg = 0;
-	ptrfstring->fwidth_asargv = 0;
-	ptrfstring->fwidthvalue = 0;
-	ptrfstring->precision = 0;
-	ptrfstring->precision_as = 0;
-	ptrfstring->precision_asarg = 0;
-	ptrfstring->precision_asargv = 0;
-	ptrfstring->precisionvalue = 0;
+	pfs->argo = 0;
+	pfs->fwidth = 0;
+	pfs->fwidth_as = 0;
+	pfs->fwidth_asarg = 0;
+	pfs->fwidth_asargv = 0;
+	pfs->fwidthvalue = 0;
+	pfs->prec = 0;
+	pfs->prec_as = 0;
+	pfs->prec_asarg = 0;
+	pfs->prec_asargv = 0;
+	pfs->precvalue = 0;
 	while (++i < FLAGS_N)
-		ptrfstring->flags[i] = 0;
+		pfs->flags[i] = 0;
 	i = -1;
 	while (++i < LENGTHM_N)
-		ptrfstring->lengthmdf[i] = 0;
-	ptrfstring->convesp = 0;
-	ptrfstring->converted = 0;
+		pfs->lengthmdf[i] = 0;
+	pfs->conv = 0;
+	pfs->converted = 0;
 	i = 0;
 	//while (i < BUFF_SIZE)
-	//	ptrfstring->buff[i++] = '\0';
+	//	pfs->buff[i++] = '\0';
 }

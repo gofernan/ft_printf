@@ -26,32 +26,32 @@ char		*check_locale_lcconv(va_list ap, t_args *tmpargsl)
 	return (s);
 }
 
-void		lcconv(va_list ap, fstr_t *ptrfstring)
+void		lcconv(va_list ap, t_fstr *pfs)
 {
 	int			len;
 	int			validlen;
 	char		*s;
 	char		*sptr;
 
-	if ((sptr = sel_arglist(ptrfstring)->str))
+	if ((sptr = sel_arglist(pfs)->str))
 	{
 		len = ft_strlen(sptr);
 		s = malloc(sizeof(char) * (len + 1));
 		ft_strcpy(s, sptr);
-		ptrfstring->converted = 1;
+		pfs->converted = 1;
 	}
 	else
 		s = sptr;
 	if (MB_CUR_MAX != 4)
 	{
-		if ((validlen = sel_arglist(ptrfstring)->validlen))
+		if ((validlen = sel_arglist(pfs)->validlen))
 		{
-			if ((ptrfstring->precision && ptrfstring->precisionvalue >= validlen) || !ptrfstring->precision)
+			if ((pfs->prec && pfs->precvalue >= validlen) || !pfs->prec)
 			{
-				if (ptrfstring->converted)
+				if (pfs->converted)
 				{
 					ft_strdel(&s);
-					ptrfstring->converted = 0;
+					pfs->converted = 0;
 				}
 			}
 		}
@@ -63,12 +63,12 @@ void		lcconv(va_list ap, fstr_t *ptrfstring)
 			len = 1;
 		//else
 		//	len = ft_strlen(s);
-		if (ptrfstring->fwidth && len < ptrfstring->fwidthvalue)
-			s = field_width(s, &len, ptrfstring);
-		store_write(ptrfstring, s, &len);
+		if (pfs->fwidth && len < pfs->fwidthvalue)
+			s = field_width(s, &len, pfs);
+		store_write(pfs, s, &len);
 	}
 	else
-		ptrfstring->counter = -1;
-	if (ptrfstring->converted)
+		pfs->counter = -1;
+	if (pfs->converted)
 		ft_strdel(&s);
 }

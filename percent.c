@@ -12,7 +12,7 @@
 
 #include "includes/ft_printf.h"
 
-void		percent(char a, fstr_t *ptrfstring)
+void		percent(char a, t_fstr *pfs)
 {
 	char	*s;
 	int		len;
@@ -22,10 +22,10 @@ void		percent(char a, fstr_t *ptrfstring)
 		exit(EXIT_FAILURE);
 	ft_strncpy(s, &a, 1);
 	*(s + 1) = '\0';
-	ptrfstring->converted = 1;
-	if (ptrfstring->fwidth && len < ptrfstring->fwidthvalue)
-		s = field_width(s, &len, ptrfstring);
-	store_write(ptrfstring, s, &len);
-	if (ptrfstring->converted)
+	pfs->converted = 1;
+	if (pfs->fwidth && len < pfs->fwidthvalue)
+		s = field_width(s, &len, pfs);
+	store_write(pfs, s, &len);
+	if (pfs->converted)
 		ft_strdel(&s);
 }

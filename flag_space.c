@@ -12,7 +12,7 @@
 
 #include "includes/ft_printf.h"
 
-char		*flag_space(char *str, int *len, fstr_t *ptrfstring)
+char		*flag_space(char *str, int *len, t_fstr *pfs)
 {
 	char *newstr;
 
@@ -20,10 +20,10 @@ char		*flag_space(char *str, int *len, fstr_t *ptrfstring)
 		exit(EXIT_FAILURE);
 	*newstr = ' ';
 	ft_strcpy(newstr + 1, str);
-	if (ptrfstring->converted)
+	if (pfs->converted)
 		ft_strdel(&str);
 	else
-		ptrfstring->converted = 1;
+		pfs->converted = 1;
 	*len += 1;
 	return (newstr);
 }

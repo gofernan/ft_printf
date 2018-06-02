@@ -24,7 +24,7 @@ char		*onebyteconv(wchar_t *wstr, t_args *tmpargsl)
 	{
 		if (wstr[i] > 0xff)
 		{
-			if (tmpargsl->precision && tmpargsl->precisionvalue <= i)
+			if (tmpargsl->prec && tmpargsl->precvalue <= i)
 				break ;
 			else
 				return (NULL);

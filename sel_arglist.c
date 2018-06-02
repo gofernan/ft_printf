@@ -1,11 +1,11 @@
 #include "includes/ft_printf.h"
 
-t_args		*sel_arglist(fstr_t *ptrfstring)
+t_args		*sel_arglist(t_fstr *pfs)
 {
 	t_args	*tmpargsl;
 
-	tmpargsl = ptrfstring->ptrlargs;
-	while	(tmpargsl->value != ptrfstring->argordervalue)
+	tmpargsl = pfs->ptrlargs;
+	while	(tmpargsl->value != pfs->argov)
 		tmpargsl = tmpargsl->next;
 	return (tmpargsl);
 }

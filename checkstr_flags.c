@@ -25,22 +25,22 @@ int			checkstr_flags_pc(const char *str)
 	}
 	return (0);
 }
-int			checkstr_flags(const char *str, fstr_t *ptrfstring)
+int			checkstr_flags(const char *str, t_fstr *pfs)
 {
-	if (ptrfstring->precheck)
+	if (pfs->precheck)
 		return (checkstr_flags_pc(str));
 	if (*str == '#')
-		ptrfstring->flags[0] = 1;
+		pfs->flags[0] = 1;
 	else if (*str == '0')
-		ptrfstring->flags[1] = 1;
+		pfs->flags[1] = 1;
 	else if (*str == '-')
-		ptrfstring->flags[2] = 1;
+		pfs->flags[2] = 1;
 	else if (*str == ' ')
-		ptrfstring->flags[3] = 1;
+		pfs->flags[3] = 1;
 	else if (*str == '+')
-		ptrfstring->flags[4] = 1;
+		pfs->flags[4] = 1;
 	else if (*str == '\'')
-		ptrfstring->flags[5] = 1;
+		pfs->flags[5] = 1;
 	else
 		return (0);
 	return (1);

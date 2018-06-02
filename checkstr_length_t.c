@@ -12,11 +12,11 @@
 
 #include "includes/ft_printf.h"
 
-int			checkstr_length_t(const char *str, fstr_t *ptrfstring)
+int			checkstr_length_t(const char *str, t_fstr *pfs)
 {
 	if (*str == 't')
 	{
-		ptrfstring->lengthmdf[5] = 1;
+		pfs->lengthmdf[5] = 1;
 		return (1);
 	}
 	return (0);

@@ -12,7 +12,7 @@
 
 #include "includes/ft_printf.h"
 
-void		pconv(va_list ap, fstr_t *ptrfstring)
+void		pconv(va_list ap, t_fstr *pfs)
 {
 	char	*s;
 	char	*sptr;
@@ -20,8 +20,8 @@ void		pconv(va_list ap, fstr_t *ptrfstring)
 	int		plusp;
 
 	plusp = 2;
-	sptr = sel_arglist(ptrfstring)->str;
-	if (ptrfstring->precision && ptrfstring->precisionvalue == 0 && !ft_strcmp(sptr, "0"))
+	sptr = sel_arglist(pfs)->str;
+	if (pfs->prec && pfs->precvalue == 0 && !ft_strcmp(sptr, "0"))
 	{
 		//*s = '\0';
 		s = ft_strnew(0);
@@ -33,13 +33,13 @@ void		pconv(va_list ap, fstr_t *ptrfstring)
 		s = malloc(sizeof(char) * (len + 1));
 		ft_strcpy(s, sptr);
 	}
-	ptrfstring->converted = 1;
-	s = flag_sharp(s, &len, ptrfstring);
-	if (ptrfstring->precision && ptrfstring->precisionvalue > (len - plusp))
-		s = precisiondigits(s, &len, plusp, ptrfstring);
-	if (ptrfstring->fwidth && len < ptrfstring->fwidthvalue)
-		s = field_width_num(s, &len, ptrfstring);
-	store_write(ptrfstring, s, &len);
-	if (ptrfstring->converted)
+	pfs->converted = 1;
+	s = flag_sharp(s, &len, pfs);
+	if (pfs->prec && pfs->precvalue > (len - plusp))
+		s = precdigits(s, &len, plusp, pfs);
+	if (pfs->fwidth && len < pfs->fwidthvalue)
+		s = field_width_num(s, &len, pfs);
+	store_write(pfs, s, &len);
+	if (pfs->converted)
 		ft_strdel(&s);
 }

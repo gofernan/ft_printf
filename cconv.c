@@ -12,7 +12,7 @@
 
 #include "includes/ft_printf.h"
 
-char		*cconva(va_list ap, fstr_t *ptrfstring)
+char		*cconva(va_list ap, t_fstr *pfs)
 {
 	char	a;
 	char	*s;
@@ -24,21 +24,21 @@ char		*cconva(va_list ap, fstr_t *ptrfstring)
 	return (s);
 }
 
-void		cconv(va_list ap, fstr_t *ptrfstring)
+void		cconv(va_list ap, t_fstr *pfs)
 {
 	char	a;
 	char	*s;
 	char	*sptr;
 	int		len;
 
-	sptr = sel_arglist(ptrfstring)->str;
+	sptr = sel_arglist(pfs)->str;
 	len = 1;
 	s = malloc(sizeof(char) * (len + 1));
 	ft_strcpy(s, sptr);
-	ptrfstring->converted = 1;
-	if (ptrfstring->fwidth && len < ptrfstring->fwidthvalue)
-		s = field_width(s, &len, ptrfstring);
-	store_write(ptrfstring, s, &len);
-	if (ptrfstring->converted)
+	pfs->converted = 1;
+	if (pfs->fwidth && len < pfs->fwidthvalue)
+		s = field_width(s, &len, pfs);
+	store_write(pfs, s, &len);
+	if (pfs->converted)
 		ft_strdel(&s);
 }

@@ -17,7 +17,7 @@ char		*xmdfs(va_list ap, t_args *tmpargsl)
 	int		altform;
 	char	*s;
 
-	altform = (tmpargsl->convesp == 'X') ? 1 : 0;
+	altform = (tmpargsl->conv == 'X') ? 1 : 0;
 	if (tmpargsl->mdf == 7)
 		s = ft_uimaxtoa_base(va_arg(ap, u_quad_t), 16, altform);
 	else if (tmpargsl->mdf == 6)
@@ -41,7 +41,7 @@ char		*xmdfs(va_list ap, t_args *tmpargsl)
 	return (s);
 }
 
-void			xconv(va_list ap, fstr_t *ptrfstring)
+void			xconv(va_list ap, t_fstr *pfs)
 {
 	char	*s;
 	char	*sptr;
@@ -49,8 +49,8 @@ void			xconv(va_list ap, fstr_t *ptrfstring)
 	int		plusp;
 
 	plusp = 0;
-	sptr = sel_arglist(ptrfstring)->str;
-	if (ptrfstring->precision && ptrfstring->precisionvalue == 0 && !ft_strcmp(sptr, "0"))
+	sptr = sel_arglist(pfs)->str;
+	if (pfs->prec && pfs->precvalue == 0 && !ft_strcmp(sptr, "0"))
 	{
 		//*s = '\0';
 		s = ft_strnew(0);
@@ -62,17 +62,17 @@ void			xconv(va_list ap, fstr_t *ptrfstring)
 		s = malloc(sizeof(char) * (len + 1));
 		ft_strcpy(s, sptr);
 	}
-	ptrfstring->converted = 1;
-	if (ptrfstring->flags[0] && ft_strcmp(s, "0") && len > 0)
+	pfs->converted = 1;
+	if (pfs->flags[0] && ft_strcmp(s, "0") && len > 0)
 	{
-		s = flag_sharp(s, &len, ptrfstring);
+		s = flag_sharp(s, &len, pfs);
 		plusp = 2;
 	}
-	if (ptrfstring->precision && ptrfstring->precisionvalue > (len - plusp))
-		s = precisiondigits(s, &len, plusp, ptrfstring);
-	if (ptrfstring->fwidth && len < ptrfstring->fwidthvalue)
-		s = field_width_num(s, &len, ptrfstring);
-	store_write(ptrfstring, s, &len);
-	if (ptrfstring->converted)
+	if (pfs->prec && pfs->precvalue > (len - plusp))
+		s = precdigits(s, &len, plusp, pfs);
+	if (pfs->fwidth && len < pfs->fwidthvalue)
+		s = field_width_num(s, &len, pfs);
+	store_write(pfs, s, &len);
+	if (pfs->converted)
 		ft_strdel(&s);
 }

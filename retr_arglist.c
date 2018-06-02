@@ -3,13 +3,13 @@
 void		fill_defaultv(t_args *tmpargsl, int *i)
 {
 	tmpargsl->value = *i;
-	tmpargsl->convesp = 's';
+	tmpargsl->conv = 's';
 	tmpargsl->mdf = -1;
 	tmpargsl->str = NULL;
 	tmpargsl->next = NULL;
 }
 
-void		retr_arglist(va_list ap, fstr_t *ptrfstring)
+void		retr_arglist(va_list ap, t_fstr *pfs)
 {
 	va_list ap2;
 	t_args	*tmpargsl;
@@ -19,7 +19,7 @@ void		retr_arglist(va_list ap, fstr_t *ptrfstring)
 
 	maxorder = 1;
 	i = 1;
-	tmpargsl = ptrfstring->ptrlargs;
+	tmpargsl = pfs->ptrlargs;
 	s = NULL;
 	while (tmpargsl)
 	{
@@ -27,7 +27,7 @@ void		retr_arglist(va_list ap, fstr_t *ptrfstring)
 			maxorder = tmpargsl->value;
 		tmpargsl = tmpargsl->next;
 	}
-	tmpargsl = ptrfstring->ptrlargs;
+	tmpargsl = pfs->ptrlargs;
 	while (i <= maxorder)
 	{
 		while (tmpargsl)
@@ -39,7 +39,7 @@ void		retr_arglist(va_list ap, fstr_t *ptrfstring)
 		}
 		if (!tmpargsl)
 		{
-			tmpargsl = ptrfstring->ptrlargs;
+			tmpargsl = pfs->ptrlargs;
 			while (tmpargsl)
 			{
 				if (!tmpargsl->next)
@@ -52,7 +52,7 @@ void		retr_arglist(va_list ap, fstr_t *ptrfstring)
 				tmpargsl = tmpargsl->next;
 			}
 		}
-		tmpargsl = ptrfstring->ptrlargs;
+		tmpargsl = pfs->ptrlargs;
 		i++;
 	}
 	va_copy(ap2, ap);
@@ -64,30 +64,30 @@ void		retr_arglist(va_list ap, fstr_t *ptrfstring)
 			if (!(tmpargsl = tmpargsl->next))
 				break ;
 		}
-	if (tmpargsl->convesp == 's' && tmpargsl->mdf != 2)
+	if (tmpargsl->conv == 's' && tmpargsl->mdf != 2)
 		tmpargsl->str = va_arg(ap2, char *);
-	else if (tmpargsl->convesp == 'S' || tmpargsl->convesp == 's')
+	else if (tmpargsl->conv == 'S' || tmpargsl->conv == 's')
 		tmpargsl->str = check_locale_lsconv(ap2, tmpargsl);
-	else if (tmpargsl->convesp == 'd' || tmpargsl->convesp == 'i' ||
-			tmpargsl->convesp == 'D')
+	else if (tmpargsl->conv == 'd' || tmpargsl->conv == 'i' ||
+			tmpargsl->conv == 'D')
 		tmpargsl->str = dimdfs(ap2, tmpargsl);
-	else if (tmpargsl->convesp == 'u' || tmpargsl->convesp == 'U')
+	else if (tmpargsl->conv == 'u' || tmpargsl->conv == 'U')
 		tmpargsl->str = umdfs(ap2, tmpargsl);
-	else if (tmpargsl->convesp == 'o' || tmpargsl->convesp == 'O')
+	else if (tmpargsl->conv == 'o' || tmpargsl->conv == 'O')
 		tmpargsl->str = omdfs(ap2, tmpargsl);
-	else if (tmpargsl->convesp == 'X' || tmpargsl->convesp == 'x')
+	else if (tmpargsl->conv == 'X' || tmpargsl->conv == 'x')
 		tmpargsl->str = xmdfs(ap2, tmpargsl);
-	else if (tmpargsl->convesp == 'c' && tmpargsl->mdf != 2)
-		tmpargsl->str = cconva(ap2, ptrfstring);
-	else if (tmpargsl->convesp == 'C' || tmpargsl->convesp == 'c')
+	else if (tmpargsl->conv == 'c' && tmpargsl->mdf != 2)
+		tmpargsl->str = cconva(ap2, pfs);
+	else if (tmpargsl->conv == 'C' || tmpargsl->conv == 'c')
 		tmpargsl->str = check_locale_lcconv(ap2, tmpargsl);
-	else if (tmpargsl->convesp == 'p')
+	else if (tmpargsl->conv == 'p')
 		tmpargsl->str = ft_uimaxtoa_base((va_arg(ap2, uintmax_t)), 16, 0);
-	else if (tmpargsl->convesp == 'f' || tmpargsl->convesp == 'F')
+	else if (tmpargsl->conv == 'f' || tmpargsl->conv == 'F')
 		tmpargsl->str = ft_ftoa(ap2);
-	else if (tmpargsl->convesp == 'b')
+	else if (tmpargsl->conv == 'b')
 		tmpargsl->str = ft_binary((va_arg(ap2, intmax_t)));
-	tmpargsl = ptrfstring->ptrlargs;
+	tmpargsl = pfs->ptrlargs;
 	i++;
 	}
 	va_end(ap2);

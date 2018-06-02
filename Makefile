@@ -14,12 +14,12 @@ NAME = libftprintf.a
 #NAME = miprintf
 #FLAGS = -Wall -Wextra -Werror
 
-#argorder
+#argo
 FLS = checkstr \
 	  checkstr_argorder \
 	  checkstr_flags \
 	  checkstr_fwidth \
-	  checkstr_precision \
+	  checkstr_prec \
 	  checkstr_length_hh \
 	  checkstr_length_h \
 	  checkstr_length_ll \
@@ -28,19 +28,19 @@ FLS = checkstr \
 	  checkstr_length_t \
 	  checkstr_length_z \
 	  checkstr_length_q \
-	  conversion_specifiers \
+	  convsp \
 	  sconv \
 	  field_width \
 	  field_width_num \
 	  ft_printf \
 	  initialize_struct \
-	  precisionf \
+	  precf \
 	  lsconv \
 	  utf8conv \
 	  onebyteconv \
-	  precisionfw \
+	  precfw \
 	  diconv \
-	  precisiondigits \
+	  precdigits \
 	  flag_space \
 	  flag_plus \
 	  flag_sharp \

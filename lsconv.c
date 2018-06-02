@@ -22,7 +22,7 @@ char	*check_locale_lsconv(va_list ap, t_args *tmpargsl)
 		if (!(s = (char *)malloc(sizeof(char) * 8)))
 			exit(EXIT_FAILURE);
 		ft_strcpy(s, "(null)");
-		//ptrfstring->converted = 1;
+		//pfs->converted = 1;
 	}
 	else
 	{
@@ -34,51 +34,51 @@ char	*check_locale_lsconv(va_list ap, t_args *tmpargsl)
 	return (s);
 }
 
-void	lsconv(va_list ap, fstr_t *ptrfstring)
+void	lsconv(va_list ap, t_fstr *pfs)
 {
 	char		*s;
 	char		*sptr;
 	int			len;
 	int			validlen;
 
-	if ((sptr = sel_arglist(ptrfstring)->str))
+	if ((sptr = sel_arglist(pfs)->str))
 	{
 		len = ft_strlen(sptr);
 		s = malloc(sizeof(char) * (len + 1));
 		ft_strcpy(s, sptr);
-		ptrfstring->converted = 1;
+		pfs->converted = 1;
 	}
 	else
 		s = sptr;
 	if (MB_CUR_MAX != 4)
 	{
-		if ((validlen = sel_arglist(ptrfstring)->validlen))
+		if ((validlen = sel_arglist(pfs)->validlen))
 		{
-			if ((ptrfstring->precision && ptrfstring->precisionvalue >= validlen) || !ptrfstring->precision)
+			if ((pfs->prec && pfs->precvalue >= validlen) || !pfs->prec)
 			{
-				if (ptrfstring->converted)
+				if (pfs->converted)
 				{
 					ft_strdel(&s);
-					ptrfstring->converted = 0;
+					pfs->converted = 0;
 				}
 			}
 		}
 	}
 	if (s)
 	{
-		if (ptrfstring->precision && len > ptrfstring->precisionvalue)
+		if (pfs->prec && len > pfs->precvalue)
 		{
 			if (MB_CUR_MAX == 4)
-				s = precisionfw(s, &len, ptrfstring);
+				s = precfw(s, &len, pfs);
 			else
-				s = precisionf(s, &len, ptrfstring);
+				s = precf(s, &len, pfs);
 		}
-		if (ptrfstring->fwidth && len < ptrfstring->fwidthvalue)
-			s = field_width(s, &len, ptrfstring);
-		store_write(ptrfstring, s, &len);
+		if (pfs->fwidth && len < pfs->fwidthvalue)
+			s = field_width(s, &len, pfs);
+		store_write(pfs, s, &len);
 	}
 	else
-		ptrfstring->counter = -1;
-	if (ptrfstring->converted)
+		pfs->counter = -1;
+	if (pfs->converted)
 		ft_strdel(&s);
 }

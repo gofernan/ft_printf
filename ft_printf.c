@@ -15,40 +15,40 @@
 int			ft_printf(const char *str, ...)
 {
 	va_list		ap;
-	fstr_t		fstring;
-	fstr_t		*ptrfstring;
+	t_fstr		fstring;
+	t_fstr		*pfs;
 	int			i;
 
 	i = -1;
 	va_start(ap, str);
-	ptrfstring = &fstring;
-	ptrfstring->ptrlargs = NULL;
-	ptrfstring->counter = 0;
-	ptrfstring->argordervalue = 0;
-	ptrfstring->buffi = 0;
-	ptrfstring->lnchars = 0;
-	ptrfstring->precheck = 0;
-	//ptrfstring->argorder = 0;
-	//ptrfstring->buffsize = 1000;
-	//ptrfstring->buff = (char *)malloc(sizeof(char) * (ptrfstring->buffsize + 1));
-	initialize_struct(ptrfstring);
-	checkstr_allargs(str, ptrfstring, ap);
-	if (ptrfstring->ptrlargs)
-		retr_arglist(ap, ptrfstring);
-	ptrfstring->precision = 0;
-	ptrfstring->precisionvalue = 0;
-	ptrfstring->precheck = 0;
-	ptrfstring->argordervalue = 0;
-	ptrfstring->argorder = 0;
-	ptrfstring->convesp = 0;
+	pfs = &fstring;
+	pfs->ptrlargs = NULL;
+	pfs->counter = 0;
+	pfs->argov = 0;
+	pfs->buffi = 0;
+	pfs->lnchars = 0;
+	pfs->precheck = 0;
+	//pfs->argo = 0;
+	//pfs->buffsize = 1000;
+	//pfs->buff = (char *)malloc(sizeof(char) * (pfs->buffsize + 1));
+	initialize_struct(pfs);
+	checkstr_allargs(str, pfs, ap);
+	if (pfs->ptrlargs)
+		retr_arglist(ap, pfs);
+	pfs->prec = 0;
+	pfs->precvalue = 0;
+	pfs->precheck = 0;
+	pfs->argov = 0;
+	pfs->argo = 0;
+	pfs->conv = 0;
 	while (++i < LENGTHM_N)
-		ptrfstring->lengthmdf[i] = 0;
-	checkstr(str, ptrfstring, ap);
-	if (ptrfstring->counter != -1)
-		ptrfstring->counter += write(1, ptrfstring->buff, ptrfstring->buffi);
+		pfs->lengthmdf[i] = 0;
+	checkstr(str, pfs, ap);
+	if (pfs->counter != -1)
+		pfs->counter += write(1, pfs->buff, pfs->buffi);
 	else
-		write(1, ptrfstring->buff, ptrfstring->buffi - ptrfstring->lnchars);
+		write(1, pfs->buff, pfs->buffi - pfs->lnchars);
 	va_end(ap);
-	free_struct(ptrfstring);
-	return (ptrfstring->counter);
+	free_struct(pfs);
+	return (pfs->counter);
 }

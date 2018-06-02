@@ -1,28 +1,28 @@
 #include "includes/ft_printf.h"
 
-int check_exist(fstr_t *ptrfstring, char *tmp)
+int check_exist(t_fstr *pfs, char *tmp)
 {
 	int			tmpvalue;
 	t_args		*cpyptrlargs;
 
 	tmpvalue = ft_atoi(tmp);
-	if (!ptrfstring->ptrlargs)
+	if (!pfs->ptrlargs)
 	{
-		ptrfstring->ptrlargs = (t_args *)malloc(sizeof(t_args));
-		ptrfstring->ptrlargs->value = tmpvalue;
-		ptrfstring->ptrlargs->convesp = '\0';
-		ptrfstring->ptrlargs->mdf = NULL;
-	while (ptrfstring->ptrlargs)
+		pfs->ptrlargs = (t_args *)malloc(sizeof(t_args));
+		pfs->ptrlargs->value = tmpvalue;
+		pfs->ptrlargs->conv = '\0';
+		pfs->ptrlargs->mdf = NULL;
+	while (pfs->ptrlargs)
 	{
-		if (ptrfstring->ptrlargs->value == 0)
-			ptrfstring->ptrlargs->value = tmpvalue;
+		if (pfs->ptrlargs->value == 0)
+			pfs->ptrlargs->value = tmpvalue;
 		else
 		{
-			if (!(ptrfstring->ptrlargs->next))
-				ptrfstring->ptrlargs->next = (t_args *)malloc(sizeof(t_args))
+			if (!(pfs->ptrlargs->next))
+				pfs->ptrlargs->next = (t_args *)malloc(sizeof(t_args))
 
 
-int		argorder_store(const char *str, fstr_t *ptrfstring, int auxshift)
+int		argorder_store(const char *str, t_fstr *pfs, int auxshift)
 {
 	int		i;
 	char	*tmp;
@@ -37,5 +37,5 @@ int		argorder_store(const char *str, fstr_t *ptrfstring, int auxshift)
 		ft_strncpy(tmp, str, i);
 		tmp[i] = '\0';
 		*auxshift = i;
-		check_exist(ptrfstring, tmp);
+		check_exist(pfs, tmp);
 		ptrlargs->value = ft_atoi(tmp);

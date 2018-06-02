@@ -1,5 +1,5 @@
 #include "includes/ft_printf.h"
 
-char		*fetch_arglist(ptrfstring)
+char		*fetch_arglist(pfs)
 {
 

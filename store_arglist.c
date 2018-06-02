@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   argorder.c                                         :+:      :+:    :+:   */
+/*   argo.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,18 +12,18 @@
 
 #include "includes/ft_printf.h"
 
-void		fill_list(t_args *tmpargsl, fstr_t *ptrfstring)
+void		fill_list(t_args *tmpargsl, t_fstr *pfs)
 {
 	int i;
 
 	i = LENGTHM_N;
-	tmpargsl->value = ptrfstring->argordervalue;
-	if (ptrfstring->convesp)
+	tmpargsl->value = pfs->argov;
+	if (pfs->conv)
 	{
-		tmpargsl->convesp = ptrfstring->convesp;
+		tmpargsl->conv = pfs->conv;
 		while (--i >= 0)
 		{
-			if (ptrfstring->lengthmdf[i])
+			if (pfs->lengthmdf[i])
 			{
 				tmpargsl->mdf = i;
 				break ;
@@ -33,38 +33,38 @@ void		fill_list(t_args *tmpargsl, fstr_t *ptrfstring)
 			tmpargsl->mdf = -1;
 	}
 	else
-		tmpargsl->convesp = 'd';
+		tmpargsl->conv = 'd';
 	tmpargsl->next = NULL;
 }
 
 void		init_listarg(t_args *tmpargsl)
 {
 	tmpargsl->value = 0;
-	tmpargsl->convesp = '\0';
+	tmpargsl->conv = '\0';
 	tmpargsl->mdf = -1;
 	tmpargsl->str = NULL;
 	tmpargsl->next = NULL;
 	tmpargsl->validlen = 0;
 }
-void		store_arglist(fstr_t *ptrfstring)
+void		store_arglist(t_fstr *pfs)
 {
 	t_args *tmpargsl;
 
-	if (!ptrfstring->ptrlargs)
+	if (!pfs->ptrlargs)
 	{
-		if (!(ptrfstring->ptrlargs = (t_args *)malloc(sizeof(t_args))))
+		if (!(pfs->ptrlargs = (t_args *)malloc(sizeof(t_args))))
 			exit(EXIT_FAILURE);
-		init_listarg(ptrfstring->ptrlargs);
+		init_listarg(pfs->ptrlargs);
 	}
-	tmpargsl = ptrfstring->ptrlargs;
+	tmpargsl = pfs->ptrlargs;
 	while (tmpargsl)
 	{
 		if (!tmpargsl->value)
 		{
-			fill_list(tmpargsl, ptrfstring);
+			fill_list(tmpargsl, pfs);
 			break ;
 		}
-		else if (tmpargsl->value == ptrfstring->argordervalue)
+		else if (tmpargsl->value == pfs->argov)
 			break ;
 		else
 		{
@@ -73,7 +73,7 @@ void		store_arglist(fstr_t *ptrfstring)
 				if (!(tmpargsl->next = (t_args *)malloc(sizeof(t_args))))
 					exit(EXIT_FAILURE);
 				init_listarg(tmpargsl->next);
-				fill_list(tmpargsl->next, ptrfstring);
+				fill_list(tmpargsl->next, pfs);
 			}
 			tmpargsl = tmpargsl->next;
 		}
@@ -83,6 +83,6 @@ void		store_arglist(fstr_t *ptrfstring)
 	{
 		if (!(tmpargsl = (t_args *)malloc(sizeof(t_args))))
 			exit(EXIT_FAILURE);
-		fill_list(tmpargsl, ptrfstring);
+		fill_list(tmpargsl, pfs);
 	}*/
 }

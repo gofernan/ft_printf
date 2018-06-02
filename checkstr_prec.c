@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checkstr_precision.c                               :+:      :+:    :+:   */
+/*   checkstr_prec.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,7 @@
 
 #include "includes/ft_printf.h"
 
-int		checkstr_precision_asarg(const char *str, fstr_t *ptrfstring, int *auxshift)
+int		checkstr_prec_asarg(const char *str, t_fstr *pfs, int *auxshift)
 {
 	char	*tmp;
 	int		tmpargorder;
@@ -29,35 +29,35 @@ int		checkstr_precision_asarg(const char *str, fstr_t *ptrfstring, int *auxshift
 			exit(EXIT_FAILURE);
 		ft_strncpy(tmp, str + 2, i - 2);
 		tmp[i - 2] = '\0';
-		ptrfstring->precision_asargv = ft_atoi(tmp);
+		pfs->prec_asargv = ft_atoi(tmp);
 		free(tmp);
 		// fix 0 //
-		if (!ptrfstring->precision_asargv)
+		if (!pfs->prec_asargv)
 		{
-			ptrfstring->precision = 0;
+			pfs->prec = 0;
 			return (-1);
 		}
-		tmpargorder = ptrfstring->argordervalue;
-		ptrfstring->argordervalue = ptrfstring->precision_asargv;
-		if (ptrfstring->precheck)
-			store_arglist(ptrfstring);
+		tmpargorder = pfs->argov;
+		pfs->argov = pfs->prec_asargv;
+		if (pfs->precheck)
+			store_arglist(pfs);
 		else
 		{
-			ptrfstring->precisionvalue = ft_atoi(sel_arglist(ptrfstring)->str);
-			if (ptrfstring->precisionvalue < 0)
+			pfs->precvalue = ft_atoi(sel_arglist(pfs)->str);
+			if (pfs->precvalue < 0)
 			{
-				ptrfstring->precision = 0;
-				ptrfstring->precisionvalue = 0;
+				pfs->prec = 0;
+				pfs->precvalue = 0;
 			}
 		}
-		ptrfstring->precision_asarg = 1;
-		ptrfstring->argordervalue = tmpargorder;
+		pfs->prec_asarg = 1;
+		pfs->argov = tmpargorder;
 		return (1);
 	}
 	return (0);
 }
 
-int		checkstr_precision_aff(const char *str, fstr_t *ptrfstring, int *auxshift)
+int		checkstr_prec_aff(const char *str, t_fstr *pfs, int *auxshift)
 {
 	char *tmp;
 	int i;
@@ -66,58 +66,58 @@ int		checkstr_precision_aff(const char *str, fstr_t *ptrfstring, int *auxshift)
 	while (str[i] >= 48 && str[i] <= 57)
 		i++;
 	*auxshift = i - 1;
-	if (ptrfstring->precheck)
+	if (pfs->precheck)
 		return (1);
 	if (!(tmp = (char *)malloc(sizeof(char) * i)))
 		exit(EXIT_FAILURE);
 	ft_strncpy(tmp, str + 1, i - 1);
 	tmp[i - 1] = '\0';
-	ptrfstring->precisionvalue = ft_atoi(tmp);
+	pfs->precvalue = ft_atoi(tmp);
 	free(tmp);
 	return (1);
 }
 
-int		checkstr_precision(const char *str, fstr_t *ptrfstring, int *auxshift)
+int		checkstr_prec(const char *str, t_fstr *pfs, int *auxshift)
 {
 	if (*str == '.')
 	{
-		ptrfstring->precision = 1;
+		pfs->prec = 1;
 		if (*(str + 1) == '*')
 		{
 			if (*(str + 2) >= 48 && *(str + 2) <= 57)
 			{
-				if (checkstr_precision_asarg(str, ptrfstring, auxshift))
+				if (checkstr_prec_asarg(str, pfs, auxshift))
 					return (1);
 			}
 			*auxshift = 1;
-			if (!ptrfstring->argorder && !ptrfstring->fwidth_as && !ptrfstring->precision_as)
-				(ptrfstring->argordervalue)++;
-			if (ptrfstring->precheck)
+			if (!pfs->argo && !pfs->fwidth_as && !pfs->prec_as)
+				(pfs->argov)++;
+			if (pfs->precheck)
 			{
-				store_arglist(ptrfstring);
+				store_arglist(pfs);
 			}
 			else
 			{
-				ptrfstring->precisionvalue = ft_atoi(sel_arglist(ptrfstring)->str);
-				if (ptrfstring->precisionvalue < 0)
+				pfs->precvalue = ft_atoi(sel_arglist(pfs)->str);
+				if (pfs->precvalue < 0)
 				{
-					ptrfstring->precision = 0;
-					ptrfstring->precisionvalue = 0;
+					pfs->prec = 0;
+					pfs->precvalue = 0;
 				}
 			}
-			ptrfstring->precision_as = 1;
-			(ptrfstring->argordervalue)++;
+			pfs->prec_as = 1;
+			(pfs->argov)++;
 			return (1);
 		}
 	}
 	else
 		return (0);
 	if (*(str + 1) >= 48 && *(str + 1) <= 57)
-		return (checkstr_precision_aff(str, ptrfstring, auxshift));
+		return (checkstr_prec_aff(str, pfs, auxshift));
 	else
 	{
-		if (!ptrfstring->precheck)
-			ptrfstring->precisionvalue = 0;
+		if (!pfs->precheck)
+			pfs->precvalue = 0;
 	}
 	return (1);
 }

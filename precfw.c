@@ -1,28 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fnpointers.c                                       :+:      :+:    :+:   */
+/*   precfw.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/15 18:11:16 by gofernan          #+#    #+#             */
-/*   Updated: 2018/05/07 19:38:28 by gofernan         ###   ########.fr       */
+/*   Created: 2018/05/07 21:38:43 by gofernan          #+#    #+#             */
+/*   Updated: 2018/05/14 17:25:48 by gofernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/ft_prinft.h"
+#include "includes/ft_printf.h"
 
-void		fnpointers(void)
+char	*precfw(char *str, int *len, t_fstr *pfs)
 {
-	convstr[0] = nextargument;
-	convstr[1] = alternateform;
-	convstr[2] = zeropadding;
-	convstr[3] = leftadjusted;
-	convstr[4] = space;
-	convstr[5] = plus;
-	convstr[6] = apostrophe;
-	convstr[7] = separator;
-	convstr[8] = fieldwidth;
-	convstr[9] = lenghtmodifier;
-	convstr[10] = conversiontype;
+	char	*newstr;
+
+	while ((((unsigned char)str[pfs->precvalue]) >> 6) == 0x02)
+		pfs->precvalue--;
+	if (!(newstr = ft_strnew(pfs->precvalue)))
+		exit(EXIT_FAILURE);
+	ft_strncpy(newstr, str, pfs->precvalue);
+	if (pfs->converted)
+		ft_strdel(&str);
+	else
+		pfs->converted = 1;
+	*len = ft_strlen(newstr);
+	return (newstr);
 }

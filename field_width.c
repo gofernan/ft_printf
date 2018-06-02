@@ -12,31 +12,31 @@
 
 #include "includes/ft_printf.h"
 
-char	*field_width(char *str, int *len, fstr_t *ptrfstring)
+char	*field_width(char *str, int *len, t_fstr *pfs)
 {
 	char	*newstr;
 	char	paddchar;
 
-	if (!(newstr = (char *)malloc(sizeof(char) * (ptrfstring->fwidthvalue + 1))))
+	if (!(newstr = (char *)malloc(sizeof(char) * (pfs->fwidthvalue + 1))))
 		exit(EXIT_FAILURE);
-	if (ptrfstring->flags[1] && !(ptrfstring->flags[2]))
+	if (pfs->flags[1] && !(pfs->flags[2]))
 		paddchar = '0';
 	else
 		paddchar = ' ';
-	if (!(ptrfstring->flags[2]))
+	if (!(pfs->flags[2]))
 	{
-		ft_memset(newstr, paddchar, ptrfstring->fwidthvalue - *len);
-		ft_strcpy(&newstr[ptrfstring->fwidthvalue - *len], str);
+		ft_memset(newstr, paddchar, pfs->fwidthvalue - *len);
+		ft_strcpy(&newstr[pfs->fwidthvalue - *len], str);
 	}
 	else
 	{
 		ft_strcpy(newstr, str);
-		ft_memset(newstr + *len, paddchar, ptrfstring->fwidthvalue - *len);
+		ft_memset(newstr + *len, paddchar, pfs->fwidthvalue - *len);
 	}
-	if (ptrfstring->converted)
+	if (pfs->converted)
 		ft_strdel(&str);
 	else
-		ptrfstring->converted = 1;
-	*len = ptrfstring->fwidthvalue;
+		pfs->converted = 1;
+	*len = pfs->fwidthvalue;
 	return (newstr);
 }

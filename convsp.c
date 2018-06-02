@@ -1,28 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   precisionf.c                                       :+:      :+:    :+:   */
+/*   convsp.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/07 21:40:16 by gofernan          #+#    #+#             */
-/*   Updated: 2018/05/07 21:40:25 by gofernan         ###   ########.fr       */
+/*   Created: 2018/03/21 16:41:53 by gofernan          #+#    #+#             */
+/*   Updated: 2018/05/07 19:16:49 by gofernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/ft_printf.h"
 
-char	*precisionf(char *str, int *len, fstr_t *ptrfstring)
+int			convsp(const char *str, t_fstr *pfs)
 {
-	char *newstr;
+	int		i;
+	char	conversors[CONV_N + 1];
 
-	if (!(newstr = ft_strnew(ptrfstring->precisionvalue)))
-		exit(EXIT_FAILURE);
-	ft_strncpy(newstr, str, ptrfstring->precisionvalue);
-	if (ptrfstring->converted)
-		ft_strdel(&str);
-	else
-		ptrfstring->converted = 1;
-	*len = ft_strlen(newstr);
-	return (newstr);
+	//ft_strcpy(conversors, "sSpdDioOuUxXcCfF");
+	ft_strcpy(conversors, CONVERSORS);
+	conversors[CONV_N] = '\0';
+	i = 0;
+	while (i < CONV_N)
+	{
+		if (*str == conversors[i])
+		{
+			pfs->conv = conversors[i];
+			return (1);
+		}
+		i++;
+	}
+	return (0);
 }

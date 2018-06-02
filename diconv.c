@@ -16,7 +16,7 @@ char		*dimdfs(va_list ap, t_args *tmpargsl)
 {
 	char *s;
 
-	if (tmpargsl->convesp == 'D')
+	if (tmpargsl->conv == 'D')
 		s = ft_ltoa(va_arg(ap, long int));
 	else if (tmpargsl->mdf == 7)
 		s = ft_imaxtoa(va_arg(ap, quad_t));
@@ -41,7 +41,7 @@ char		*dimdfs(va_list ap, t_args *tmpargsl)
 	return (s);
 }
 
-void		diconv(va_list ap, fstr_t *ptrfstring)
+void		diconv(va_list ap, t_fstr *pfs)
 {
 	char	*s;
 	char	*sptr;
@@ -49,8 +49,8 @@ void		diconv(va_list ap, fstr_t *ptrfstring)
 	int		plusp;
 
 	plusp = 0;
-	sptr = sel_arglist(ptrfstring)->str;
-	if (ptrfstring->precision && ptrfstring->precisionvalue == 0 && !ft_strcmp(sptr, "0"))
+	sptr = sel_arglist(pfs)->str;
+	if (pfs->prec && pfs->precvalue == 0 && !ft_strcmp(sptr, "0"))
 	{
 		//ft_strdel(&s);
 		s = ft_strnew(0);
@@ -62,18 +62,18 @@ void		diconv(va_list ap, fstr_t *ptrfstring)
 		s = malloc(sizeof(char) * (len + 1));
 		ft_strcpy(s, sptr);
 	}
-	ptrfstring->converted = 1;
+	pfs->converted = 1;
 	if (*s == '-')
 		plusp = 1;
-	if (ptrfstring->precision && ptrfstring->precisionvalue > (len - plusp))
-		s = precisiondigits(s, &len, plusp, ptrfstring);
-	if (ptrfstring->flags[3] && !ptrfstring->flags[4] && !plusp)
-		s = flag_space(s, &len, ptrfstring);
-	if (ptrfstring->flags[4] && !plusp)
-		s = flag_plus(s, &len, ptrfstring);
-	if (ptrfstring->fwidth && len < ptrfstring->fwidthvalue)
-		s = field_width_num(s, &len, ptrfstring);
-	store_write(ptrfstring, s, &len);
-	if (ptrfstring->converted)
+	if (pfs->prec && pfs->precvalue > (len - plusp))
+		s = precdigits(s, &len, plusp, pfs);
+	if (pfs->flags[3] && !pfs->flags[4] && !plusp)
+		s = flag_space(s, &len, pfs);
+	if (pfs->flags[4] && !plusp)
+		s = flag_plus(s, &len, pfs);
+	if (pfs->fwidth && len < pfs->fwidthvalue)
+		s = field_width_num(s, &len, pfs);
+	store_write(pfs, s, &len);
+	if (pfs->converted)
 		ft_strdel(&s);
 }

@@ -16,7 +16,7 @@ char		*omdfs(va_list ap, t_args *tmpargsl)
 {
 	char *s;
 
-	if (tmpargsl->convesp == 'O')
+	if (tmpargsl->conv == 'O')
 		s = ft_uimaxtoa_base(va_arg(ap, unsigned long), 8, 0);
 	else if (tmpargsl->mdf == 7)
 		s = ft_uimaxtoa_base(va_arg(ap, u_quad_t), 8, 0);
@@ -41,16 +41,16 @@ char		*omdfs(va_list ap, t_args *tmpargsl)
 	return (s);
 }
 
-void		oconv(va_list ap, fstr_t *ptrfstring)
+void		oconv(va_list ap, t_fstr *pfs)
 {
 	char	*s;
 	char	*sptr;
 	int		len;
 
-	sptr = sel_arglist(ptrfstring)->str;
+	sptr = sel_arglist(pfs)->str;
 	//len = ft_strlen(s);
-	if ((ptrfstring->precision && ptrfstring->precisionvalue == 0 && !ft_strcmp(sptr, "0"))
-		|| (!ft_strcmp(sptr, "0") && ptrfstring->flags[0]))
+	if ((pfs->prec && pfs->precvalue == 0 && !ft_strcmp(sptr, "0"))
+		|| (!ft_strcmp(sptr, "0") && pfs->flags[0]))
 	{
 		//*s = '\0';
 		s = ft_strnew(0);
@@ -62,14 +62,14 @@ void		oconv(va_list ap, fstr_t *ptrfstring)
 		s = malloc(sizeof(char) * (len + 1));
 		ft_strcpy(s, sptr);
 	}
-	ptrfstring->converted = 1;
-	if (ptrfstring->flags[0])
-		s = flag_sharp(s, &len, ptrfstring);
-	if (ptrfstring->precision && ptrfstring->precisionvalue > len)
-		s = precisiondigits(s, &len, 0, ptrfstring);
-	if (ptrfstring->fwidth && len < ptrfstring->fwidthvalue)
-		s = field_width_num(s, &len, ptrfstring);
-	store_write(ptrfstring, s, &len);
-	if (ptrfstring->converted)
+	pfs->converted = 1;
+	if (pfs->flags[0])
+		s = flag_sharp(s, &len, pfs);
+	if (pfs->prec && pfs->precvalue > len)
+		s = precdigits(s, &len, 0, pfs);
+	if (pfs->fwidth && len < pfs->fwidthvalue)
+		s = field_width_num(s, &len, pfs);
+	store_write(pfs, s, &len);
+	if (pfs->converted)
 		ft_strdel(&s);
 }

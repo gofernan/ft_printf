@@ -12,13 +12,13 @@
 
 #include "includes/ft_printf.h"
 
-void		sconv(va_list ap, fstr_t *ptrfstring)
+void		sconv(va_list ap, t_fstr *pfs)
 {
 	char	*s;
 	char	*sptr;
 	int		len;
 
-	sptr = sel_arglist(ptrfstring)->str;
+	sptr = sel_arglist(pfs)->str;
 	if (!sptr)
 	{
 		s = ft_strnew(6);
@@ -31,12 +31,12 @@ void		sconv(va_list ap, fstr_t *ptrfstring)
 		s = malloc(sizeof(char) * (len + 1));
 		ft_strcpy(s, sptr);
 	}
-	ptrfstring->converted = 1;
-	if (ptrfstring->precision && len > ptrfstring->precisionvalue)
-		s = precisionf(s, &len, ptrfstring);
-	if (ptrfstring->fwidth && len < ptrfstring->fwidthvalue)
-		s = field_width(s, &len, ptrfstring);
-	store_write(ptrfstring, s, &len);
-	if (ptrfstring->converted)
+	pfs->converted = 1;
+	if (pfs->prec && len > pfs->precvalue)
+		s = precf(s, &len, pfs);
+	if (pfs->fwidth && len < pfs->fwidthvalue)
+		s = field_width(s, &len, pfs);
+	store_write(pfs, s, &len);
+	if (pfs->converted)
 		ft_strdel(&s);
 }
