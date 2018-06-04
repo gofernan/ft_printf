@@ -6,7 +6,7 @@
 #    By: gofernan <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/13 16:45:07 by gofernan          #+#    #+#              #
-#    Updated: 2018/06/04 10:53:59 by gofernan         ###   ########.fr        #
+#    Updated: 2018/06/04 11:21:20 by gofernan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -149,7 +149,6 @@ $(NAME): $(OFLS) $(OFTFLS)
 	ar rc $(NAME) $(OFLS) $(OFTFLS)
 
 $(OFLS): $(CFLS) $(CFTFLS)
-#$(OFLS):
 	gcc -c -g $(FLAGS) -I$(HEADER) $(CFLS) $(CFTFLS)
 
 clean:
@@ -158,7 +157,7 @@ clean:
 	/bin/rm -f $(OFTLSCURRENT)
 
 fclean: clean
-	$(MAKE) -C libft fclean
+	$(MAKE) -C libft clean
 	/bin/rm -f $(NAME)
 
 re: fclean
