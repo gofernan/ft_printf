@@ -6,7 +6,7 @@
 /*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/13 10:01:20 by gofernan          #+#    #+#             */
-/*   Updated: 2018/06/02 22:30:59 by gofernan         ###   ########.fr       */
+/*   Updated: 2018/06/04 10:36:32 by gofernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,6 @@ static char		*checkstr_position(const char *str, int *i)
 	pospercent = ft_strchr(&str[*i], '%');
 	posend = ft_strchr(&str[*i], '\0');
 	pos = pospercent;
-
 	if (pos)
 	{
 		if (poscurl)

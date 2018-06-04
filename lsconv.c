@@ -6,13 +6,13 @@
 /*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/30 15:01:26 by gofernan          #+#    #+#             */
-/*   Updated: 2018/06/02 21:52:40 by gofernan         ###   ########.fr       */
+/*   Updated: 2018/06/04 10:39:07 by gofernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/ft_printf.h"
 
-char	*check_locale_lsconv(va_list ap, t_args *tmpargsl)
+char			*check_locale_lsconv(va_list ap, t_args *tmpargsl)
 {
 	wchar_t		*wstr;
 	char		*s;
@@ -36,6 +36,7 @@ char	*check_locale_lsconv(va_list ap, t_args *tmpargsl)
 static char		*check_utf8valid(t_fstr *pfs, char *s)
 {
 	int valid;
+
 	if (MB_CUR_MAX != 4)
 	{
 		if ((valid = sel_arglist(pfs)->validlen))
@@ -73,7 +74,7 @@ static char		*all_conv(t_fstr *pfs, char *s, int *len)
 	return (s);
 }
 
-void	lsconv(t_fstr *pfs)
+void			lsconv(t_fstr *pfs)
 {
 	char		*s;
 	char		*sptr;

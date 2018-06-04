@@ -6,13 +6,13 @@
 /*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/07 19:19:55 by gofernan          #+#    #+#             */
-/*   Updated: 2018/06/02 22:31:58 by gofernan         ###   ########.fr       */
+/*   Updated: 2018/06/04 10:34:38 by gofernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/ft_printf.h"
 
-char		*dimdfs(va_list ap, t_args *tmpargsl)
+char			*dimdfs(va_list ap, t_args *tmpargsl)
 {
 	char *s;
 
@@ -58,7 +58,7 @@ static char		*diconv_zz(t_fstr *pfs, int *len)
 	return (s);
 }
 
-void		diconv(t_fstr *pfs)
+void			diconv(t_fstr *pfs)
 {
 	char	*s;
 	int		len;

@@ -6,7 +6,7 @@
 #    By: gofernan <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/13 16:45:07 by gofernan          #+#    #+#              #
-#    Updated: 2018/06/02 18:54:06 by gofernan         ###   ########.fr        #
+#    Updated: 2018/06/04 10:53:59 by gofernan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,6 +59,7 @@ FLS = checkstr \
 	  free_struct \
 	  checkstr_colors \
 	  checkstr_findcolor \
+	  fill_defaultv \
 	  #main 
 
 FTFLS = ft_bzero \

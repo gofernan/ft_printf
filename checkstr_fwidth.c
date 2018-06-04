@@ -6,7 +6,7 @@
 /*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/20 17:39:27 by gofernan          #+#    #+#             */
-/*   Updated: 2018/06/02 22:19:45 by gofernan         ###   ########.fr       */
+/*   Updated: 2018/06/04 11:15:17 by gofernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ static int		asarg_aux(t_fstr *pfs, int *tmpargorder)
 	return (1);
 }
 
-static int		checkstr_fwidth_asarg(const char *str, t_fstr *pfs, int *aux, int *i)
+static int		checkstr_fwidth_asarg(const char *str, t_fstr *pfs,
+		int *aux, int *i)
 {
 	char	*tmp;
 	int		tmpargorder;
@@ -59,16 +60,15 @@ static int		checkstr_fwidth_asarg(const char *str, t_fstr *pfs, int *aux, int *i
 	return (0);
 }
 
-static int		checkstr_fwidth_as(const char *str, t_fstr *pfs, int *aux, int *i)
+static int		checkstr_fwidth_as(const char *str, t_fstr *pfs,
+		int *aux, int *i)
 {
 	if (str[*i] == '*')
 	{
 		pfs->fwidth = 1;
 		if (str[*i + 1] >= 48 && str[*i + 1] <= 57)
-		{
 			if (checkstr_fwidth_asarg(str, pfs, aux, i))
 				return (1);
-		}
 		if (!pfs->argo && !pfs->prec_as && !pfs->fwidth_as)
 			(pfs->argov)++;
 		if (pfs->precheck)

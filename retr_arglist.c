@@ -6,19 +6,26 @@
 /*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/02 17:51:21 by gofernan          #+#    #+#             */
-/*   Updated: 2018/06/02 22:05:23 by gofernan         ###   ########.fr       */
+/*   Updated: 2018/06/04 11:09:00 by gofernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/ft_printf.h"
 
-static void		fill_defaultv(t_args *tmpargsl, int *i)
+static void		create_defaultv(t_args *tmpargsl, t_fstr *pfs, int *i)
 {
-	tmpargsl->value = *i;
-	tmpargsl->conv = 's';
-	tmpargsl->mdf = -1;
-	tmpargsl->str = NULL;
-	tmpargsl->next = NULL;
+	tmpargsl = pfs->ptrlargs;
+	while (tmpargsl)
+	{
+		if (!tmpargsl->next)
+		{
+			if (!(tmpargsl->next = (t_args *)malloc(sizeof(t_args))))
+				exit(EXIT_FAILURE);
+			fill_defaultv(tmpargsl->next, i);
+			tmpargsl = tmpargsl->next;
+		}
+		tmpargsl = tmpargsl->next;
+	}
 }
 
 static void		go_over(t_args *tmpargsl, t_fstr *pfs, int *i, int *maxorder)
@@ -33,20 +40,7 @@ static void		go_over(t_args *tmpargsl, t_fstr *pfs, int *i, int *maxorder)
 				break ;
 		}
 		if (!tmpargsl)
-		{
-			tmpargsl = pfs->ptrlargs;
-			while (tmpargsl)
-			{
-				if (!tmpargsl->next)
-				{
-					if (!(tmpargsl->next = (t_args *)malloc(sizeof(t_args))))
-						exit(EXIT_FAILURE);
-					fill_defaultv(tmpargsl->next, i);
-					tmpargsl = tmpargsl->next;
-				}
-				tmpargsl = tmpargsl->next;
-			}
-		}
+			create_defaultv(tmpargsl, pfs, i);
 		tmpargsl = pfs->ptrlargs;
 	}
 }
@@ -76,7 +70,8 @@ static void		retr_ap(va_list ap2, t_args *tmpargsl)
 		tmpargsl->str = ft_binary((va_arg(ap2, intmax_t)));
 }
 
-static void		store_str(va_list ap2, t_fstr *pfs, t_args *tmpargsl, int *maxorder)
+static void		store_str(va_list ap2, t_fstr *pfs, t_args *tmpargsl,
+		int *maxorder)
 {
 	int i;
 

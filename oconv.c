@@ -6,13 +6,13 @@
 /*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/07 21:39:57 by gofernan          #+#    #+#             */
-/*   Updated: 2018/06/02 17:52:39 by gofernan         ###   ########.fr       */
+/*   Updated: 2018/06/04 10:24:45 by gofernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/ft_printf.h"
 
-char		*omdfs(va_list ap, t_args *tmpargsl)
+char			*omdfs(va_list ap, t_args *tmpargsl)
 {
 	char *s;
 
@@ -53,7 +53,7 @@ static char		*all_conv(t_fstr *pfs, char *s, int *len)
 	return (s);
 }
 
-void		oconv(t_fstr *pfs)
+void			oconv(t_fstr *pfs)
 {
 	char	*s;
 	char	*sptr;

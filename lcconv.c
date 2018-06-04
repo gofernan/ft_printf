@@ -6,13 +6,13 @@
 /*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/07 19:45:51 by gofernan          #+#    #+#             */
-/*   Updated: 2018/06/02 22:29:36 by gofernan         ###   ########.fr       */
+/*   Updated: 2018/06/04 11:09:49 by gofernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/ft_printf.h"
 
-char		*check_locale_lcconv(va_list ap, t_args *tmpargsl)
+char			*check_locale_lcconv(va_list ap, t_args *tmpargsl)
 {
 	wint_t		wc[2];
 	char		*s;
@@ -26,14 +26,13 @@ char		*check_locale_lcconv(va_list ap, t_args *tmpargsl)
 	return (s);
 }
 
-static char		*check_utf8all(t_fstr *pfs, char *s, int *len)
+static char		*check_utf8all(t_fstr *pfs, char *s, int *len, int *valid)
 {
-	int valid;
 	if (MB_CUR_MAX != 4)
 	{
-		if ((valid = sel_arglist(pfs)->validlen))
+		if ((*valid = sel_arglist(pfs)->validlen))
 		{
-			if ((pfs->prec && pfs->precvalue >= valid) || !pfs->prec)
+			if ((pfs->prec && pfs->precvalue >= *valid) || !pfs->prec)
 			{
 				if (pfs->converted)
 				{
@@ -56,13 +55,15 @@ static char		*check_utf8all(t_fstr *pfs, char *s, int *len)
 	return (s);
 }
 
-void		lcconv(t_fstr *pfs)
+void			lcconv(t_fstr *pfs)
 {
 	int			len;
+	int			valid;
 	char		*s;
 	char		*sptr;
 
 	len = 0;
+	valid = 0;
 	if ((sptr = sel_arglist(pfs)->str))
 	{
 		len = ft_strlen(sptr);
@@ -72,7 +73,7 @@ void		lcconv(t_fstr *pfs)
 	}
 	else
 		s = sptr;
-	s = check_utf8all(pfs, s, &len);
+	s = check_utf8all(pfs, s, &len, &valid);
 	if (pfs->converted)
 		ft_strdel(&s);
 }

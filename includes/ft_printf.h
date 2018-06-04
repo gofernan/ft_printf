@@ -6,7 +6,7 @@
 /*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/24 18:09:22 by gofernan          #+#    #+#             */
-/*   Updated: 2018/06/02 22:39:23 by gofernan         ###   ########.fr       */
+/*   Updated: 2018/06/04 10:53:29 by gofernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ typedef struct		s_fstr
 	char			conv;
 	int				counter;
 	int				converted;
-	//char			buff[BUFF_SIZE];
 	char			*buff;
 	int				buffsize;
 	int				buffi;
@@ -121,4 +120,5 @@ char				*ft_ftoa(va_list ap);
 void				free_struct(t_fstr *pfs);
 int					checkstr_colors(const char *str, t_fstr *pfs, int *i);
 int					checkstr_findcolor(const char *str, t_fstr *pfs, int *i);
+void				fill_defaultv(t_args *tmpargsl, int *i);
 #endif
