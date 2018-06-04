@@ -23,7 +23,7 @@ static char		*all_conv(t_fstr *pfs, char *s, int *len, int *plusp)
 	return (s);
 }
 
-void			pconv(va_list ap, t_fstr *pfs)
+void			pconv(t_fstr *pfs)
 {
 	char	*s;
 	char	*sptr;

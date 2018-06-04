@@ -12,7 +12,7 @@
 
 #include "includes/ft_printf.h"
 
-static int		asarg_aux(const char *str, t_fstr *pfs, int *tmpargorder, int *i)
+static int		asarg_aux(t_fstr *pfs, int *tmpargorder)
 {
 	if (pfs->precheck)
 		store_arglist(pfs);
@@ -54,7 +54,7 @@ static int		checkstr_fwidth_asarg(const char *str, t_fstr *pfs, int *aux, int *i
 		}
 		tmpargorder = pfs->argov;
 		pfs->argov = pfs->fwidth_asargv;
-		return (asarg_aux(str, pfs, &tmpargorder, i));
+		return (asarg_aux(pfs, &tmpargorder));
 	}
 	return (0);
 }

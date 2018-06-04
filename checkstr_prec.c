@@ -12,7 +12,7 @@
 
 #include "includes/ft_printf.h"
 
-static void		prec_asarg_aux(const char *str, t_fstr *pfs, int *tmpargorder)
+static void		prec_asarg_aux(t_fstr *pfs, int *tmpargorder)
 {
 	*tmpargorder = pfs->argov;
 	pfs->argov = pfs->prec_asargv;
@@ -54,7 +54,7 @@ static int		checkstr_prec_asarg(const char *str, t_fstr *pfs, int *aux)
 			pfs->prec = 0;
 			return (-1);
 		}
-		prec_asarg_aux(str, pfs, &tmpargorder);
+		prec_asarg_aux(pfs, &tmpargorder);
 		return (1);
 	}
 	return (0);

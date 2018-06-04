@@ -73,7 +73,7 @@ static char		*all_conv(t_fstr *pfs, char *s, int *len)
 	return (s);
 }
 
-void	lsconv(va_list ap, t_fstr *pfs)
+void	lsconv(t_fstr *pfs)
 {
 	char		*s;
 	char		*sptr;

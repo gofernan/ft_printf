@@ -12,16 +12,14 @@
 
 #include "includes/ft_printf.h"
 
-void		checkstr_allargs(const char *str, t_fstr *pfs, va_list ap)
+void		checkstr_allargs(const char *str, t_fstr *pfs)
 {
 	int		i;
 	int		go;
-	va_list	ap2;
 
 	i = 0;
 	go = 0;
 	pfs->precheck = 1;
-	va_copy(ap2, ap);
 	while (str[i] != '\0')
 	{
 		if (go == 0)
@@ -31,9 +29,8 @@ void		checkstr_allargs(const char *str, t_fstr *pfs, va_list ap)
 		}
 		else
 		{
-			go = checkstr_inside(str, pfs, ap2, &i);
+			go = checkstr_inside(str, pfs, &i);
 		}
 		i++;
 	}
-	va_end(ap2);
 }

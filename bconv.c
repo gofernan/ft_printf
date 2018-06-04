@@ -12,7 +12,7 @@
 
 #include "includes/ft_printf.h"
 
-void		bconv(va_list ap, t_fstr *pfs)
+void		bconv(t_fstr *pfs)
 {
 	char	*s;
 	int		len;

@@ -12,7 +12,7 @@
 
 #include "includes/ft_printf.h"
 
-char		*cconva(va_list ap, t_fstr *pfs)
+char		*cconva(va_list ap)
 {
 	char	a;
 	char	*s;
@@ -24,9 +24,8 @@ char		*cconva(va_list ap, t_fstr *pfs)
 	return (s);
 }
 
-void		cconv(va_list ap, t_fstr *pfs)
+void		cconv(t_fstr *pfs)
 {
-	char	a;
 	char	*s;
 	char	*sptr;
 	int		len;

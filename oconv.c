@@ -53,7 +53,7 @@ static char		*all_conv(t_fstr *pfs, char *s, int *len)
 	return (s);
 }
 
-void		oconv(va_list ap, t_fstr *pfs)
+void		oconv(t_fstr *pfs)
 {
 	char	*s;
 	char	*sptr;

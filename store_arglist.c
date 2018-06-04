@@ -77,8 +77,6 @@ static void		gooverlist(t_fstr *pfs)
 
 void			store_arglist(t_fstr *pfs)
 {
-	t_args *tmpargsl;
-
 	if (!pfs->ptrlargs)
 	{
 		if (!(pfs->ptrlargs = (t_args *)malloc(sizeof(t_args))))

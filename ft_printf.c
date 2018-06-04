@@ -50,11 +50,11 @@ int				ft_printf(const char *str, ...)
 	pfs = &fstring;
 	init_prestore(pfs);
 	initialize_struct(pfs);
-	checkstr_allargs(str, pfs, ap);
+	checkstr_allargs(str, pfs);
 	if (pfs->ptrlargs)
 		retr_arglist(ap, pfs);
 	init_poststore(pfs);
-	checkstr(str, pfs, ap);
+	checkstr(str, pfs);
 	if (pfs->counter != -1)
 		pfs->counter += write(1, pfs->buff, pfs->buffi);
 	else

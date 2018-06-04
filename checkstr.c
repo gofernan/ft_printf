@@ -12,29 +12,29 @@
 
 #include "includes/ft_printf.h"
 
-int				conversors(const char *str, t_fstr *pfs, va_list ap, int *i)
+int				conversors(const char *str, t_fstr *pfs, int *i)
 {
 	if (pfs->conv == 's' && !(pfs->lengthmdf[2]))
-		sconv(ap, pfs);
+		sconv(pfs);
 	else if (pfs->conv == 'S' || pfs->conv == 's')
-		lsconv(ap, pfs);
+		lsconv(pfs);
 	else if (pfs->conv == 'd' || pfs->conv == 'i' ||
 			pfs->conv == 'D')
-		diconv(ap, pfs);
+		diconv(pfs);
 	else if (pfs->conv == 'u' || pfs->conv == 'U')
-		uconv(ap, pfs);
+		uconv(pfs);
 	else if (pfs->conv == 'o' || pfs->conv == 'O')
-		oconv(ap, pfs);
+		oconv(pfs);
 	else if (pfs->conv == 'X' || pfs->conv == 'x')
-		xconv(ap, pfs);
+		xconv(pfs);
 	else if (pfs->conv == 'c' && !pfs->lengthmdf[2])
-		cconv(ap, pfs);
+		cconv(pfs);
 	else if (pfs->conv == 'C' || pfs->conv == 'c')
-		lcconv(ap, pfs);
+		lcconv(pfs);
 	else if (pfs->conv == 'p')
-		pconv(ap, pfs);
+		pconv(pfs);
 	else if (pfs->conv == 'b')
-		bconv(ap, pfs);
+		bconv(pfs);
 	else
 		percent(str[*i], pfs);
 	return (0);
@@ -63,7 +63,7 @@ int				checkmdfs(const char *str, t_fstr *pfs, int *i)
 	return (1);
 }
 
-static char		*checkstr_position(const char *str, t_fstr *pfs, int *i)
+static char		*checkstr_position(const char *str, int *i)
 {
 	char	*pos;
 	char	*poscurl;
@@ -90,14 +90,14 @@ static char		*checkstr_position(const char *str, t_fstr *pfs, int *i)
 	return (pos);
 }
 
-int				checkstr_outside(const char *str, t_fstr *pfs, va_list ap, int *i)
+int				checkstr_outside(const char *str, t_fstr *pfs, int *i)
 {
 	char	*pos;
 	int		sum;
 
 	if (str[*i] != '%' && str[*i] != '{')
 	{
-		pos = checkstr_position(str, pfs, i);
+		pos = checkstr_position(str, i);
 		sum = pos - &str[*i];
 		pfs->lnchars += sum;
 		store_write(pfs, &str[*i], &sum);
@@ -110,7 +110,7 @@ int				checkstr_outside(const char *str, t_fstr *pfs, va_list ap, int *i)
 	return (0);
 }
 
-void			checkstr(const char *str, t_fstr *pfs, va_list ap)
+void			checkstr(const char *str, t_fstr *pfs)
 {
 	int		i;
 	int		go;
@@ -120,9 +120,9 @@ void			checkstr(const char *str, t_fstr *pfs, va_list ap)
 	while (str[i] != '\0' && pfs->counter != -1)
 	{
 		if (go == 0)
-			go = checkstr_outside(str, pfs, ap, &i);
+			go = checkstr_outside(str, pfs, &i);
 		else if (go == 1)
-			go = checkstr_inside(str, pfs, ap, &i);
+			go = checkstr_inside(str, pfs, &i);
 		else
 			go = checkstr_findcolor(str, pfs, &i);
 		i++;

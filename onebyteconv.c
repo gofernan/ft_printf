@@ -16,7 +16,6 @@ char		*onebyteconv(wchar_t *wstr, t_args *tmpargsl)
 {
 	int		i;
 	char	*casted1byte;
-	int		counter;
 	int		len;
 
 	i = -1;

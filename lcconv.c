@@ -56,7 +56,7 @@ static char		*check_utf8all(t_fstr *pfs, char *s, int *len)
 	return (s);
 }
 
-void		lcconv(va_list ap, t_fstr *pfs)
+void		lcconv(t_fstr *pfs)
 {
 	int			len;
 	char		*s;

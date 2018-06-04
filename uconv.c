@@ -41,7 +41,7 @@ char		*umdfs(va_list ap, t_args *tmpargsl)
 	return (s);
 }
 
-void		uconv(va_list ap, t_fstr *pfs)
+void		uconv(t_fstr *pfs)
 {
 	char	*s;
 	char	*sptr;

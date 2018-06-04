@@ -12,7 +12,7 @@
 
 #include "includes/ft_printf.h"
 
-void		sconv(va_list ap, t_fstr *pfs)
+void		sconv(t_fstr *pfs)
 {
 	char	*s;
 	char	*sptr;

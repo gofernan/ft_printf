@@ -12,7 +12,7 @@
 
 #include "includes/ft_printf.h"
 
-static char			*flag_sharp_o(char *str, int *len, t_fstr *pfs)
+static char			*flag_sharp_o(char *str, int *len)
 {
 	char *newstr;
 
@@ -43,10 +43,11 @@ char				*flag_sharp(char *str, int *len, t_fstr *pfs)
 {
 	char	*newstr;
 
+	newstr = NULL;
 	if (pfs->conv == 'x' || pfs->conv == 'X' || pfs->conv == 'p')
 		newstr = flag_sharp_x(str, len, pfs);
 	else if (pfs->conv == 'o' || pfs->conv == 'O')
-		newstr = flag_sharp_o(str, len, pfs);
+		newstr = flag_sharp_o(str, len);
 	if (pfs->converted)
 		ft_strdel(&str);
 	else

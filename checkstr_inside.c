@@ -1,13 +1,13 @@
 #include "includes/ft_printf.h"
 
-static int	conversion(const char *str, t_fstr *pfs, va_list ap, int *i)
+static int	conversion(const char *str, t_fstr *pfs, int *i)
 {
 	if (convsp(&str[*i], pfs) && !pfs->argo && !pfs->fwidth_as && !pfs->prec_as)
 		(pfs->argov)++;
 	if (pfs->precheck)
 		store_arglist(pfs);
 	else
-		conversors(str, pfs, ap, i);
+		conversors(str, pfs, i);
 	if (pfs->counter != -1)
 	{
 		initialize_struct(pfs);
@@ -16,7 +16,7 @@ static int	conversion(const char *str, t_fstr *pfs, va_list ap, int *i)
 	return (1);
 }
 
-int			checkstr_inside(const char *str, t_fstr *pfs, va_list ap, int *i)
+int			checkstr_inside(const char *str, t_fstr *pfs, int *i)
 {
 	int aux;
 
@@ -40,7 +40,7 @@ int			checkstr_inside(const char *str, t_fstr *pfs, va_list ap, int *i)
 	else if (checkmdfs(str, pfs, i))
 		;
 	else
-		if (!(conversion(str, pfs, ap, i)))
+		if (!(conversion(str, pfs, i)))
 			return (0);
 	return (1);
 }

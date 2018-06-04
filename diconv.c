@@ -58,10 +58,9 @@ static char		*diconv_zz(t_fstr *pfs, int *len)
 	return (s);
 }
 
-void		diconv(va_list ap, t_fstr *pfs)
+void		diconv(t_fstr *pfs)
 {
 	char	*s;
-	char	*sptr;
 	int		len;
 	int		plusp;
 

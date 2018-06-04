@@ -51,7 +51,7 @@ static void		go_over(t_args *tmpargsl, t_fstr *pfs, int *i, int *maxorder)
 	}
 }
 
-static void		retr_ap(va_list ap2, t_fstr *pfs, t_args *tmpargsl)
+static void		retr_ap(va_list ap2, t_args *tmpargsl)
 {
 	if (tmpargsl->conv == 's' && tmpargsl->mdf != 2)
 		tmpargsl->str = va_arg(ap2, char *);
@@ -67,7 +67,7 @@ static void		retr_ap(va_list ap2, t_fstr *pfs, t_args *tmpargsl)
 	else if (tmpargsl->conv == 'X' || tmpargsl->conv == 'x')
 		tmpargsl->str = xmdfs(ap2, tmpargsl);
 	else if (tmpargsl->conv == 'c' && tmpargsl->mdf != 2)
-		tmpargsl->str = cconva(ap2, pfs);
+		tmpargsl->str = cconva(ap2);
 	else if (tmpargsl->conv == 'C' || tmpargsl->conv == 'c')
 		tmpargsl->str = check_locale_lcconv(ap2, tmpargsl);
 	else if (tmpargsl->conv == 'p')
@@ -88,7 +88,7 @@ static void		store_str(va_list ap2, t_fstr *pfs, t_args *tmpargsl, int *maxorder
 			if (!(tmpargsl = tmpargsl->next))
 				break ;
 		}
-		retr_ap(ap2, pfs, tmpargsl);
+		retr_ap(ap2, tmpargsl);
 		tmpargsl = pfs->ptrlargs;
 		i++;
 	}
