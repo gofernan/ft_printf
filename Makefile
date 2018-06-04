@@ -6,7 +6,7 @@
 #    By: gofernan <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/13 16:45:07 by gofernan          #+#    #+#              #
-#    Updated: 2018/06/04 11:21:20 by gofernan         ###   ########.fr        #
+#    Updated: 2018/06/04 11:42:07 by gofernan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,7 +60,6 @@ FLS = checkstr \
 	  checkstr_colors \
 	  checkstr_findcolor \
 	  fill_defaultv \
-	  #main 
 
 FTFLS = ft_bzero \
 		ft_memset \
@@ -146,10 +145,11 @@ OFTLSCURRENT = $(patsubst %, %.o, $(FTFLS))
 all: $(NAME)
 
 $(NAME): $(OFLS) $(OFTFLS)
-	ar rc $(NAME) $(OFLS) $(OFTFLS)
+	ar -rc $(NAME) $(OFLS) $(OFTFLS)
+	ranlib $(NAME)
 
 $(OFLS): $(CFLS) $(CFTFLS)
-	gcc -c -g $(FLAGS) -I$(HEADER) $(CFLS) $(CFTFLS)
+	gcc -c $(FLAGS) -I$(HEADER) $(CFLS) $(CFTFLS)
 
 clean:
 	$(MAKE) -C libft clean
@@ -157,7 +157,7 @@ clean:
 	/bin/rm -f $(OFTLSCURRENT)
 
 fclean: clean
-	$(MAKE) -C libft clean
+	$(MAKE) -C libft fclean
 	/bin/rm -f $(NAME)
 
 re: fclean
