@@ -11,10 +11,8 @@
 # **************************************************************************** #
 
 NAME = libftprintf.a
-#NAME = miprintf
-#FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror
 
-#argo
 FLS = checkstr \
 	  checkstr_inside \
 	  checkstr_argorder \
@@ -148,17 +146,19 @@ all: $(NAME)
 
 $(NAME): $(OFLS) $(OFTFLS)
 	ar rc $(NAME) $(OFLS) $(OFTFLS)
-	#gcc $(FLAGS) $(OFTFLS) $(OFLS) -o $(NAME)
 
 $(OFLS): $(CFLS) $(CFTFLS)
 #$(OFLS):
-	gcc -c -g -I$(HEADER) $(CFLS) $(CFTFLS)
+	gcc -c -g $(FLAGS) -I$(HEADER) $(CFLS) $(CFTFLS)
 
 clean:
+	$(MAKE) -C libft clean
 	/bin/rm -f $(OFLS)
 	/bin/rm -f $(OFTLSCURRENT)
 
 fclean: clean
+	$(MAKE) -C libft fclean
 	/bin/rm -f $(NAME)
 
-re: clean all
+re: fclean
+	make
