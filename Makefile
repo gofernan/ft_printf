@@ -16,6 +16,7 @@ NAME = libftprintf.a
 
 #argo
 FLS = checkstr \
+	  checkstr_inside \
 	  checkstr_argorder \
 	  checkstr_flags \
 	  checkstr_fwidth \
@@ -58,6 +59,8 @@ FLS = checkstr \
 	  retr_arglist \
 	  sel_arglist \
 	  free_struct \
+	  checkstr_colors \
+	  checkstr_findcolor \
 	  #main 
 
 FTFLS = ft_bzero \

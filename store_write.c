@@ -16,20 +16,24 @@ void		store_write(t_fstr *pfs, const char *s, int *len)
 {
 	int	i;
 
-	i = 0;
-	if (((pfs->buffi) + *len) < BUFF_SIZE)
+	if (((pfs->buffi) + *len) < pfs->buffsize)
 	{
 		ft_strncpynp(&pfs->buff[pfs->buffi], s, *len);
 		pfs->buffi += *len;
 	}
-	else if (*len <= BUFF_SIZE)
+	else if (*len <= pfs->buffsize)
 	{
 		pfs->counter += write(1, pfs->buff, pfs->buffi);
-		//while (i < pfs->buffi)
-		//	pfs->buff[i++] = '\0';
 		ft_strncpynp(pfs->buff, s, *len);
 		pfs->buffi = *len;
 	}
 	else
-		ft_putstr("NO ENTRA");
+	{
+		i = 1000;
+		pfs->counter += write(1, pfs->buff, pfs->buffi);
+		ft_strdel(&pfs->buff);
+		pfs->buffsize += i;
+		if (!(pfs->buff = (char *)malloc(sizeof(char) * (pfs->buffsize + 1))))
+			exit(EXIT_FAILURE);
+	}
 }

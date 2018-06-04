@@ -25,7 +25,7 @@
 # define FLAGS_N 5
 # define LENGTHM_N 8
 # define CONV_N 15
-# define BUFF_SIZE 1000
+//# define BUFF_SIZE 1000
 
 typedef struct		s_args
 {
@@ -56,9 +56,9 @@ typedef struct		s_fstr
 	char			conv;
 	int				counter;
 	int				converted;
-	char			buff[BUFF_SIZE];
-	//char			*buff;
-	//int			buffsize;
+	//char			buff[BUFF_SIZE];
+	char			*buff;
+	int				buffsize;
 	int				buffi;
 	int				lnchars;
 	t_args			*ptrlargs;
@@ -68,10 +68,11 @@ typedef struct		s_fstr
 int					ft_printf(const char *str, ...);
 void				sconv(va_list ap, t_fstr *pfs);
 void				checkstr(const char *str, t_fstr *pfs, va_list ap);
-int					checkstr_argorder(const char *str, t_fstr *pfs, int *auxshift);
+int					checkstr_inside(const char *str, t_fstr *pfs, va_list ap, int *i);
+int					checkstr_argorder(const char *str, t_fstr *pfs, int *aux);
 int					checkstr_flags(const char *str, t_fstr *pfs);
-int					checkstr_fwidth(const char *str, t_fstr *pfs, int *auxshift);
-int					checkstr_prec(const char *str, t_fstr *pfs, int *auxshift);
+int					checkstr_fwidth(const char *str, t_fstr *pfs, int *aux);
+int					checkstr_prec(const char *str, t_fstr *pfs, int *aux);
 int					checkstr_length_hh(const char *str, t_fstr *pfs);
 int					checkstr_length_h(const char *str, t_fstr *pfs);
 int					checkstr_length_ll(const char *str, t_fstr *pfs);
@@ -80,6 +81,8 @@ int					checkstr_length_j(const char *str, t_fstr *pfs);
 int					checkstr_length_t(const char *str, t_fstr *pfs);
 int					checkstr_length_z(const char *str, t_fstr *pfs);
 int					checkstr_length_q(const char *str, t_fstr *pfs);
+int					conversors(const char *str, t_fstr *pfs, va_list ap, int *i);
+int					checkmdfs(const char *str, t_fstr *pfs, int *i);
 int					convsp(const char *str, t_fstr *pfs);
 char				*field_width(char *str, int *len, t_fstr *pfs);
 char				*field_width_num(char *str, int *len, t_fstr *pfs);
@@ -119,4 +122,6 @@ char				*umdfs(va_list ap, t_args *tmpargsl);
 char				*dimdfs(va_list ap, t_args *tmpargsl);
 char				*ft_ftoa(va_list ap);
 void				free_struct(t_fstr *pfs);
+int					checkstr_colors(const char *str, t_fstr *pfs, int *i);
+int					checkstr_findcolor(const char *str, t_fstr *pfs, int *i);
 #endif

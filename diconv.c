@@ -41,6 +41,23 @@ char		*dimdfs(va_list ap, t_args *tmpargsl)
 	return (s);
 }
 
+static char		*diconv_zz(t_fstr *pfs, int *len)
+{
+	char	*s;
+	char	*sptr;
+
+	sptr = sel_arglist(pfs)->str;
+	if (pfs->prec && pfs->precvalue == 0 && !ft_strcmp(sptr, "0"))
+		s = ft_strnew(0);
+	else
+	{
+		*len = ft_strlen(sptr);
+		s = malloc(sizeof(char) * (*len + 1));
+		ft_strcpy(s, sptr);
+	}
+	return (s);
+}
+
 void		diconv(va_list ap, t_fstr *pfs)
 {
 	char	*s;
@@ -49,18 +66,8 @@ void		diconv(va_list ap, t_fstr *pfs)
 	int		plusp;
 
 	plusp = 0;
-	sptr = sel_arglist(pfs)->str;
-	if (pfs->prec && pfs->precvalue == 0 && !ft_strcmp(sptr, "0"))
-	{
-		s = ft_strnew(0);
-		len = 0;
-	}
-	else
-	{
-		len = ft_strlen(sptr);
-		s = malloc(sizeof(char) * (len + 1));
-		ft_strcpy(s, sptr);
-	}
+	len = 0;
+	s = diconv_zz(pfs, &len);
 	pfs->converted = 1;
 	if (*s == '-')
 		plusp = 1;

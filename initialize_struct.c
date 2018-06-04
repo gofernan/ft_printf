@@ -28,6 +28,7 @@ void		initialize_struct(t_fstr *pfs)
 	pfs->prec_asarg = 0;
 	pfs->prec_asargv = 0;
 	pfs->precvalue = 0;
+	pfs->lnchars = 0;
 	while (++i < FLAGS_N)
 		pfs->flags[i] = 0;
 	i = -1;
@@ -35,7 +36,4 @@ void		initialize_struct(t_fstr *pfs)
 		pfs->lengthmdf[i] = 0;
 	pfs->conv = 0;
 	pfs->converted = 0;
-	i = 0;
-	//while (i < BUFF_SIZE)
-	//	pfs->buff[i++] = '\0';
 }

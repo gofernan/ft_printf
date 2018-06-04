@@ -12,7 +12,18 @@
 
 #include "includes/ft_printf.h"
 
-void		pconv(va_list ap, t_fstr *pfs)
+static char		*all_conv(t_fstr *pfs, char *s, int *len, int *plusp)
+{
+	s = flag_sharp(s, len, pfs);
+	if (pfs->prec && pfs->precvalue > (*len - *plusp))
+		s = precdigits(s, len, *plusp, pfs);
+	if (pfs->fwidth && *len < pfs->fwidthvalue)
+		s = field_width_num(s, len, pfs);
+	store_write(pfs, s, len);
+	return (s);
+}
+
+void			pconv(va_list ap, t_fstr *pfs)
 {
 	char	*s;
 	char	*sptr;
@@ -33,12 +44,7 @@ void		pconv(va_list ap, t_fstr *pfs)
 		ft_strcpy(s, sptr);
 	}
 	pfs->converted = 1;
-	s = flag_sharp(s, &len, pfs);
-	if (pfs->prec && pfs->precvalue > (len - plusp))
-		s = precdigits(s, &len, plusp, pfs);
-	if (pfs->fwidth && len < pfs->fwidthvalue)
-		s = field_width_num(s, &len, pfs);
-	store_write(pfs, s, &len);
+	s = all_conv(pfs, s, &len, &plusp);
 	if (pfs->converted)
 		ft_strdel(&s);
 }

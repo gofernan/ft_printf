@@ -33,12 +33,51 @@ char	*check_locale_lsconv(va_list ap, t_args *tmpargsl)
 	return (s);
 }
 
+static char		*check_utf8valid(t_fstr *pfs, char *s)
+{
+	int valid;
+	if (MB_CUR_MAX != 4)
+	{
+		if ((valid = sel_arglist(pfs)->validlen))
+		{
+			if ((pfs->prec && pfs->precvalue >= valid) || !pfs->prec)
+			{
+				if (pfs->converted)
+				{
+					ft_strdel(&s);
+					pfs->converted = 0;
+				}
+			}
+		}
+	}
+	return (s);
+}
+
+static char		*all_conv(t_fstr *pfs, char *s, int *len)
+{
+	if (s)
+	{
+		if (pfs->prec && *len > pfs->precvalue)
+		{
+			if (MB_CUR_MAX == 4)
+				s = precfw(s, len, pfs);
+			else
+				s = precf(s, len, pfs);
+		}
+		if (pfs->fwidth && *len < pfs->fwidthvalue)
+			s = field_width(s, len, pfs);
+		store_write(pfs, s, len);
+	}
+	else
+		pfs->counter = -1;
+	return (s);
+}
+
 void	lsconv(va_list ap, t_fstr *pfs)
 {
 	char		*s;
 	char		*sptr;
 	int			len;
-	int			validlen;
 
 	if ((sptr = sel_arglist(pfs)->str))
 	{
@@ -49,35 +88,8 @@ void	lsconv(va_list ap, t_fstr *pfs)
 	}
 	else
 		s = sptr;
-	if (MB_CUR_MAX != 4)
-	{
-		if ((validlen = sel_arglist(pfs)->validlen))
-		{
-			if ((pfs->prec && pfs->precvalue >= validlen) || !pfs->prec)
-			{
-				if (pfs->converted)
-				{
-					ft_strdel(&s);
-					pfs->converted = 0;
-				}
-			}
-		}
-	}
-	if (s)
-	{
-		if (pfs->prec && len > pfs->precvalue)
-		{
-			if (MB_CUR_MAX == 4)
-				s = precfw(s, &len, pfs);
-			else
-				s = precf(s, &len, pfs);
-		}
-		if (pfs->fwidth && len < pfs->fwidthvalue)
-			s = field_width(s, &len, pfs);
-		store_write(pfs, s, &len);
-	}
-	else
-		pfs->counter = -1;
+	s = check_utf8valid(pfs, s);
+	s = all_conv(pfs, s, &len);
 	if (pfs->converted)
 		ft_strdel(&s);
 }

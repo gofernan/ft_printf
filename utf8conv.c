@@ -12,11 +12,6 @@
 
 #include "includes/ft_printf.h"
 
-char		*onebyte(unsigned int *wstr)
-{
-	return ((char *)wstr);
-}
-
 char		*twobytes(unsigned int *wstr)
 {
 	char	*twobytestr;
@@ -79,17 +74,23 @@ int			bytesutf8(unsigned int *wstr)
 	return (counter);
 }
 
-void		encodebytes(unsigned int *wstr, char *newstr)
+char		*utf8conv(unsigned int *wstr)
 {
 	int		i;
+	int		counter;
 	char	*retrstr;
+	char	*newstr;
 
 	i = 0;
 	retrstr = NULL;
+	if ((counter = bytesutf8(wstr)) == -1)
+		return (NULL);
+	if (!(newstr = ft_strnew(bytesutf8(wstr))))
+		exit(EXIT_FAILURE);
 	while (wstr[i])
 	{
 		if (wstr[i] < 0x0080)
-			ft_strncat(newstr, onebyte(&wstr[i++]), 1);
+			ft_strncat(newstr, (char *)&wstr[i++], 1);
 		else if (wstr[i] < 0x0800)
 			ft_strncat(newstr, retrstr = twobytes(&wstr[i++]), 2);
 		else if (wstr[i] < 0x10000)
@@ -99,18 +100,5 @@ void		encodebytes(unsigned int *wstr, char *newstr)
 		if (retrstr)
 			ft_strdel(&retrstr);
 	}
-}
-
-char		*utf8conv(unsigned int *wstr)
-{
-	int		counter;
-	char	*newstr;
-
-	counter = 0;
-	if ((counter = bytesutf8(wstr)) == -1)
-		return (NULL);
-	if (!(newstr = ft_strnew(bytesutf8(wstr))))
-		exit(EXIT_FAILURE);
-	encodebytes(wstr, newstr);
 	return (newstr);
 }

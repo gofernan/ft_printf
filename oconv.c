@@ -41,6 +41,18 @@ char		*omdfs(va_list ap, t_args *tmpargsl)
 	return (s);
 }
 
+static char		*all_conv(t_fstr *pfs, char *s, int *len)
+{
+	if (pfs->flags[0])
+		s = flag_sharp(s, len, pfs);
+	if (pfs->prec && pfs->precvalue > *len)
+		s = precdigits(s, len, 0, pfs);
+	if (pfs->fwidth && *len < pfs->fwidthvalue)
+		s = field_width_num(s, len, pfs);
+	store_write(pfs, s, len);
+	return (s);
+}
+
 void		oconv(va_list ap, t_fstr *pfs)
 {
 	char	*s;
@@ -61,13 +73,7 @@ void		oconv(va_list ap, t_fstr *pfs)
 		ft_strcpy(s, sptr);
 	}
 	pfs->converted = 1;
-	if (pfs->flags[0])
-		s = flag_sharp(s, &len, pfs);
-	if (pfs->prec && pfs->precvalue > len)
-		s = precdigits(s, &len, 0, pfs);
-	if (pfs->fwidth && len < pfs->fwidthvalue)
-		s = field_width_num(s, &len, pfs);
-	store_write(pfs, s, &len);
+	s = all_conv(pfs, s, &len);
 	if (pfs->converted)
 		ft_strdel(&s);
 }

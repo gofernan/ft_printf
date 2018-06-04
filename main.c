@@ -49,9 +49,10 @@ int main(void)
 	//printf("%d%3$d%d", 10, 20, 30, 40);
 	//ft_printf("%.u", 0);
 	//ft_printf("%C", 0x11ffff);
-	ft_printf("%.c", 0);
+	//printf("%3$s%2$s%1$s", "hola", "que", "tal");
 	//ft_printf("%*6$.*d\n", 10, 14, 5, 7, 8);
 	//ft_printf("%*.*d", 0, 3, 0);	
 	//ft_printf("%*3d", 0, 0);
+	ft_printf("{red}{blue}hol{sasa}a%s {black}que {red}tal{eoc}", "vivir");
 	return (0);
 }

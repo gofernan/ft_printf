@@ -12,7 +12,7 @@
 
 #include "includes/ft_printf.h"
 
-int			checkstr_argorder(const char *str, t_fstr *pfs, int *auxshift)
+int			checkstr_argorder(const char *str, t_fstr *pfs, int *aux)
 {
 	int		i;
 	char	*tmp;
@@ -26,7 +26,7 @@ int			checkstr_argorder(const char *str, t_fstr *pfs, int *auxshift)
 			exit(EXIT_FAILURE);
 		ft_strncpy(tmp, str, i);
 		tmp[i] = '\0';
-		*auxshift = i + 1;
+		*aux = i + 1;
 		pfs->argov = ft_atoi(tmp);
 		free(tmp);
 		pfs->argo = 1;

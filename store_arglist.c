@@ -12,7 +12,7 @@
 
 #include "includes/ft_printf.h"
 
-void		fill_list(t_args *tmpargsl, t_fstr *pfs)
+static void		fill_list(t_args *tmpargsl, t_fstr *pfs)
 {
 	int i;
 
@@ -37,7 +37,7 @@ void		fill_list(t_args *tmpargsl, t_fstr *pfs)
 	tmpargsl->next = NULL;
 }
 
-void		init_listarg(t_args *tmpargsl)
+static void		init_listarg(t_args *tmpargsl)
 {
 	tmpargsl->value = 0;
 	tmpargsl->conv = '\0';
@@ -47,16 +47,10 @@ void		init_listarg(t_args *tmpargsl)
 	tmpargsl->validlen = 0;
 }
 
-void		store_arglist(t_fstr *pfs)
+static void		gooverlist(t_fstr *pfs)
 {
 	t_args *tmpargsl;
 
-	if (!pfs->ptrlargs)
-	{
-		if (!(pfs->ptrlargs = (t_args *)malloc(sizeof(t_args))))
-			exit(EXIT_FAILURE);
-		init_listarg(pfs->ptrlargs);
-	}
 	tmpargsl = pfs->ptrlargs;
 	while (tmpargsl)
 	{
@@ -79,4 +73,17 @@ void		store_arglist(t_fstr *pfs)
 			tmpargsl = tmpargsl->next;
 		}
 	}
+}
+
+void			store_arglist(t_fstr *pfs)
+{
+	t_args *tmpargsl;
+
+	if (!pfs->ptrlargs)
+	{
+		if (!(pfs->ptrlargs = (t_args *)malloc(sizeof(t_args))))
+			exit(EXIT_FAILURE);
+		init_listarg(pfs->ptrlargs);
+	}
+	gooverlist(pfs);
 }

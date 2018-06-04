@@ -12,7 +12,7 @@
 
 #include "includes/ft_printf.h"
 
-int			conversors(const char *str, t_fstr *pfs, va_list ap, int *i)
+int				conversors(const char *str, t_fstr *pfs, va_list ap, int *i)
 {
 	if (pfs->conv == 's' && !(pfs->lengthmdf[2]))
 		sconv(ap, pfs);
@@ -40,7 +40,7 @@ int			conversors(const char *str, t_fstr *pfs, va_list ap, int *i)
 	return (0);
 }
 
-int			checkmdfs(const char *str, t_fstr *pfs, int *i)
+int				checkmdfs(const char *str, t_fstr *pfs, int *i)
 {
 	if (checkstr_length_hh(&str[*i], pfs))
 		(*i)++;
@@ -63,74 +63,54 @@ int			checkmdfs(const char *str, t_fstr *pfs, int *i)
 	return (1);
 }
 
-int			checkstr_outside(const char *str, t_fstr *pfs, va_list ap, int *i)
+static char		*checkstr_position(const char *str, t_fstr *pfs, int *i)
 {
 	char	*pos;
-	char	colorchar;
+	char	*poscurl;
+	char	*pospercent;
+	char	*posend;
 
-	if (str[*i] != '%')
+	poscurl = ft_strchr(&str[*i], '{');
+	pospercent = ft_strchr(&str[*i], '%');
+	posend = ft_strchr(&str[*i], '\0');
+	pos = pospercent;
+
+	if (pos)
 	{
-		//if (str[*i] == '{')
-		//	checkstr_colors(str, pfs, *i);
-		if ((pos = ft_strchr(&str[*i], '%')))
+		if (poscurl)
 		{
-			pfs->lnchars = pos - &str[*i];
-			store_write(pfs, &str[*i], &pfs->lnchars);
-			*i += pfs->lnchars - 1;
-		}
-		else
-		{
-			pfs->lnchars = ft_strlen(&str[*i]);
-			store_write(pfs, &str[*i], &pfs->lnchars);
-			*i += ft_strlen(&str[*i]) - 1;
+			if (pos > poscurl)
+				pos = poscurl;
 		}
 	}
+	else if (poscurl)
+		pos = poscurl;
 	else
+		pos = posend;
+	return (pos);
+}
+
+int				checkstr_outside(const char *str, t_fstr *pfs, va_list ap, int *i)
+{
+	char	*pos;
+	int		sum;
+
+	if (str[*i] != '%' && str[*i] != '{')
+	{
+		pos = checkstr_position(str, pfs, i);
+		sum = pos - &str[*i];
+		pfs->lnchars += sum;
+		store_write(pfs, &str[*i], &sum);
+		*i += sum - 1;
+	}
+	else if (str[*i] == '%')
 		return (1);
+	else if (str[*i] == '{')
+		return (2);
 	return (0);
 }
 
-int			checkstr_inside(const char *str, t_fstr *pfs, va_list ap, int *i)
-{
-	int auxshift;
-
-	auxshift = 0;
-	if (checkstr_argorder(&str[*i], pfs, &auxshift))
-	{
-		if (!pfs->argov)
-		{
-			*i += auxshift - 2;
-			initialize_struct(pfs);
-			return (0);
-		}
-		*i += auxshift - 1;
-	}
-	else if (checkstr_flags(&str[*i], pfs))
-		;
-	else if (checkstr_fwidth(&str[*i], pfs, &auxshift))
-		*i += auxshift;
-	else if (checkstr_prec(&str[*i], pfs, &auxshift))
-		*i += auxshift;
-	else if (checkmdfs(str, pfs, i))
-		;
-	else
-	{
-		if (convsp(&str[*i], pfs) && !pfs->argo && !pfs->fwidth_as && !pfs->prec_as)
-			(pfs->argov)++;
-		if (pfs->precheck)
-			store_arglist(pfs);
-		else
-			conversors(str, pfs, ap, i);
-		if (pfs->counter != -1)
-		{
-			initialize_struct(pfs);
-			return (0);
-		}
-	}
-	return (1);
-}
-
-void		checkstr(const char *str, t_fstr *pfs, va_list ap)
+void			checkstr(const char *str, t_fstr *pfs, va_list ap)
 {
 	int		i;
 	int		go;
@@ -141,8 +121,10 @@ void		checkstr(const char *str, t_fstr *pfs, va_list ap)
 	{
 		if (go == 0)
 			go = checkstr_outside(str, pfs, ap, &i);
-		else
+		else if (go == 1)
 			go = checkstr_inside(str, pfs, ap, &i);
+		else
+			go = checkstr_findcolor(str, pfs, &i);
 		i++;
 	}
 }
