@@ -6,12 +6,13 @@
 #    By: gofernan <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/13 16:45:07 by gofernan          #+#    #+#              #
-#    Updated: 2018/06/04 11:42:07 by gofernan         ###   ########.fr        #
+#    Updated: 2018/10/03 01:35:02 by gofernan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 FLAGS = -Wall -Wextra -Werror
+CC = gcc
 
 FLS = checkstr \
 	  checkstr_inside \
@@ -129,32 +130,33 @@ FTFLS = ft_bzero \
 		ft_strncpynp \
 		ft_binary \
 
-FTDIR = libft/
-HEADER = includes/
+FTDIR = libft
+FTSRCS = $(FTDIR)/srcs
+FTODIR = $(FTDIR)/objs
+FTIDIR = $(FTDIR)/include
+HEADER = includes
 
 CFLS = $(patsubst %, %.c, $(FLS))
 OFLS = $(patsubst %, %.o, $(FLS))
 
-CFTFLS = $(patsubst %, $(FTDIR)%.c, $(FTFLS))
-OFTFLS = $(patsubst %, %.o, $(FTFLS))
-
-OFTLSCURRENT = $(patsubst %, %.o, $(FTFLS))
-
-.PHONY: all clean fclean re
+CFTFLS = $(patsubst %, $(FTSRCS)/%.c, $(FTFLS))
+OFTFLS = $(patsubst %, $(FTODIR)/%.o, $(FTFLS))
 
 all: $(NAME)
+
+$(FTODIR)/%.o: $(FTSRCS)/%.c
+	$(CC) $(FLAGS) -c $< -I$(FTIDIR) -o $@
+
+%.o: %.c
+	$(CC) $(FLAGS) -c $< -I$(HEADER) -o $@
 
 $(NAME): $(OFLS) $(OFTFLS)
 	ar -rc $(NAME) $(OFLS) $(OFTFLS)
 	ranlib $(NAME)
 
-$(OFLS): $(CFLS) $(CFTFLS)
-	gcc -c $(FLAGS) -I$(HEADER) $(CFLS) $(CFTFLS)
-
 clean:
 	$(MAKE) -C libft clean
 	/bin/rm -f $(OFLS)
-	/bin/rm -f $(OFTLSCURRENT)
 
 fclean: clean
 	$(MAKE) -C libft fclean
@@ -162,3 +164,6 @@ fclean: clean
 
 re: fclean
 	make
+
+.phony: all clean fclean re
+

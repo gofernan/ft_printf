@@ -6,7 +6,7 @@
 /*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/24 18:09:22 by gofernan          #+#    #+#             */
-/*   Updated: 2018/06/04 10:53:29 by gofernan         ###   ########.fr       */
+/*   Updated: 2018/10/03 00:23:41 by gofernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <stdint.h>
 # include <stddef.h>
 # include <sys/types.h>
-# include "../libft/libft.h"
+# include "../libft/include/libft.h"
 # define CONVERSORS "sSpdDioOuUxXcCb"
 # define FLAGS "#0- +"
 # define FLAGS_N 5
