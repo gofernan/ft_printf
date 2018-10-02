@@ -6,13 +6,13 @@
 #    By: gofernan <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/13 16:45:07 by gofernan          #+#    #+#              #
-#    Updated: 2018/10/03 01:40:40 by gofernan         ###   ########.fr        #
+#    Updated: 2018/10/03 01:44:44 by gofernan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 FLAGS = -Wall -Wextra -Werror
-CC = clang 
+CC = gcc 
 
 FLS = checkstr \
 	  checkstr_inside \
