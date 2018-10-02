@@ -6,13 +6,13 @@
 #    By: gofernan <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/13 16:45:07 by gofernan          #+#    #+#              #
-#    Updated: 2018/10/03 01:35:02 by gofernan         ###   ########.fr        #
+#    Updated: 2018/10/03 01:40:40 by gofernan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 FLAGS = -Wall -Wextra -Werror
-CC = gcc
+CC = clang 
 
 FLS = checkstr \
 	  checkstr_inside \
@@ -166,4 +166,3 @@ re: fclean
 	make
 
 .phony: all clean fclean re
-
