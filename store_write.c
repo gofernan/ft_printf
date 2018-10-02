@@ -6,7 +6,7 @@
 /*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/14 17:25:51 by gofernan          #+#    #+#             */
-/*   Updated: 2018/10/03 01:53:25 by gofernan         ###   ########.fr       */
+/*   Updated: 2018/10/03 01:55:15 by gofernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void		store_write(t_fstr *pfs, const char *s, int *len)
 		pfs->counter += write(1, pfs->buff, pfs->buffi);
 		//ft_strdel(&pfs->buff);
 		free(pfs->buff);
+		pfs->buff = NULL;
 		while (*len <= pfs->buffsize)
 			pfs->buffsize += i;
 		if (!(pfs->buff = (char *)malloc(sizeof(char) * (pfs->buffsize + 1))))
