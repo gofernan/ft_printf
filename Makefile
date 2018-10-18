@@ -12,7 +12,7 @@
 
 NAME = libftprintf.a
 FLAGS = -Wall -Wextra -Werror
-CC = gcc 
+CC = clang 
 
 FLS = checkstr \
 	  checkstr_inside \

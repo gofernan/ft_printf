@@ -31,10 +31,8 @@ void		store_write(t_fstr *pfs, const char *s, int *len)
 	{
 		i = 1000;
 		pfs->counter += write(1, pfs->buff, pfs->buffi);
-		//ft_strdel(&pfs->buff);
-		free(pfs->buff);
-		pfs->buff = NULL;
-		while (*len <= pfs->buffsize)
+		ft_strdel(&pfs->buff);
+		while (*len > pfs->buffsize)
 			pfs->buffsize += i;
 		if (!(pfs->buff = (char *)malloc(sizeof(char) * (pfs->buffsize + 1))))
 			exit(EXIT_FAILURE);
