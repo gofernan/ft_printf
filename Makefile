@@ -134,10 +134,12 @@ FTDIR = libft
 FTSRCS = $(FTDIR)/srcs
 FTODIR = $(FTDIR)/objs
 FTIDIR = $(FTDIR)/include
+FLSDIR = srcs
+OBJSDIR = objs
 HEADER = includes
 
-CFLS = $(patsubst %, %.c, $(FLS))
-OFLS = $(patsubst %, %.o, $(FLS))
+CFLS = $(patsubst %, $(FLSDIR)/%.c, $(FLS))
+OFLS = $(patsubst %, $(OBJSDIR)/%.o, $(FLS))
 
 CFTFLS = $(patsubst %, $(FTSRCS)/%.c, $(FTFLS))
 OFTFLS = $(patsubst %, $(FTODIR)/%.o, $(FTFLS))
@@ -147,7 +149,7 @@ all: $(NAME)
 $(FTODIR)/%.o: $(FTSRCS)/%.c
 	$(CC) $(FLAGS) -c $< -I$(FTIDIR) -o $@
 
-%.o: %.c
+$(OBJSDIR)/%.o: $(FLSDIR)/%.c
 	$(CC) $(FLAGS) -c $< -I$(HEADER) -o $@
 
 $(NAME): $(OFLS) $(OFTFLS)
